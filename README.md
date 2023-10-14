@@ -4,7 +4,7 @@ Hướng dẫn cài đặt sau khi clone project
 
 1. Tạo database tên 'reviewtravel'
 2. Xóa đuôi .txt của file .env.txt
-3. Mở terminal trong project
+3. Mở cmd/terminal trong project
 4. Nhập: composer install
 5. Nhập: php artisan key:generate
 6. Nhập: composer update
