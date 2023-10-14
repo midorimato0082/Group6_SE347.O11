@@ -33,12 +33,7 @@ Route::get('verify/{code}', 'RegisterController@verifyAccount')->name('verify');
 Route::get('dashboard', 'DashboardController@viewDashboard')->middleware('isLoggedIn');
 
 // User Management
-Route::get('all-user', 'UserController@viewAll')->middleware('isLoggedIn');
-Route::get('edit-user/{id}', 'UserController@viewEdit')->middleware('isLoggedIn');
-Route::post('update-user/{id}', 'UserController@update')->middleware('isLoggedIn');
-Route::get('delete-user/{id}', 'UserController@delete')->middleware('isLoggedIn');
-Route::get('add-admin', 'UserController@viewAddAdmin')->middleware('isLoggedIn');
-Route::post('save-admin', 'UserController@saveAdmin')->middleware('isLoggedIn');
+
 
 // Category Management
 
