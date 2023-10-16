@@ -43,8 +43,8 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-list-alt me-2"></i>Danh mục</a>
                         <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="#" class="dropdown-item">Danh sách danh mục</a>
-                            <a href="#" class="dropdown-item">Thêm danh mục</a>
+                            <a href="all-category" class="dropdown-item">Danh sách danh mục</a>
+                            <a href="add-category" class="dropdown-item">Thêm danh mục</a>
                         </div>
                     </div>
 
