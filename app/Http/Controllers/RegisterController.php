@@ -32,7 +32,7 @@ class RegisterController extends Controller
             User::where('id', $user->id)->update(['avatar' => $avatar]);
         }
 
-        Mail::send('email.verification', ['code' => $user->code], function ($message) use ($request) {
+        Mail::send('email.verification', ['code' => $user->code, 'firstname' => $request->first_name], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Xác nhận email.');
         });

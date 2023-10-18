@@ -42,6 +42,12 @@ $(function () {
         return false;
     });
 
+    $('.nav-item').on('hide.bs.dropdown', function (e) {
+        if (e.clickEvent) {
+          e.preventDefault();
+        }
+    })
+
     var current_url = window.location.href.split('#')[0].split('?')[0];
 
     var nav_link = $('#sidebar').find('a').filter(function () {

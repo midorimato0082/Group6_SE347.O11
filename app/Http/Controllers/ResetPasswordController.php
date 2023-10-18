@@ -34,12 +34,13 @@ class ResetPasswordController extends Controller
             return back()->with('fail', 'Email của bạn chưa được xác nhận.');
 
         $code = Str::uuid();
+        $firstname = $user->first_name;
 
         $user = User::whereId($user->id)->update([
             'code' => $code
         ]);
 
-        Mail::send('email.reset_password', ['email' => $request->email, 'code' => $code], function ($message) use ($request) {
+        Mail::send('email.reset_password', ['email' => $request->email, 'code' => $code, 'firstname' => $firstname], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Đặt lại mật khẩu.');
         });

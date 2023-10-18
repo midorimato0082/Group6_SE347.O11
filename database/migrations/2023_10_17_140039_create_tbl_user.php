@@ -4,19 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblUser extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        // php artisan make:migration create_tbl_user
-        // php artisan migrate
-        // php artisan migrate:reset 
-
         Schema::create('tbl_user', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
             $table->string('first_name', 20); 
@@ -34,11 +28,9 @@ class CreateTblUser extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('tbl_user'); 
+        Schema::dropIfExists('tbl_user');
     }
-}
+};

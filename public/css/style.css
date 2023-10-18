@@ -42,7 +42,7 @@ h1.title {
     -webkit-text-stroke: 1px black;
 }
 
-.form-outline p {
+p.invalid-feedback {
     font-size: small;
     margin-left: 2%;
     margin-top: 1%;
