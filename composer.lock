@@ -8067,7 +8067,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -8077,3 +8077,4 @@
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
+
