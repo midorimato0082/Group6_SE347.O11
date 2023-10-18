@@ -10,6 +10,7 @@
     <h1 class="title text-wrap text-center mb-4">ĐĂNG NHẬP</h1>
 
     <form action="login" method="post">
+        @csrf
 
         @if (Session::has('fail'))
             <div class="alert alert-danger">{{ session('fail') }}</div>
@@ -19,26 +20,22 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        @csrf
-
         <div class="form-outline mb-3">
-            <input type="text" class="form-control bg-light rounded-2" placeholder="Email" name="email" autofocus
-                value={{ Cookie::get('email', old('email')) }}>
-            <p>
-                @error('email')
-                    {{ $message }}
-                @enderror
-            </p>
+            <input type="text" class="form-control bg-light rounded-2 @error('email') is-invalid @enderror"
+                placeholder="Email" name="email" value="{{ Cookie::get('email', old('email')) }}" autofocus required>
+            @error('email')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="form-outline mb-3">
-            <input type="password" class="form-control bg-light rounded-2" placeholder="Mật khẩu" name="password"
-                value={{ Cookie::get('password', '') }}>
-            <p>
-                @error('password')
-                    {{ $message }}
-                @enderror
-            </p>
+            <input type="password" class="form-control bg-light rounded-2 @error('password') is-invalid @enderror"
+                placeholder="Mật khẩu" name="password" value="{{ Cookie::get('password', '') }}" required minlength="6"
+                maxlength="12">
+            @error('password')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+
         </div>
 
         <div class="d-flex justify-content-between mb-3 ps-3 pe-3">

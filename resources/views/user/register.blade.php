@@ -15,48 +15,44 @@
                         @csrf
 
                         <div class="form-outline mb-3">
-                            <input type="text" class="form-control bg-light rounded-2 col" placeholder="Họ" autofocus
-                                name="last_name" value={{ old('last_name') }}>
-                            <p>
-                                @error('last_name')
-                                    {{ $message }}
-                                @enderror
-                            </p>
+                            <input type="text"
+                                class="form-control bg-light rounded-2 col @error('last_name') is-invalid @enderror"
+                                placeholder="Họ" name="last_name" value="{{ old('last_name') }}" autofocus required>
+                            @error('last_name')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="form-outline mb-3">
-                            <input type="text" class="form-control bg-light rounded-2 col" placeholder="Tên"
-                                name="first_name" value={{ old('first_name') }}>
-                            <p>
-                                @error('first_name')
-                                    {{ $message }}
-                                @enderror
-                            </p>
+                            <input type="text"
+                                class="form-control bg-light rounded-2 col @error('first_name') is-invalid @enderror"
+                                placeholder="Tên" name="first_name" value="{{ old('first_name') }}" required>
+                            @error('first_name')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="form-outline mb-3">
-                            <input type="text" class="form-control bg-light rounded-2" placeholder="Email"
-                                name="email" value={{ old('email') }}>
-                            <p>
-                                @error('email')
-                                    {{ $message }}
-                                @enderror
-                            </p>
+                            <input type="text"
+                                class="form-control bg-light rounded-2 @error('email') is-invalid @enderror"
+                                placeholder="Email" name="email" value="{{ old('email') }}" required>
+                            @error('email')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="form-outline mb-3">
-                            <input type="password" class="form-control bg-light rounded-2" placeholder="Mật khẩu"
-                                name="password">
-                            <p>
-                                @error('password')
-                                    {{ $message }}
-                                @enderror
-                            </p>
+                            <input type="password"
+                                class="form-control bg-light rounded-2 @error('password') is-invalid @enderror"
+                                placeholder="Mật khẩu" name="password" required minlength="6" maxlength="12">
+                            @error('password')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="form-outline mb-3">
                             <input type="password" class="form-control bg-light rounded-2"
-                                placeholder="Nhập lại mật khẩu" name="password_confirmation">
+                                placeholder="Nhập lại mật khẩu" name="password_confirmation" required>
                         </div>
 
                         <div class="form-outline mb-3 text-center">
