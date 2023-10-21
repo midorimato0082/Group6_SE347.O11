@@ -38,12 +38,11 @@ class AllUser extends Component
         // Vì có liên quan đến tài khoản đang đăng nhập nên khác biệt chút
         $this->checkedUser = $value ? array_diff($this->users->pluck('id')->toArray(), [session('user.id')]) : [];
 
-        if (!$this->checkedUser)
-            $this->checkedAll = false;
-
         // Cách dùng cho các management bình thường
         // $this->checkedUser = $value ? $this->users->pluck('id')->toArray() : [];
 
+        if (!$this->checkedUser)
+            $this->checkedAll = false;
     }
 
     public function updatedCheckedUser()
