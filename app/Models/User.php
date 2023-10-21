@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    use SearchTrait;
+    
     protected $table = 'tbl_user';
 
     protected $primaryKey = 'id';
@@ -46,4 +49,11 @@ class User extends Model
     {
         return $this->hasMany(LikeDislike::class, 'user_id');
     }
+
+    protected $searchable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone'
+    ];
 }

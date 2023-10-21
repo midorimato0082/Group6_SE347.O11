@@ -31,11 +31,6 @@ $(function () {
 // --------------------------------------
 
 // View Admin Layout
-function dislayTooltip() {
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-}
-
 $(function () {
     $('.sidebar-toggler').click(function () {
         $('.sidebar, .content').toggleClass('open');
@@ -44,15 +39,22 @@ $(function () {
 
     $('.nav-item').on('hide.bs.dropdown', function (e) {
         if (e.clickEvent) {
-          e.preventDefault();
+            e.preventDefault();
         }
     })
 
     var current_url = window.location.href.split('#')[0].split('?')[0];
+    var value_editing = '';
 
     var nav_link = $('#sidebar').find('a').filter(function () {
+        if (current_url.includes('edit')) {
+            value_editing = current_url.split('edit-')[1].split('/')[0];
+            return $(this).hasClass(value_editing);
+        }
+
         return this.href == current_url;
-    }).addClass('active')
+    }).addClass('active');
+
 
     if (nav_link.parent('.dropdown-menu').length) {
         $('#title-section').removeClass('d-none').text(nav_link.text());
@@ -62,8 +64,22 @@ $(function () {
 
     $('#title-content').text(nav_link.text());
 
-    dislayTooltip();
+    if (current_url.includes('edit'))
+        $('a.' + value_editing).removeClass('d-none');
+
 });
+// -----------------------------
+
+// View All 
+$(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip();
+
+    $('.page-item').on('click', function () {
+        Livewire.dispatch('resetCheckedAll');
+    });
+
+});
+
 // -----------------------------
 
 // View Dashboard

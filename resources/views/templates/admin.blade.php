@@ -28,14 +28,15 @@
                 </div>
 
                 <div id="sidebar" class="navbar-nav w-100">
-                    <a href="dashboard" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Tổng quan</a>
+                    <a href="{{ url('dashboard') }}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Tổng quan</a>
 
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-user me-2"></i>User</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="all-user" class="dropdown-item">Danh sách User</a>
-                            <a href="add-admin" class="dropdown-item">Thêm Admin</a>
+                            <a href="{{ url('all-user') }}" class="dropdown-item">Danh sách User</a>
+                            <a href="{{ url('add-admin') }}" class="dropdown-item">Thêm Admin</a>
+                            <a class="dropdown-item admin d-none" onclick="return false">Cập nhật Admin</a>
                         </div>
                     </div>
 
@@ -43,8 +44,9 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-list-alt me-2"></i>Danh mục</a>
                         <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="all-category" class="dropdown-item">Danh sách danh mục</a>
-                            <a href="add-category" class="dropdown-item">Thêm danh mục</a>
+                            <a href="{{ url('all-category') }}" class="dropdown-item">Danh sách danh mục</a>
+                            <a href="{{ url('add-category') }}" class="dropdown-item">Thêm danh mục</a>
+                            <a class="dropdown-item category d-none" onclick="return false">Cập nhật danh mục</a>
                         </div>
                     </div>
 
@@ -52,8 +54,9 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-map-marker me-2"></i>Địa điểm</a>
                         <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="#" class="dropdown-item">Danh sách địa điểm</a>
-                            <a href="#" class="dropdown-item">Thêm địa điểm</a>
+                            <a href="{{ url('all-location') }}" class="dropdown-item">Danh sách địa điểm</a>
+                            <a href="{{ url('add-location') }}" class="dropdown-item">Thêm địa điểm</a>
+                            <a class="dropdown-item location d-none" onclick="return false">Cập nhật địa điểm</a>
                         </div>
                     </div>
 
@@ -61,8 +64,9 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-edit me-2"></i>Bài
                             viết</a>
                         <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="#" class="dropdown-item">Danh sách bài viết</a>
-                            <a href="#" class="dropdown-item">Thêm bài viết</a>
+                            <a href="{{ url('all-review') }}" class="dropdown-item">Danh sách bài viết</a>
+                            <a href="{{ url('add-review') }}" class="dropdown-item">Thêm bài viết</a>
+                            <a class="dropdown-item review d-none" onclick="return false">Cập nhật bài viết</a>
                         </div>
                     </div>
 
@@ -70,12 +74,13 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-newspaper me-2"></i>Tin tức</a>
                         <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="#" class="dropdown-item">Danh sách tin tức</a>
-                            <a href="#" class="dropdown-item">Thêm tin tức</a>
+                            <a href="{{ url('all-news') }}" class="dropdown-item">Danh sách tin tức</a>
+                            <a href="{{ url('add-news') }}" class="dropdown-item">Thêm tin tức</a>
+                            <a class="dropdown-item news d-none" onclick="return false">Cập nhật tin tức</a>
                         </div>
                     </div>
 
-                    <a href="#" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình luận</a>
+                    <a href="{{ url('all-comment') }}" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình luận</a>
                 </div>
 
                 <div class="sidebar-footer hidden-small">

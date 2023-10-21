@@ -1,5 +1,5 @@
 @extends('templates.admin')
 
 @section('content')
-    @livewire('all-user')
+    @livewire('edit-admin', ['id' => $id])
 @endsection

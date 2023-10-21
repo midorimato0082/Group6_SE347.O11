@@ -440,6 +440,15 @@ label span {
     color: red;
 }
 
+.search .search-icon {
+    pointer-events: none;
+}
+
+.search .clear-icon {
+    margin-left: -40px !important;
+    z-index: 100 !important;
+}
+
 /* ---------------------------- */
 
 /* View Dashboard */
