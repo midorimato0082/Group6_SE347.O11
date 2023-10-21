@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class AllUser extends Component
 {
     use WithPagination;
-    protected $listeners = ['resetCheckedAll' => 'resetCheckedAll'];
+    protected $listeners = ['resetChecked' => 'resetChecked'];
 
     public $keyword;
     public $role;
@@ -38,6 +38,9 @@ class AllUser extends Component
         // Vì có liên quan đến tài khoản đang đăng nhập nên khác biệt chút
         $this->checkedUser = $value ? array_diff($this->users->pluck('id')->toArray(), [session('user.id')]) : [];
 
+        if (!$this->checkedUser)
+            $this->checkedAll = false;
+
         // Cách dùng cho các management bình thường
         // $this->checkedUser = $value ? $this->users->pluck('id')->toArray() : [];
 
@@ -45,12 +48,11 @@ class AllUser extends Component
 
     public function updatedCheckedUser()
     {
-        $this->checkedPage = false;
+        $this->resetChecked();
     }
 
     public function checkAll()
     {
-        
         $this->checkedAll = true;
         // Vì có liên quan đến tài khoản đang đăng nhập nên khác biệt chút
         $this->checkedUser = array_diff($this->usersQuery->pluck('id')->toArray(), [session('user.id')]);
@@ -64,9 +66,15 @@ class AllUser extends Component
         return in_array($id, $this->checkedUser);
     }
 
-    public function resetCheckedAll()
+    public function resetChecked()
     {
         $this->checkedPage = false;
+        $this->checkedAll = false;
+    }
+
+    public function resetPageChecked() {
+        $this->resetPage();
+        $this->resetChecked();
     }
 
     public function deleteRecords()
@@ -74,12 +82,12 @@ class AllUser extends Component
         User::whereKey($this->checkedUser)->delete();
 
         $this->checkedUser = [];
-        $this->checkedPage = false;
-        $this->checkedAll = false;
+        $this->resetChecked();
 
         session()->flash('success', 'Những dòng được chọn đã xóa');
-    }
 
+        $this->resetPage();
+    }
 
     public function deleteSingleRecord($id)
     {
@@ -87,5 +95,7 @@ class AllUser extends Component
         $user->delete();
 
         session()->flash('success', 'Xóa user thành công.');
+
+        $this->resetPage();
     }
 }

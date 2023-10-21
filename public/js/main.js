@@ -75,7 +75,7 @@ $(function () {
     $('[data-bs-toggle="tooltip"]').tooltip();
 
     $('.page-item').on('click', function () {
-        Livewire.dispatch('resetCheckedAll');
+        Livewire.dispatch('resetChecked');
     });
 
 });

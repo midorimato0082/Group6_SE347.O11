@@ -1,5 +1,7 @@
 <div>
     @dump($checkedUser)
+    @dump($checkedPage)
+    @dump($checkedAll)
     <div class="row px-1 mb-4">
         <div class="col-7 col-sm-7 col-md-7 col-lg-7">
             @if (count($checkedUser) != 0)
@@ -10,7 +12,7 @@
         </div>
 
         <div class="col-2 col-sm-2 col-md-2 col-lg-2">
-            <select class="form-select form-select-sm" wire:model="role" wire:change="resetPage()">
+            <select class="form-select form-select-sm" wire:model="role" wire:change="resetPageChecked">
                 <option value="">Tất cả User</option>
                 <option value="1">Admin</option>
                 <option value="0">Normal User</option>
@@ -18,7 +20,7 @@
         </div>
 
         <div class="col input-group search">
-            <input type="text" wire:model.debounce.150ms="keyword" wire:input="resetPage()"
+            <input type="text" wire:model.debounce.150ms="keyword" wire:input="resetPageChecked"
                 class="form-control form-control-sm searchbox" placeholder="Tìm kiếm...">
 
             @if ($keyword)
@@ -33,7 +35,8 @@
         </div>
     </div>
 
-    @if ($checkedPage)
+
+    @if ($checkedPage && $users->count() != $users->total())
     {{-- Bỏ -1 đi nhé --}}
         <div class="px-1 mb-4">
             @if ($checkedAll)
