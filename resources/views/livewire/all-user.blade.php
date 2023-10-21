@@ -1,7 +1,4 @@
 <div>
-    @dump($checkedUser)
-    @dump($checkedPage)
-    @dump($checkedAll)
     <div class="row px-1 mb-4">
         <div class="col-7 col-sm-7 col-md-7 col-lg-7">
             @if (count($checkedUser) != 0)
