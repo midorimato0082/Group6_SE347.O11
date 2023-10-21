@@ -11,15 +11,10 @@
     <p id="text">Nhập địa chỉ email của bạn và Review Travel sẽ gửi link đặt lại mật khẩu cho bạn.</p>
 
     <form action="{{ route('forget') }}" method="post" id="forget-password-form">
-        @if (Session::has('fail'))
-            <div class="alert alert-danger">{{ Session::get('fail') }}</div>
-        @endif
-
-        @if (Session::has('success'))
-            <div class="alert alert-success">{{ Session::get('success') }}</div>
-        @endif
-
         @csrf
+
+        @include('includes.flash_message')
+        
         <div class="form-outline mb-3">
             <input type="text" class="form-control bg-light rounded-2" placeholder="Email" name="email" autofocus
                 value={{ old('email') }}>

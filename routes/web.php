@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 // Login
 Route::get('login', 'LoginController@viewLogin')->middleware('alreadyLoggedIn');
-Route::post('login', 'LoginController@login');
 Route::get('logout', 'LoginController@logout');
 
 // Reset Password
@@ -36,7 +35,7 @@ Route::middleware('isLoggedIn')->group(function () {
 
     // User Management
     Route::get('all-user', 'UserController@viewAll');
-    Route::get('edit-user/{id}', 'UserController@viewEdit');
+    Route::get('edit-admin/{id}', 'UserController@viewEdit');
     Route::post('update-user/{id}', 'UserController@update');
     Route::post('delete-user/{id}', 'UserController@delete');
     Route::get('add-admin', 'UserController@viewAddAdmin');
