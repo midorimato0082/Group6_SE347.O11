@@ -85,7 +85,7 @@
                         <td><img src="images/user/{{ $user->avatar }}" class="rounded-circle img-table"></td>
                         <td>
                             @if (!empty($user->email_verified_at))
-                                <i class="fa fa-check text-success" data-bs-toggle="tooltip"
+                                <i class="fa fa-chimgeck text-success" data-bs-toggle="tooltip"
                                     title="Email đã xác nhận"></i>
                             @else
                                 <i class="fa fa-ban text-danger" data-bs-toggle="tooltip"

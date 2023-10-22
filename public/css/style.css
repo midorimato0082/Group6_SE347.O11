@@ -475,5 +475,12 @@ label span {
     height: 80%;
     object-fit: cover;
 }
+/* Comments */
+.clear-icon-search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5%;
+}
 
 /* ---------------------------- */
