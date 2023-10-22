@@ -48,6 +48,8 @@ class LoginForm extends Component
 
             $this->rememberMe($this->email, $this->password);
 
+            $this->reset();
+            
             if ($user->is_admin == 1)
                 return redirect('dashboard');
 

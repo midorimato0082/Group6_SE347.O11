@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="logout">
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('logout') }}">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -108,7 +108,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item"><i class="fa fa-user-edit"></i> Hồ sơ</a>
-                            <a href="logout" class="dropdown-item"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                            <a href="{{ url('logout') }}" class="dropdown-item"><i class="fa fa-sign-out"></i> Đăng xuất</a>
                         </div>
                     </div>
                 </div>

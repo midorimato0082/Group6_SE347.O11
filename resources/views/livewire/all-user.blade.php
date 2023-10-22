@@ -34,7 +34,7 @@
 
 
     @if ($checkedPage && $users->count() != $users->total())
-    {{-- Bỏ -1 đi nhé --}}
+        {{-- Bỏ -1 đi nhé --}}
         <div class="px-1 mb-4">
             @if ($checkedAll)
                 Bạn đã chọn <strong>{{ $users->total() - 1 }}</strong> user.
@@ -109,7 +109,7 @@
 
                             @if (session('user.id') != $user->id)
                                 @if (!$checkedUser)
-                                    <a onclick="return confirm('Bạn chắc chắn muốn xóa user này?') || event.stopImmediatePropagation()"
+                                    <a wire:confirm="Bạn chắc chắn muốn xóa user này?"
                                         wire:click="deleteSingleRecord({{ $user->id }})" data-bs-toggle="tooltip"
                                         title="Xóa user">
                                         <i class="fa fa-times fa-lg text-danger"></i>
