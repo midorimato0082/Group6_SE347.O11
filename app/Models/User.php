@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Traits\SearchTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
     use SearchTrait;
-    
+
     protected $table = 'tbl_user';
 
     protected $primaryKey = 'id';
@@ -29,6 +30,13 @@ class User extends Model
         'code',
         'email_verified_at'
     ];
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => $attributes['last_name'] . $attributes['first_name']
+        );
+    }
 
     public function review()
     {

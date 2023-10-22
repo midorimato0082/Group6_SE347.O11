@@ -69,8 +69,8 @@
             <tbody id="table-content">
                 @foreach ($users as $key => $user)
                     <tr wire:key="row-{{ $user->id }}"
-                        class="@if (session('user.id') == $user->id) table-danger 
-                        @elseif ($this->isChecked($user->id)) 
+                        class="@if (session('user.id') == $user->id) table-danger
+                        @elseif ($this->isChecked($user->id))
                         table-primary @endif">
                         <td>
                             @if (session('user.id') != $user->id)

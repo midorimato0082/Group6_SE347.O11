@@ -450,7 +450,30 @@ label span {
 }
 
 /* ---------------------------- */
+/* General*/
 
+.truncate-text-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.truncate-text-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
 /* View Dashboard */
+
+.post-item {
+    height: 220px !important;
+}
+.image-card-dashboard {
+    width: 150px;
+    height: 80%;
+    object-fit: cover;
+}
 
 /* ---------------------------- */
