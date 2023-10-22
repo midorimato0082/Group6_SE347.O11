@@ -32,7 +32,6 @@
         </div>
     </div>
 
-
     @if ($checkedPage && $users->count() != $users->total())
         {{-- Bỏ -1 đi nhé --}}
         <div class="px-1 mb-4">
@@ -108,7 +107,7 @@
                             @endif
 
                             @if (session('user.id') != $user->id)
-                                @if (!$checkedUser)
+                                @if (!$this->isChecked($user->id))
                                     <a wire:confirm="Bạn chắc chắn muốn xóa user này?"
                                         wire:click="deleteSingleRecord({{ $user->id }})" data-bs-toggle="tooltip"
                                         title="Xóa user">

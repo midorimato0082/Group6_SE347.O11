@@ -1,5 +1,5 @@
 <div>
-    <form method="POST" wire:submit.prevent="login">
+    <form wire:submit.prevent="login">
         @csrf
 
         @include('includes.flash_message')

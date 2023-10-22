@@ -53,6 +53,7 @@ class AllUser extends Component
     public function checkAll()
     {
         $this->checkedAll = true;
+        $this->checkedPage = false;
         // Vì có liên quan đến tài khoản đang đăng nhập nên khác biệt chút
         $this->checkedUser = array_diff($this->usersQuery->pluck('id')->toArray(), [session('user.id')]);
 
@@ -67,13 +68,12 @@ class AllUser extends Component
 
     public function resetChecked()
     {
-        $this->checkedPage = false;
-        $this->checkedAll = false;
+        $this->reset('checkedPage', 'checkedAll');
     }
 
     public function resetPageChecked() {
         $this->resetPage();
-        $this->resetChecked();
+        $this->resetChecked();       
     }
 
     public function deleteRecords()
