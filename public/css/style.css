@@ -476,11 +476,14 @@ label span {
     object-fit: cover;
 }
 /* Comments */
-.clear-icon-search {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 5%;
+.search-icon {
+    right: 12px;
+}
+
+input[type="search"]::-webkit-search-cancel-button{
+    position:relative;
+    right:30px;
+    cursor: pointer;
 }
 
 /* ---------------------------- */

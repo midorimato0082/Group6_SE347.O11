@@ -8,15 +8,8 @@
             @endif
         </div>
         <div class="col offset-3 col-6 search position-relative">
-            <input type="text" wire:model="keyword" wire:input="resetPageChecked"
-                   class="form-control form-control-sm searchbox" placeholder="Tìm kiếm...">
-            @if ($keyword)
-                <button class="btn bg-transparent clear-icon clear-icon-search" type="button" wire:click="$set('keyword', null)">
-                    <i class="fa fa-times"></i>
-                </button>
-            @endif
-
-            <button class="btn btn-sm btn-blue search-icon position-absolute top-0 end-0" type="button">
+            <input type="search" wire:model="search" wire:input="searching" class="form-control form-control-sm searchbox" placeholder="Tìm kiếm...">
+            <button class="btn btn-sm btn-blue search-icon position-absolute top-0" type="button">
                 <i class="fa fa-search"></i>
             </button>
         </div>
@@ -42,10 +35,11 @@
             @foreach ($comments as $key => $comment)
                 <tr>
                     <th>
-                        <input class="form-check-input form-check-input-sm"
-                               type="checkbox"
-                               wire:model.live="checkedRecords"
-                               value="{{ $comment->id }}"
+                        <input
+                            class="form-check-input form-check-input-sm"
+                            type="checkbox"
+                            wire:model.live="checkedRecords"
+                            value="{{ $comment->id }}"
                         >
                     </th>
                     <td>
@@ -73,5 +67,6 @@
             @endforeach
             </tbody>
         </table>
+        {{ $comments->links() }}
     </div>
 </div>

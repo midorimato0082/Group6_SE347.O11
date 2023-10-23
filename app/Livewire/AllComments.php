@@ -10,14 +10,19 @@ class AllComments extends Component
 {
     use WithPagination;
 
-    public $keyword;
+    public $search;
     public $checkedRecords = [];
     public $checkedAllRecords = false;
     public function render()
     {
         return view('livewire.all-comments', [
-            'comments' => Comment::where('content', 'like', "%{$this->keyword}%")->get(),
+            'comments' => Comment::where('content', 'like', "%{$this->search}%")->paginate(3),
         ]);
+    }
+
+    public function searching()
+    {
+        $this->resetPage();
     }
 
     public function checkAll()
