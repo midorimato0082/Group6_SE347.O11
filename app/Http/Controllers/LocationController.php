@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -15,10 +16,13 @@ class LocationController extends Controller
     }
 
     public function viewAdd(){
-        return view('admin.add_location')->with('title', 'Thêm địa điểm');
+        $regions = Region::all();
+        return view('admin.add_location', compact('regions'))->with('title', 'Thêm địa điểm');
     }
 
-    public function viewEdit(){
-        return view('admin.edit_location')->with('title', 'Cập nhật địa điểm');
+    public function viewEdit($id){
+        $regions = Region::all();
+        $location = Location::where('id', $id)->firstOrFail();
+        return view('admin.edit_location', compact('regions', 'location'))->with('title', 'Cập nhật địa điểm');
     }
 }

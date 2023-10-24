@@ -1,7 +1,7 @@
 @extends('templates.admin')
 
 @section('content')
-<form action="save-admin" method="post" enctype="multipart/form-data">
+<form action="/save-category" method="post" enctype="multipart/form-data">
     <div class="row mb-2 align-items-center">
         <label class="col-form-label col-4 col-sm-4 col-md-4 col-lg-4 text-end">Tên danh mục <span>*</span></label>
         <div class="col-3 col-sm-3 col-md-3 col-lg-3">
