@@ -34,13 +34,13 @@
                         <td>{{ $category->name }}</td>
                         <td>
                             @if ($category->status == 1)
-                                <!--!-->
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
                             @else
-                                <!--!-->
+                                <i class="fa fa-eye" aria-hidden="true"></i>
                             @endif
                         </td>
                         <td>
-                            <a href="" data-bs-toggle="tooltip" title="Cập nhật category">
+                            <a href="edit-category/{{ $category->id }}" data-bs-toggle="tooltip" title="Cập nhật category">
                                 <i class="fas fa-pencil fa-sm"></i>
                             </a>
                             <a onclick="return confirm('Bạn chắc chắn muốn xóa tài khoản này?')" href="" data-bs-toggle="tooltip" title="Xóa category">
@@ -55,7 +55,7 @@
 
     <div class="row mt-2">
         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-            <small>Hiển thị {{ $all_category->count() }} category trong số {{ $all_category->total() }} category.</small>
+            <small>Hiển thị {{ $all_category->count() }} danh mục trong số {{ $all_category->total() }} danh mục.</small>
         </div>
         <div class="col">
             <ul class="pagination pagination-sm justify-content-end">
