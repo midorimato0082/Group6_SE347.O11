@@ -19,10 +19,10 @@ return new class extends Migration
             $table->boolean('status');                      // like: 1; dislike: 0
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('tbl_user');
-            $table->foreign('review_id')->references('id')->on('tbl_review');
-            $table->foreign('news_id')->references('id')->on('tbl_news');
-            
+//            $table->foreign('user_id')->references('id')->on('tbl_user');
+//            $table->foreign('review_id')->references('id')->on('tbl_review');
+//            $table->foreign('news_id')->references('id')->on('tbl_news');
+
         });
     }
 

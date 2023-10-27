@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('tbl_location', function (Blueprint $table) {
             $table->increments('id')->unsigned(false);
-            $table->string('name', 40)->unique(); 
-            $table->string('slug', 20)->unique(); 
+            $table->string('name', 40)->unique();
+            $table->string('slug', 20)->unique();
             $table->integer('region_id');
-            $table->boolean('status')->default('1');  
+            $table->boolean('status')->default('1');
             $table->timestamps();
 
-            $table->foreign('region_id')->references('id')->on('tbl_region');
+//            $table->foreign('region_id')->references('id')->on('tbl_region');
         });
     }
 
