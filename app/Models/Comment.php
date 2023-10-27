@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $table = 'tbl_comment';
+    protected $table = 'comments';
 
     protected $primaryKey = 'id';
 
@@ -15,7 +15,7 @@ class Comment extends Model
         'user_id',
         'review_id',
         'news_id',
-        'status',
+        'is_active',
     ];
 
     public function user()

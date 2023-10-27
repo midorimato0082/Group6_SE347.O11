@@ -14,7 +14,7 @@ class RegionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_region')->insert([
+        DB::table('regions')->insert([
             [
                 'name' => 'Miền Bắc',
                 'slug' => 'mien-bac'

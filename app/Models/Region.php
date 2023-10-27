@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Region extends Model
 {
-    protected $table = 'tbl_region';
+    protected $table = 'regions';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
         'slug',
-        'status',
+        'is_active',
     ];
 
     public function location()

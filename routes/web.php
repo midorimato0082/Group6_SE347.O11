@@ -34,7 +34,7 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::get('dashboard', 'DashboardController@viewDashboard');
 
     // User Management
-    Route::get('all-user', 'UserController@viewAll');
+    Route::get('all-users', 'UserController@viewAll');
     Route::get('edit-admin/{id}', 'UserController@viewEdit');
     Route::post('update-user/{id}', 'UserController@update');
     Route::post('delete-user/{id}', 'UserController@delete');
@@ -42,7 +42,7 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::post('save-admin', 'UserController@saveAdmin');
 
     // Category Management
-    Route::get('all-category', 'CategoryController@viewAll');
+    Route::get('all-categories', 'CategoryController@viewAll');
     Route::get('edit-category/{id}', 'CategoryController@viewEdit');
     Route::post('update-category/{id}', 'CategoryController@update');
     Route::post('delete-category/{id}', 'CategoryController@delete');
@@ -50,7 +50,7 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::post('save-category', 'CategoryController@save');
 
     // Location Management
-    Route::get('all-location', 'LocationController@viewAll');
+    Route::get('all-locations', 'LocationController@viewAll');
     Route::get('edit-location/{id}', 'LocationController@viewEdit');
     Route::post('update-location/{id}', 'LocationController@update');
     Route::post('delete-location/{id}', 'LocationController@delete');
@@ -58,7 +58,7 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::post('save-location', 'LocationController@save');
 
     // Review Management
-    Route::get('all-review', 'ReviewController@viewAll');
+    Route::get('all-reviews', 'ReviewController@viewAll');
     Route::get('edit-review/{id}', 'ReviewController@viewEdit');
     Route::post('update-review/{id}', 'ReviewController@update');
     Route::post('delete-review/{id}', 'ReviewController@delete');
@@ -74,7 +74,7 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::post('save-news', 'NewsController@save');
 
     // Comment Management
-    Route::get('all-comment', 'CommentController@viewAll');
+    Route::get('all-comments', 'CommentController@viewAll');
     Route::post('delete-comment/{id}', 'CommentController@delete');
 });
 
@@ -85,4 +85,4 @@ Route::middleware('isLoggedIn')->group(function () {
 Route::get('', 'HomeController@viewHome');
 
 // Errors
-Route::get('error/{code}', 'ErrorsController@viewError');
+Route::get('error/{code}', 'ErrorController@viewError');

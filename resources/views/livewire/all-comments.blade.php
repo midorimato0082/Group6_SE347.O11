@@ -51,7 +51,7 @@
                     <td>{{ $comment->created_at }}</td>
                     <td>
                         <button class="bg-transparent border-0" wire:click="changeStatus({{ $comment->id }})">
-                            @if ($comment->status == 1)
+                            @if ($comment->is_active == 1)
                                 <i class="fa-solid fa-eye"></i>
                             @else
                                 <i class="fa-solid fa-eye-slash"></i>

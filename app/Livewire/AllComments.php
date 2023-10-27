@@ -43,9 +43,9 @@ class AllComments extends Component
     {
         $comment = Comment::where('id', $id)->firstOrFail();
         if ($comment->status) {
-            $comment->update(['status' => 0]);
+            $comment->update(['is_active' => 0]);
         } else {
-            $comment->update(['status' => 1]);
+            $comment->update(['is_active' => 1]);
         }
 
         $this->resetPage();

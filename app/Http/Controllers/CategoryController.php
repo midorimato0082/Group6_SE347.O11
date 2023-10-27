@@ -11,15 +11,15 @@ class CategoryController extends Controller
 
         $all_category = Category::orderBy('id','DESC')->paginate(3);
 
-        return view('admin.all_category', compact('all_category'))->with('title', 'Danh sách danh mục');
+        return view('admin.all-categories', compact('all_category'))->with('title', 'Danh sách danh mục');
     }
 
     public function viewAdd(){
-        return view('admin.add_category')->with('title', 'Thêm danh mục');
+        return view('admin.add-category')->with('title', 'Thêm danh mục');
     }
 
     public function viewEdit($id){
         $category = Category::where('id', $id)->firstOrFail();
-        return view('admin.edit_category', compact('category'))->with('title', 'Cập nhật danh mục');
+        return view('admin.edit-category', compact('category'))->with('title', 'Cập nhật danh mục');
     }
 }

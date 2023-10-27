@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ReviewController extends Controller
@@ -15,7 +14,7 @@ class ReviewController extends Controller
     // Các function hiển thị view
     public function viewAll()
     {
-        return view('admin.all_review')->with('title', 'Danh sách bài viết');
+        return view('admin.all-reviews')->with('title', 'Danh sách bài viết');
     }
 
     public function viewEdit($id)
@@ -23,14 +22,14 @@ class ReviewController extends Controller
         $review = Review::where('id', $id)->firstOrFail();
         $categories = Category::all();
         $locations = Location::all();
-        return view('admin.edit_review', compact('review', 'categories', 'locations'))->with('title', 'Cập nhật bài viết');
+        return view('admin.edit-review', compact('review', 'categories', 'locations'))->with('title', 'Cập nhật bài viết');
     }
 
     public function viewAdd()
     {
         $categories = Category::all();
         $locations = Location::all();
-        return view('admin.add_review', compact('categories', 'locations'))->with('title', 'Thêm bài viết');
+        return view('admin.add-review', compact('categories', 'locations'))->with('title', 'Thêm bài viết');
     }
 
     // Các function thao tác với database

@@ -61,7 +61,7 @@
                     <td>{{ $new->like_count }}</td>
                     <td>
                         <button class="bg-transparent border-0" wire:click="changeStatus({{ $new->id }})">
-                            @if ($new->status == 1)
+                            @if ($new->is_active == 1)
                                 <i class="fa-solid fa-eye"></i>
                             @else
                                 <i class="fa-solid fa-eye-slash"></i>

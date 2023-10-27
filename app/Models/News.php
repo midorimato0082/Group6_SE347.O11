@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    protected $table = 'tbl_news';
+    protected $table = 'news';
 
     protected $primaryKey = 'id';
 
@@ -18,7 +18,7 @@ class News extends Model
         'images',
         'tags',
         'admin_id',
-        'status'
+        'is_active'
     ];
 
     public function admin() {
@@ -29,8 +29,8 @@ class News extends Model
         return $this->hasMany(Comment::class, 'news_id');
     }  
 
-    public function like_dislike()
+    public function like()
     {
-        return $this->hasMany(LikeDislike::class, 'news_id');
+        return $this->hasMany(Like::class, 'news_id');
     }
 }

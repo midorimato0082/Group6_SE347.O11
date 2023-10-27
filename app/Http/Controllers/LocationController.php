@@ -12,17 +12,17 @@ class LocationController extends Controller
 
         $all_location = Location::orderBy('id','DESC')->paginate(3);
 
-        return view('admin.all_location', compact('all_location'))->with('title', 'Danh sách địa điểm');
+        return view('admin.all-locations', compact('all_location'))->with('title', 'Danh sách địa điểm');
     }
 
     public function viewAdd(){
         $regions = Region::all();
-        return view('admin.add_location', compact('regions'))->with('title', 'Thêm địa điểm');
+        return view('admin.add-location', compact('regions'))->with('title', 'Thêm địa điểm');
     }
 
     public function viewEdit($id){
         $regions = Region::all();
         $location = Location::where('id', $id)->firstOrFail();
-        return view('admin.edit_location', compact('regions', 'location'))->with('title', 'Cập nhật địa điểm');
+        return view('admin.edit-location', compact('regions', 'location'))->with('title', 'Cập nhật địa điểm');
     }
 }

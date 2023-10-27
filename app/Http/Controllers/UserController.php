@@ -10,17 +10,17 @@ class UserController extends Controller
     // Các function hiển thị view
     public function viewAll()
     {
-        return view('admin.all_user')->with('title', 'Danh sách user');
+        return view('admin.all-users')->with('title', 'Danh sách user');
     }
 
     public function viewEdit($id)
     {
-        return view('admin.edit_admin', compact('id'))->with('title', 'Cập nhật admin');
+        return view('admin.edit-admin', compact('id'))->with('title', 'Cập nhật admin');
     }
 
     public function viewAddAdmin()
     {
-        return view('admin.add_admin')->with('title', 'Thêm admin');
+        return view('admin.add-admin')->with('title', 'Thêm admin');
     }
 
     // Các function thao tác với database

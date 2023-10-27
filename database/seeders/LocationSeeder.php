@@ -14,7 +14,7 @@ class LocationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_location')->insert([
+        DB::table('locations')->insert([
             [
                 'name' => 'Đà Lạt',
                 'slug' => 'da-lat',

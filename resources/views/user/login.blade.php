@@ -1,4 +1,4 @@
-@extends('templates.entry')
+@extends('layouts.entry')
 
 @section('left-box')
     <img src="images/others/login_page.jpg" alt="Việt Nam Travel" class="img-fluid rounded-3 mt-3">
@@ -9,7 +9,7 @@
 @section('right-box')
     <h1 class="title text-wrap text-center mb-4">ĐĂNG NHẬP</h1>
 
-    @livewire('login-form')
+    @livewire('login')
 
     <div class="row">
         <p>Bạn không có tài khoản đăng nhập? <a href="register">Hãy đăng ký ở đây</a></p>

@@ -14,19 +14,19 @@ class NewsController extends Controller
     // Các function hiển thị view
     public function viewAll()
     {
-        return view('admin.all_news')->with('title', 'Danh sách bài viết');
+        return view('admin.all-news')->with('title', 'Danh sách bài viết');
     }
 
     public function viewEdit($id)
     {
         $news = News::where('id', $id)->firstOrFail();
         $categories = Category::all();
-        return view('admin.edit_news', compact('news', 'categories'))->with('title', 'Cập nhật bài viết');
+        return view('admin.edit-news', compact('news', 'categories'))->with('title', 'Cập nhật bài viết');
     }
 
     public function viewAdd()
     {
-        return view('admin.add_news')->with('title', 'Thêm bài viết');
+        return view('admin.add-news')->with('title', 'Thêm bài viết');
     }
 
     // Các function thao tác với database
