@@ -20,16 +20,20 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id'); 
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function review()
     {
-        return $this->belongsTo(Review::class, 'review_id'); 
+        return $this->belongsTo(Review::class, 'review_id');
     }
 
     public function news()
     {
-        return $this->belongsTo(News::class, 'news_id'); 
+        return $this->belongsTo(News::class, 'news_id');
     }
+
+    protected $searchable = [
+        'content',
+    ];
 }

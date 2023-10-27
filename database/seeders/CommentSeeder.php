@@ -29,7 +29,31 @@ class CommentSeeder extends Seeder
             ],
             [
                 'content' => 'Viết quá chuẩn luôn. Đã từng đến đây rồi.',
-                'user_id' => 5,
+                'user_id' => 3,
+                'news_id' => 1,
+                'created_at' => now()
+            ],
+            [
+                'content' => 'Bài viết thật hay, nơi đây rất đẹp',
+                'user_id' => 4,
+                'news_id' => 2,
+                'created_at' => now()
+            ],
+            [
+                'content' => 'Đọc bài này xong lại làm mình muốn đi lần nữa!',
+                'user_id' => 3,
+                'news_id' => 2,
+                'created_at' => now()
+            ],
+            [
+                'content' => 'Những trải nghiệm ở đây sẽ không bao giờ quên được.',
+                'user_id' => 2,
+                'news_id' => 1,
+                'created_at' => now()
+            ],
+            [
+                'content' => 'Đúng thật, rất đề cử nơi này luôn!',
+                'user_id' => 2,
                 'news_id' => 2,
                 'created_at' => now()
             ]
