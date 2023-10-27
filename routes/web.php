@@ -36,10 +36,8 @@ Route::middleware('isLoggedIn')->group(function () {
     // User Management
     Route::get('all-users', 'UserController@viewAll');
     Route::get('edit-admin/{id}', 'UserController@viewEdit');
-    Route::post('update-user/{id}', 'UserController@update');
-    Route::post('delete-user/{id}', 'UserController@delete');
     Route::get('add-admin', 'UserController@viewAddAdmin');
-    Route::post('save-admin', 'UserController@saveAdmin');
+    Route::get('profile-admin', 'UserController@viewProfile');
 
     // Category Management
     Route::get('all-categories', 'CategoryController@viewAll');

@@ -11,4 +11,5 @@
 <script src="https://cdn.tiny.cloud/1/reyjnydujgxgiq0h3lhij1ev69aatc5aym5kjrnxaz417jg0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 {{-- Custom JS --}}
+{{-- @vite('resources/js/app.js') --}}
 <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>

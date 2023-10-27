@@ -6,7 +6,7 @@ use App\Models\Comment;
 use App\Models\News;
 use App\Models\Review;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class DashboardController extends Controller
 {

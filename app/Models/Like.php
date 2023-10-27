@@ -14,7 +14,7 @@ class Like extends Model
         'user_id',
         'review_id',
         'news_id',
-        'is_like',       // like: 1; dislike: 0
+        'is_like'
     ];
 
     public function user()

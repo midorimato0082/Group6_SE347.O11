@@ -2,7 +2,7 @@
 
 @section('left-box')
     <div class="mt-3 mb-3">
-        <img src="/images/others/reset_password.png" alt="Reset password" class="img-box">
+        <img src="/images/others/reset-password.png" alt="Reset password" class="img-box">
     </div>
 @endsection
 

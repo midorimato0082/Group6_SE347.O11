@@ -23,19 +23,8 @@ class UserController extends Controller
         return view('admin.add-admin')->with('title', 'Thêm admin');
     }
 
-    // Các function thao tác với database
-    public function update()
+    public function viewProfile()
     {
-        
-    }
-
-    public function delete()
-    {
-        
-    }
-
-    public function saveAdmin()
-    {
-        
+        return view('admin.profile-admin')->with('title', 'Hồ sơ');
     }
 }

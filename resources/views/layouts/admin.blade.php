@@ -104,10 +104,10 @@
                         <a href="#" class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2"
                                 src="{{ asset('images/user/' . session('user.avatar')) }}" alt="Avatar"">
-                            <span class="d-none d-lg-inline-flex">{{ session('user.last_name') . ' ' . session('user.first_name') }}</span>
+                            <span class="d-none d-lg-inline-flex">{{ session('user.name') }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item"><i class="fa fa-user-edit"></i> Hồ sơ</a>
+                            <a href="{{ url('profile-admin') }}" class="dropdown-item"><i class="fa fa-user-edit"></i> Hồ sơ</a>
                             <a href="{{ url('logout') }}" class="dropdown-item"><i class="fa fa-sign-out"></i> Đăng xuất</a>
                         </div>
                     </div>

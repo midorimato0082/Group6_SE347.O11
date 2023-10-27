@@ -3,34 +3,35 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\File;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AllUsers extends Component
 {
     use WithPagination;
-    protected $listeners = ['resetChecked' => 'resetChecked'];
 
     public $keyword;
     public $role;
     public $checkedUser = [];
     public $checkedPage = false;
     public $checkedAll = false;
-
+    public $userId;                     //Id của user được deleteUser
 
     public function render()
     {
         return view('livewire.all-users', ['users' => $this->users]);
     }
 
+    public function getUsersQueryProperty()
+    {
+        return User::where('is_admin', 'LIKE',  '%' . $this->role . '%')->search(trim($this->keyword))->latest('updated_at');
+    }
+
     public function getUsersProperty()
     {
         return $this->usersQuery->paginate(3);
-    }
-
-    public function getUsersQueryProperty()
-    {
-        return User::search($this->keyword)->where('is_admin', 'LIKE',  '%' . $this->role . '%')->orderBy('id', 'DESC');
     }
 
     public function updatedCheckedPage($value)
@@ -43,6 +44,18 @@ class AllUsers extends Component
 
         if (!$this->checkedUser)
             $this->checkedAll = false;
+    }
+
+    #[On('reset-checked')]
+    public function resetChecked()
+    {
+        $this->reset('checkedPage', 'checkedAll');
+    }
+
+    public function resetPageChecked()
+    {
+        $this->resetPage();
+        $this->resetChecked();
     }
 
     public function updatedCheckedUser()
@@ -66,35 +79,46 @@ class AllUsers extends Component
         return in_array($id, $this->checkedUser);
     }
 
-    public function resetChecked()
+    private function deleteRecords()
     {
-        $this->reset('checkedPage', 'checkedAll');
-    }
+        foreach ($this->checkedUser as $userId) {
+            $this->deleteSingleRecords($userId);
+        }
 
-    public function resetPageChecked() {
-        $this->resetPage();
-        $this->resetChecked();       
-    }
-
-    public function deleteRecords()
-    {
-        User::whereKey($this->checkedUser)->delete();
-
-        $this->checkedUser = [];
-        $this->resetChecked();
+        // User::whereKey($this->checkedUser)->delete();
 
         session()->flash('success', 'Những dòng được chọn đã xóa');
-
-        $this->resetPage();
     }
 
-    public function deleteSingleRecord($id)
+    private function deleteSingleRecords($id)
     {
         $user = User::find($id);
+        if ($user->avatar != "no-avatar-admin.png" || $user->avatar != "no-avatar.png")
+            File::delete(public_path('images/user/' . $user->avatar));
+
         $user->delete();
 
         session()->flash('success', 'Xóa user thành công.');
+    }
+
+    public function delete()
+    {
+        if ($this->userId) {
+            $this->deleteSingleRecords($this->userId);
+            $this->reset('userId');
+        } else {
+            $this->deleteRecords();
+            $this->checkedUser = [];
+            $this->resetChecked();
+        }
+
+        $this->dispatch('close-modal');
 
         $this->resetPage();
+    }
+
+    public function closeModal()
+    {
+        $this->reset('userId');
     }
 }

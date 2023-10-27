@@ -14,7 +14,7 @@ class Location extends Model
         'name',
         'slug',
         'region_id',
-        'is_active',
+        'is_active'
     ];
 
     public function region()

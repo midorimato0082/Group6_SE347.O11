@@ -1,22 +1,20 @@
 <div>
-    <form wire:submit.prevent="login">
+    <form wire:submit="login">
         @csrf
 
         @include('includes.flash-message')
 
         <div class="form-outline mb-3">
-            <input type="text" wire:model="email"
-                class="form-control bg-light rounded-2 @error('email') is-invalid @enderror" placeholder="Email"
-                value="{{ Cookie::get('email', old('email')) }}" autofocus>
+            <input type="text" wire:model.blur="email"
+                class="form-control bg-light rounded-2 @error('email') is-invalid @enderror" placeholder="Email" autofocus>
             @error('email')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
 
         <div class="form-outline mb-3">
-            <input type="password" wire:model="password"
-                class="form-control bg-light rounded-2 @error('password') is-invalid @enderror" placeholder="Mật khẩu"
-                value="{{ Cookie::get('password', '') }}">
+            <input type="password" wire:model.blur="password"
+                class="form-control bg-light rounded-2 @error('password') is-invalid @enderror" placeholder="Mật khẩu">
             @error('password')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
@@ -25,8 +23,7 @@
 
         <div class="d-flex justify-content-between mb-3 ps-3 pe-3">
             <div class="form-check">
-                <input type="checkbox" wire:model="remember" class="form-check-input" id="remember"
-                    @if (Cookie::has('email')) checked @endif>
+                <input type="checkbox" wire:model="remember" class="form-check-input" id="remember">
                 <label for="remember" class="form-check-label">Nhớ đăng nhập</label>
             </div>
             <div>

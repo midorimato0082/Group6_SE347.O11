@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
@@ -20,6 +19,7 @@ class User extends Model
         'avatar',
         'code',
         'email_verified_at',
+        'is_admin'
     ];
 
     protected $hidden = [
@@ -28,12 +28,10 @@ class User extends Model
         'email_verified_at'
     ];
 
-    // protected function name(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn (mixed $value, array $attributes) => $attributes['last_name'] . $attributes['first_name']
-    //     );
-    // }
+    protected function getFullNameAttribute()
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
 
     public function review()
     {
@@ -53,5 +51,15 @@ class User extends Model
     public function like()
     {
         return $this->hasMany(Like::class, 'user_id');
+    }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = '%' . $term . '%';
+        return $query->where(function ($query) use ($term) {
+            return $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'")
+                ->orWhere('email', 'LIKE', $term)
+                ->orWhere('phone', 'LIKE', $term);
+        });
     }
 }

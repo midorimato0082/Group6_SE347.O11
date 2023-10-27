@@ -2,10 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Login extends Component
@@ -26,12 +24,27 @@ class Login extends Component
 
     protected function rules(): array
     {
-        return (new LoginRequest())->rules();
+        return [
+            'email' => 'bail | required | email:rfc,dns | exists:users',
+            'password' => 'bail | required | min:6 | max:12',
+        ];
     }
 
     protected function messages(): array
     {
-        return (new LoginRequest())->messages();
+        return [
+            'email.required' => 'Bạn cần nhập email.',
+            'email.email' => 'Không đúng định dạng email.',
+            'email.exists' => 'Email đã nhập không có trong hệ thống.',
+            'password.required' => 'Bạn cần nhập mật khẩu.',
+            'password.min' => 'Mật khẩu cần ít nhất 6 ký tự.',
+            'password.max' => 'Mật khẩu tối đa chỉ có 12 ký tự',
+        ];
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function login()
@@ -40,16 +53,18 @@ class Login extends Component
 
         $user = User::where('email', $this->email)->first();
 
-        if (empty($user->email_verified_at))
+        if (empty($user->email_verified_at)) {
+            $this->reset();
             return session()->flash('fail', 'Email của bạn chưa được xác nhận. Bạn cần phải xác nhận email trước khi đăng nhập.');
+        }
 
         if (md5($this->password) == $user->password) {
-            Session::put('user', ['id' => $user->id, 'first_name' => $user->first_name, 'last_name' => $user->last_name, 'avatar' => $user->avatar, 'is_admin' => $user->is_admin]);
+            session(['user' => ['id' => $user->id, 'first_name' => $user->first_name, 'name' => $user->fullName, 'avatar' => $user->avatar, 'is_admin' => $user->is_admin]]);
 
             $this->rememberMe($this->email, $this->password);
 
             $this->reset();
-            
+
             if ($user->is_admin == 1)
                 return redirect('dashboard');
 

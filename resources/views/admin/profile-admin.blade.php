@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    @livewire('add-admin')
+    @livewire('profile-admin')
 @endsection

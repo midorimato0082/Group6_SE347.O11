@@ -13,7 +13,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'is_active',
+        'is_active'
     ];
 
     public function review()

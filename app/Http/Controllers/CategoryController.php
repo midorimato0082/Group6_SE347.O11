@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function viewAll(){
-
-        $all_category = Category::orderBy('id','DESC')->paginate(3);
-
-        return view('admin.all-categories', compact('all_category'))->with('title', 'Danh sách danh mục');
+        return view('admin.all-categories')->with('title', 'Danh sách danh mục');
     }
 
     public function viewAdd(){

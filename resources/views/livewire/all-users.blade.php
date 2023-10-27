@@ -1,14 +1,15 @@
 <div>
+    @include('livewire.delete-confirm-modal')
+
     <div class="row px-1 mb-4">
-        <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+        <div class="col-4 col-sm-5 col-md-5 col-lg-6 col-xl-7">
             @if (count($checkedUser) != 0)
-                <button onclick="return confirm('Bạn chắc chắn muốn xóa user này?') || event.stopImmediatePropagation()"
-                    wire:click="deleteRecords" class="btn btn-sm btn-blue">Xóa {{ count($checkedUser) }}
-                    dòng được chọn</button>
+                <button data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-sm btn-blue">Xóa
+                    {{ count($checkedUser) }} dòng được chọn</button>
             @endif
         </div>
 
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+        <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2">
             <select class="form-select form-select-sm" wire:model="role" wire:change="resetPageChecked">
                 <option value="">Tất cả User</option>
                 <option value="1">Admin</option>
@@ -16,17 +17,10 @@
             </select>
         </div>
 
-        <div class="col input-group search">
-            <input type="text" wire:model.debounce.150ms="keyword" wire:input="resetPageChecked"
+        <div class="col position-relative">
+            <input type="search" wire:model="keyword" wire:input="resetPageChecked"
                 class="form-control form-control-sm searchbox" placeholder="Tìm kiếm...">
-
-            @if ($keyword)
-                <button class="btn bg-transparent clear-icon" type="button" wire:click="$set('keyword', null)">
-                    <i class="fa fa-times"></i>
-                </button>
-            @endif
-
-            <button class="btn btn-sm btn-blue search-icon" type="button">
+            <button class="btn btn-sm btn-blue search-icon position-absolute top-0" type="button">
                 <i class="fa fa-search"></i>
             </button>
         </div>
@@ -54,7 +48,7 @@
                     <th><input class="form-check-input form-check-input-sm" type="checkbox"
                             wire:model.live="checkedPage"></th>
                     <th>STT</th>
-                    <th class="th-sm">Họ và tên</th>
+                    <th>Họ và tên</th>
                     <th>Email</th>
                     <th>Số điện thoại</th>
                     <th>Avatar</th>
@@ -78,7 +72,7 @@
                             @endif
                         </td>
                         <td>{{ $key + $users->firstItem() }}</td>
-                        <td>{{ $user->last_name . ' ' . $user->first_name }}</td>
+                        <td>{{ $user->fullName }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td><img src="images/user/{{ $user->avatar }}" class="rounded-circle img-table"></td>
@@ -99,21 +93,20 @@
                             @endif
                         </td>
                         <td>
-                            @if ($user->is_admin == 1)
+                            @if (session('user.id') != $user->id && $user->is_admin == 1)
                                 <a href="{{ url('edit-admin/' . $user->id) }}" data-bs-toggle="tooltip"
                                     title="Cập nhật Admin">
                                     <i class="fas fa-pencil fa-sm"></i>
                                 </a>
                             @endif
 
-                            @if (session('user.id') != $user->id)
-                                @if (!$this->isChecked($user->id))
-                                    <a wire:confirm="Bạn chắc chắn muốn xóa user này?"
-                                        wire:click="deleteSingleRecord({{ $user->id }})" data-bs-toggle="tooltip"
-                                        title="Xóa user">
-                                        <i class="fa fa-times fa-lg text-danger"></i>
-                                    </a>
-                                @endif
+                            @if (session('user.id') != $user->id && !$this->isChecked($user->id))
+                                <a data-bs-toggle="tooltip" title="Xóa user">
+                                    <i class="fa fa-times fa-lg text-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delete-modal"
+                                        wire:click="set('userId', {{ $user->id }})">
+                                    </i>
+                                </a>
                             @endif
                         </td>
                     </tr>
@@ -123,7 +116,7 @@
     </div>
 
     <div class="row mt-2">
-        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-4 col-sm-3 col-md-4 col-lg-4 col-xl-4">
             <small>Hiển thị {{ $users->count() }} user trong số {{ $users->total() }} user.</small>
         </div>
         <div class="col">
