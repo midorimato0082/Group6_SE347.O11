@@ -17,4 +17,9 @@ class CategoryController extends Controller
     public function viewAdd(){
         return view('admin.add_category')->with('title', 'Thêm danh mục');
     }
+
+    public function viewEdit($id){
+        $category = Category::where('id', $id)->firstOrFail();
+        return view('admin.edit_category', compact('category'))->with('title', 'Cập nhật danh mục');
+    }
 }
