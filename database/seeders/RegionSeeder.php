@@ -9,12 +9,10 @@ class RegionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        DB::table('tbl_region')->insert([
+        DB::table('regions')->insert([
             [
                 'name' => 'Miền Bắc',
                 'slug' => 'mien-bac'

@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use SearchTrait;
-    
-    protected $table = 'tbl_user';
+    protected $table = 'users';
 
     protected $primaryKey = 'id';
 
@@ -21,7 +18,8 @@ class User extends Model
         'password',
         'avatar',
         'code',
-        'email_verified_at'
+        'email_verified_at',
+        'is_admin'
     ];
 
     protected $hidden = [
@@ -29,6 +27,11 @@ class User extends Model
         'code',
         'email_verified_at'
     ];
+
+    protected function getFullNameAttribute()
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
 
     public function review()
     {
@@ -45,15 +48,18 @@ class User extends Model
         return $this->hasMany(Comment::class, 'user_id');
     }
 
-    public function like_dislike()
+    public function like()
     {
-        return $this->hasMany(LikeDislike::class, 'user_id');
+        return $this->hasMany(Like::class, 'user_id');
     }
 
-    protected $searchable = [
-        'first_name',
-        'last_name',
-        'email',
-        'phone'
-    ];
+    public function scopeSearch($query, $term)
+    {
+        $term = '%' . $term . '%';
+        return $query->where(function ($query) use ($term) {
+            return $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'")
+                ->orWhere('email', 'LIKE', $term)
+                ->orWhere('phone', 'LIKE', $term);
+        });
+    }
 }

@@ -12,7 +12,7 @@ class ResetPasswordController extends Controller
 {
     public function viewForgetPassword()
     {
-        return view('user.forget_password')->with('title', 'Quên mật khẩu');
+        return view('user.forget-password')->with('title', 'Quên mật khẩu');
     }
 
     public function viewResetPassword($email, $code)
@@ -23,7 +23,7 @@ class ResetPasswordController extends Controller
             return redirect('login')->with('fail', 'Link đặt lại mật khẩu đã hết hiệu lực.');
         }
 
-        return view('user.reset_password', ['title' => 'Đặt lại mật khẩu', 'email' => $email, 'code' => $code]);
+        return view('user.reset-password', ['title' => 'Đặt lại mật khẩu', 'email' => $email, 'code' => $code]);
     }
 
     public function forgetPassword(ForgetPasswordRequest $request)
@@ -40,7 +40,7 @@ class ResetPasswordController extends Controller
             'code' => $code
         ]);
 
-        Mail::send('email.reset_password', ['email' => $request->email, 'code' => $code, 'firstname' => $firstname], function ($message) use ($request) {
+        Mail::send('email.reset-password', ['email' => $request->email, 'code' => $code, 'firstname' => $firstname], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Đặt lại mật khẩu.');
         });

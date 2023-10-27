@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -10,12 +9,10 @@ class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        DB::table('tbl_user')->insert([
+        DB::table('users')->insert([
             [
                 'first_name' => 'Phượng',
                 'last_name' => 'Nguyễn Thị Bích',
@@ -72,8 +69,38 @@ class UserSeeder extends Seeder
                 'email' => 'user2@gmail.com',
                 'phone' => null,
                 'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => 'no_avatar.png',
+                'avatar' => 'no-avatar.png',
                 'email_verified_at' => null,
+                'is_admin' => 0
+            ],
+            [
+                'first_name' => 'Name 3',
+                'last_name' => 'No',
+                'email' => 'user3@gmail.com',
+                'phone' => null,
+                'password' => 'e10adc3949ba59abbe56e057f20f883e',
+                'avatar' => '7.jpg',
+                'email_verified_at' => now(),
+                'is_admin' => 0
+            ],
+            [
+                'first_name' => 'Name 4',
+                'last_name' => 'No',
+                'email' => 'user4@gmail.com',
+                'phone' => null,
+                'password' => 'e10adc3949ba59abbe56e057f20f883e',
+                'avatar' => '8.jpg',
+                'email_verified_at' => now(),
+                'is_admin' => 0
+            ],
+            [
+                'first_name' => 'Name 5',
+                'last_name' => 'No',
+                'email' => 'user5@gmail.com',
+                'phone' => null,
+                'password' => 'e10adc3949ba59abbe56e057f20f883e',
+                'avatar' => 'no-avatar.png',
+                'email_verified_at' => now(),
                 'is_admin' => 0
             ],
         ]);

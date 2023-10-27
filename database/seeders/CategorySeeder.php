@@ -9,12 +9,10 @@ class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        DB::table('tbl_category')->insert([
+        DB::table('categories')->insert([
             [
                 'name' => 'Homestay',
                 'slug' => 'homestay'

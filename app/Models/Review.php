@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $table = 'tbl_review';
+    protected $table = 'reviews';
 
     protected $primaryKey = 'id';
 
@@ -20,7 +20,7 @@ class Review extends Model
         'category_id',
         'location_id',
         'admin_id',
-        'status'
+        'is_active'
     ];
 
     public function category()
@@ -43,8 +43,8 @@ class Review extends Model
         return $this->hasMany(Comment::class, 'review_id'); 
     }
 
-    public function like_dislike()
+    public function like()
     {
-        return $this->hasMany(LikeDislike::class, 'review_id');
+        return $this->hasMany(Like::class, 'review_id');
     }
 }

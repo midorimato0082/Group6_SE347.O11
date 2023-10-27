@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    protected $table = 'tbl_location';
+    protected $table = 'locations';
 
     protected $primaryKey = 'id';
 
@@ -14,7 +14,7 @@ class Location extends Model
         'name',
         'slug',
         'region_id',
-        'status',
+        'is_active'
     ];
 
     public function region()

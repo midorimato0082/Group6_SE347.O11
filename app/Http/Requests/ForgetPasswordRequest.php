@@ -22,7 +22,7 @@ class ForgetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'bail | required | email | exists:tbl_user',
+            'email' => 'bail | required | email:rfc,dns | exists:tbl_user',
         ];
     }
 

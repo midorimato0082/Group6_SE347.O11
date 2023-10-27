@@ -9,12 +9,10 @@ class NewsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        DB::table('tbl_news')->insert([
+        DB::table('news')->insert([
             [
                 'title' => 'Du Lịch Tháng 3: Khám Phá Du Lịch Mùa Hoa Nở',
                 'slug' => 'du-lich-thang-3-kham-pha-du-li',

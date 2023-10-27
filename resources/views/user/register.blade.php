@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-outline mb-3 text-center">
-                            <img src="images/user/no_avatar.png" class="rounded-circle img-upload-avatar mb-3"
+                            <img src="images/user/no-avatar.png" class="rounded-circle img-upload-avatar mb-3"
                                 id="img-holder">
 
                             <div class="input-group custom-file-btn">
@@ -80,7 +80,7 @@
             </div>
 
             <div class="col rounded-4 d-flex align-items-center justify-content-center">
-                <img src="images/others/register_page.jpg" alt="Register" class="img-box rounded-5">
+                <img src="images/others/register-page.jpg" alt="Register" class="img-box rounded-5">
             </div>
 
         </div>

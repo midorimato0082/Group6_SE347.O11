@@ -9,12 +9,10 @@ class ReviewSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        DB::table('tbl_review')->insert([
+        DB::table('reviews')->insert([
             [
                 'title' => 'Garden Hostel Đà Lạt - Khu Vườn Dành Cho Những Người Yêu Sự An Tĩnh',
                 'slug' => 'garden-hostel-da-lat-khu-vuon-',
