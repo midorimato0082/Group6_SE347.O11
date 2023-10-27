@@ -14,7 +14,7 @@ function chooseImage(input) {
         };
         reader.readAsDataURL(input.files[0]);
     } else {
-        $('#img-holder').attr('src', $('#img-holder').hasClass('admin') ? 'images/user/no_avatar_admin.png' : 'images/user/no_avatar.png');
+        $('#img-holder').attr('src', $('#img-holder').hasClass('admin') ? 'images/user/no-avatar-admin.png' : 'images/user/no-avatar.png');
         $('#error-avatar').text('Ảnh không hợp lệ. Chỉ chấp nhận ảnh jpeg, jpg, png và gif.');
     }
 }
@@ -55,7 +55,6 @@ $(function () {
         return this.href == current_url;
     }).addClass('active');
 
-
     if (nav_link.parent('.dropdown-menu').length) {
         $('#title-section').removeClass('d-none').text(nav_link.text());
         nav_link = nav_link.parent('.dropdown-menu').siblings('.dropdown-toggle').addClass('active');
@@ -67,18 +66,32 @@ $(function () {
     if (current_url.includes('edit'))
         $('a.' + value_editing).removeClass('d-none');
 
+    $('[data-bs-toggle="tooltip"]').tooltip();
 });
 // -----------------------------
 
 // View All 
 $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip();
-
     $('.page-item').on('click', function () {
-        Livewire.dispatch('resetChecked');
+        Livewire.dispatch('reset-checked');
     });
 
+    $(document).bind('close-modal', function () {
+        $('#delete-modal').modal('hide');
+        $('#edit-profile-modal').modal('hide');
+    });
+
+    Livewire.hook('commit', ({ succeed }) => {
+        succeed(() => {
+            queueMicrotask(() => {
+                $('[data-bs-toggle="tooltip"]').tooltip('dispose').tooltip();
+            });
+        });
+    });
 });
+// -----------------------------
+
+// View Edit Profile Admin 
 
 // -----------------------------
 

@@ -93,12 +93,16 @@ p.invalid-feedback {
     bottom: 0;
     width: 250px;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     background: #2a3f54;
     transition: 0.5s;
     z-index: 999;
     color: white;
     font-size: 14px;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .navbar-brand h3 {
@@ -390,7 +394,9 @@ p.invalid-feedback {
     font-size: 24px;
     color: #333;
 }
+/* ---------------------------- */
 
+/* View List */
 .btn-blue {
     background-color: #3c5b7a;
     color: white;
@@ -402,7 +408,19 @@ p.invalid-feedback {
     text-shadow: 2px 2px 10px #2a3f54;
 }
 
-table th, td {
+.btn-red {
+    background-color: #5c636a;
+    color: white;
+}
+
+.btn-red:hover {
+    background-color: red;
+    color: white;
+    text-shadow: 2px 2px 10px #2a3f54;
+}
+
+table th,
+td {
     text-align: center;
     vertical-align: middle;
     font-size: 15px;
@@ -412,7 +430,7 @@ th:first-of-type {
     width: 3%;
 }
 
-th:nth-child(2)  {
+th:nth-child(2) {
     width: 4%;
 }
 
@@ -440,17 +458,123 @@ label span {
     color: red;
 }
 
-.search .search-icon {
+.search-icon {
+    right: 12px;
     pointer-events: none;
 }
 
-.search .clear-icon {
-    margin-left: -40px !important;
-    z-index: 100 !important;
+input[type="search"]::-webkit-search-cancel-button {
+    position: relative;
+    right: 30px;
+    cursor: pointer;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+/* ---------------------------- */
+
+/* Modal */
+button.btn-close:hover {
+    background-color: red;
+    color: white;
+}
+
+.modal-header {
+    background-color: #2a3f54;
+}
+
+#delete-modal,
+#edit-profile-modal {
+    margin-top: 5%;
+}
+
+.nav-vertical-edit-profile .nav-item {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.nav-vertical-edit-profile .nav-link {
+    color: #2a3f54;
+    font-weight: bold;
+}
+
+.nav-vertical-edit-profile .nav-link.active {
+    color: white;
+    border-bottom: #5a6268 2px solid;
+    background-color: #2a3f54;
+}
+
+/* ---------------------------- */
+
+/* View Edit/Add */
+
+.text-loading {
+    color: #f68a39;
+    font-weight: bold;
+    font-size: large;
+}
+
+.fa-spin {
+    color: #f68a39;
+}
+
+p.error-avatar {
+    font-size: small;
+    margin-top: 1%;
+    color: rgb(222, 0, 0);
+}
+/* ---------------------------- */
+
+/* View Profile Admin */
+.profile-admin {
+    width: 400px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
 
 /* ---------------------------- */
 
 /* View Dashboard */
+.truncate-text-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
 
+.truncate-text-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.post-item {
+    height: 220px !important;
+}
+.image-card-dashboard {
+    width: 150px;
+    height: 80%;
+    object-fit: cover;
+}
 /* ---------------------------- */
