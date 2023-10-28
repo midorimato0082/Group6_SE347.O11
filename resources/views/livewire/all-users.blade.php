@@ -26,16 +26,12 @@
         </div>
     </div>
 
-    @if ($checkedPage && $users->count() != $users->total())
-        {{-- Bỏ -1 đi nhé --}}
+    @if (count($checkedUser) != 0)
         <div class="px-1 mb-4">
-            @if ($checkedAll)
-                Bạn đã chọn <strong>{{ $users->total() - 1 }}</strong> user.
-            @else
-                Bạn đã chọn <strong>{{ count($checkedUser) }}</strong> user. Bạn có muốn chọn tất cả
-                <strong>{{ $users->total() - 1 }}</strong> user (trừ bạn) đang được hiển thị? <a href="#"
-                    wire:click="checkAll"><strong>Chọn tất cả user.</strong></a>
-            @endif
+            Bạn đã chọn <strong>{{ count($checkedUser) }}</strong> user. 
+            @if($checkedPage && $users->count() != $users->total())
+            Bạn có muốn chọn tất cả <strong>{{ $users->total() - 1 }}</strong> user (trừ bạn) đang được hiển thị? <a wire:click="checkAll"><strong>Chọn tất cả user.</strong></a>
+            @endif            
         </div>
     @endif
 
@@ -58,17 +54,16 @@
                 </tr>
             </thead>
 
-            {{-- Mọi người lọc bỏ những thứ liên quan đến session('user.id') nhé, vì việc xóa tài khoản có liên quan đến tài khoản đang đăng nhập nên nó có hơi khác chút so với các management khác --}}
             <tbody id="table-content">
                 @foreach ($users as $key => $user)
                     <tr wire:key="row-{{ $user->id }}"
-                        class="@if (session('user.id') == $user->id) table-danger
-                        @elseif ($this->isChecked($user->id))
-                        table-primary @endif">
+                        @if (session('user.id') == $user->id) class="table-danger"
+                        @elseif($this->isChecked($user->id))
+                        class="table-primary" @endif>
                         <td>
                             @if (session('user.id') != $user->id)
                                 <input class="form-check-input form-check-input-sm" type="checkbox"
-                                    value="{{ $user->id }}" wire:model.live="checkedUser">
+                                    value="{{ $user->id }}" wire:model.live.debounce.150ms="checkedUser">
                             @endif
                         </td>
                         <td>{{ $key + $users->firstItem() }}</td>
@@ -93,20 +88,21 @@
                             @endif
                         </td>
                         <td>
-                            @if (session('user.id') != $user->id && $user->is_admin == 1)
-                                <a href="{{ url('edit-admin/' . $user->id) }}" data-bs-toggle="tooltip"
-                                    title="Cập nhật Admin">
-                                    <i class="fas fa-pencil fa-sm"></i>
-                                </a>
-                            @endif
-
-                            @if (session('user.id') != $user->id && !$this->isChecked($user->id))
-                                <a data-bs-toggle="tooltip" title="Xóa user">
-                                    <i class="fa fa-times fa-lg text-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete-modal"
-                                        wire:click="set('userId', {{ $user->id }})">
-                                    </i>
-                                </a>
+                            @if (session('user.id') != $user->id)
+                                @if ($user->is_admin == 1)
+                                    <a href="{{ url('edit-admin/' . $user->id) }}" data-bs-toggle="tooltip"
+                                        title="Cập nhật Admin">
+                                        <i class="fas fa-pencil fa-sm"></i>
+                                    </a>
+                                @endif
+                                @if (!$this->isChecked($user->id))
+                                    <a data-bs-toggle="tooltip" title="Xóa user">
+                                        <i class="fa fa-times fa-lg text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#delete-modal"
+                                            wire:click="set('userId', {{ $user->id }})">
+                                        </i>
+                                    </a>
+                                @endif
                             @endif
                         </td>
                     </tr>

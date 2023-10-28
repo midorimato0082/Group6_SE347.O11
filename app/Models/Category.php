@@ -16,7 +16,7 @@ class Category extends Model
         'is_active'
     ];
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class, 'category_id');
     }

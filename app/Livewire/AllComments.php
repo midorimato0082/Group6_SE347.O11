@@ -29,10 +29,10 @@ class AllComments extends Component
 
         switch ($this->filter) {
             case ('review'):
-                $query->where('news_id', null);
+                $query->whereNull('news_id');
                 break;
             case ('news'):
-                $query->where('review_id', null);
+                $query->whereNull('review_id');
                 break;
             default:
                 $query->where('is_active', 'LIKE',  '%' . $this->filter . '%');
@@ -47,6 +47,12 @@ class AllComments extends Component
         return $this->commentsQuery->paginate(4);
     }
 
+    public function resetPageChecked()
+    {
+        $this->resetPage();
+        $this->reset('checkedPage');
+    }
+
     public function updatedCheckedPage($value)
     {
         if ($value) {
@@ -56,21 +62,15 @@ class AllComments extends Component
             $this->checkedRecords = [];
     }
 
-    #[On('reset-checked')]
-    public function resetChecked()
+    public function updatedCheckedRecords()
     {
         $this->reset('checkedPage', 'checkedAllRecords');
     }
 
-    public function resetPageChecked()
+    #[On('reset-checked')]
+    public function resetChecked()
     {
-        $this->resetPage();
-        $this->resetChecked();
-    }
-
-    public function updatedCheckedRecords()
-    {
-        $this->resetChecked();
+        $this->reset('checkedPage');
     }
 
     public function checkAllRecords()
@@ -80,40 +80,41 @@ class AllComments extends Component
         $this->checkedRecords = $this->commentsQuery->pluck('id')->toArray();
     }
 
-    public function changeStatus($id)
-    {
-        $comment = Comment::where('id', $id)->firstOrFail();
-        $comment->status ? $comment->update(['status' => 0]) : $comment->update(['status' => 1]);
-    }
-
     public function isChecked($id)
     {
         return in_array($id, $this->checkedRecords);
     }
 
-    private function deleteRecords()
+    public function changeStatus($id)
     {
-        Comment::whereKey($this->checkedRecords)->delete();
-
-        session()->flash('success', 'Những dòng được chọn đã xóa');
+        $comment = Comment::where('id', $id)->firstOrFail();
+        $comment->is_active ? $comment->update(['is_active' => 0]) : $comment->update(['is_active' => 1]);
     }
 
-    private function deleteRecord()
+    private function deleteRecords()
     {
-        Comment::whereKey($this->commentId)->delete();
+        foreach ($this->checkedRecords as $commentId)
+            $this->deleteRecord($commentId);
+    }
 
-        session()->flash('success', 'Xóa bình luận thành công.');
+    private function deleteRecord($id)
+    {
+        $comment = Comment::find($id);
+        $comment->review_id ? $comment->review->decrement('comment_count', 1) : $comment->news->decrement('comment_count', 1);
+        $comment->delete();
     }
 
     public function delete()
     {
         if ($this->commentId) {
-            $this->deleteRecord();
+            $this->deleteRecord($this->commentId);
             $this->reset('commentId');
+            session()->flash('success', 'Xóa bình luận thành công.');
         } else {
             $this->deleteRecords();
             $this->checkedRecords = [];
             $this->resetChecked();
+            session()->flash('success', 'Những dòng được chọn đã xóa');
         }
 
         $this->dispatch('close-modal');

@@ -38,12 +38,12 @@ class Review extends Model
         return $this->belongsTo(User::class, 'admin_id');
     }
 
-    public function comment()
+    public function comments()
     {
         return $this->hasMany(Comment::class, 'review_id'); 
     }
 
-    public function like()
+    public function likes()
     {
         return $this->hasMany(Like::class, 'review_id');
     }

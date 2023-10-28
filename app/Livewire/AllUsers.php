@@ -17,7 +17,7 @@ class AllUsers extends Component
     public $checkedUser = [];
     public $checkedPage = false;
     public $checkedAll = false;
-    public $userId;                     //Id của user được deleteUser
+    public $userId;
 
     public function render()
     {
@@ -26,7 +26,7 @@ class AllUsers extends Component
 
     public function getUsersQueryProperty()
     {
-        return User::where('is_admin', 'LIKE',  '%' . $this->role . '%')->search(trim($this->keyword))->latest('updated_at');
+        return User::where('is_admin', 'LIKE',  '%' . $this->role . '%')->search(trim($this->keyword))->orderBy('updated_at', 'desc');
     }
 
     public function getUsersProperty()
@@ -34,41 +34,40 @@ class AllUsers extends Component
         return $this->usersQuery->paginate(3);
     }
 
+    public function resetPageChecked()
+    {
+        $this->resetPage();
+        $this->reset('checkedPage');
+    }
+
     public function updatedCheckedPage($value)
     {
-        // Vì có liên quan đến tài khoản đang đăng nhập nên khác biệt chút
-        $this->checkedUser = $value ? array_diff($this->users->pluck('id')->toArray(), [session('user.id')]) : [];
+        if ($value) {
+            $this->checkedUser =  array_merge(array_diff($this->users->pluck('id')->toArray(), [session('user.id')]));
+            $this->checkedAll = false;
+        } else
+            $this->checkedUser = [];
 
         // Cách dùng cho các management bình thường
-        // $this->checkedUser = $value ? $this->users->pluck('id')->toArray() : [];
+        // $this->checkedUser = $value ? $this->users->pluck('id')->map(fn ($item) => (string)$item)->toArray() : [];
+    }
 
-        if (!$this->checkedUser)
-            $this->checkedAll = false;
+    public function updatedCheckedUser()
+    {
+        $this->reset('checkedPage', 'checkedAll');
     }
 
     #[On('reset-checked')]
     public function resetChecked()
     {
-        $this->reset('checkedPage', 'checkedAll');
-    }
-
-    public function resetPageChecked()
-    {
-        $this->resetPage();
-        $this->resetChecked();
-    }
-
-    public function updatedCheckedUser()
-    {
-        $this->resetChecked();
+        $this->reset('checkedPage');
     }
 
     public function checkAll()
     {
         $this->checkedAll = true;
         $this->checkedPage = false;
-        // Vì có liên quan đến tài khoản đang đăng nhập nên khác biệt chút
-        $this->checkedUser = array_diff($this->usersQuery->pluck('id')->toArray(), [session('user.id')]);
+        $this->checkedUser = array_merge(array_diff($this->usersQuery->pluck('id')->toArray(), [session('user.id')]));
 
         // Cách dùng cho các management bình thường
         // $this->checkedUser = $this->usersQuery->pluck('id')->toArray();
@@ -81,24 +80,35 @@ class AllUsers extends Component
 
     private function deleteRecords()
     {
-        foreach ($this->checkedUser as $userId) {
+        foreach ($this->checkedUser as $userId)
             $this->deleteSingleRecords($userId);
-        }
 
-        // User::whereKey($this->checkedUser)->delete();
-
-        session()->flash('success', 'Những dòng được chọn đã xóa');
+        // User::whereKey($this->checkedUser)->delete();  
     }
 
     private function deleteSingleRecords($id)
     {
         $user = User::find($id);
+
+        foreach ($user->reviews as $review)
+            $review->update(['user_id' => 0]);
+
+
+        foreach ($user->news as $news)
+            $news->update(['user_id' => 0]);
+
+
+        foreach ($user->comments as $comment)
+            $comment->update(['user_id' => 0]);
+
+
+        foreach ($user->likes as $like)
+            $like->update(['user_id' => 0]);
+
         if ($user->avatar != "no-avatar-admin.png" || $user->avatar != "no-avatar.png")
             File::delete(public_path('images/user/' . $user->avatar));
 
         $user->delete();
-
-        session()->flash('success', 'Xóa user thành công.');
     }
 
     public function delete()
@@ -106,10 +116,12 @@ class AllUsers extends Component
         if ($this->userId) {
             $this->deleteSingleRecords($this->userId);
             $this->reset('userId');
+            session()->flash('success', 'Xóa user thành công.');
         } else {
             $this->deleteRecords();
             $this->checkedUser = [];
             $this->resetChecked();
+            session()->flash('success', 'Những dòng được chọn đã xóa');
         }
 
         $this->dispatch('close-modal');

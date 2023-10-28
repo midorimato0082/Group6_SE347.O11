@@ -25,11 +25,11 @@ class News extends Model
         return $this->belongsTo(User::class, 'admin_id'); 
     }
 
-    public function comment() {
+    public function comments() {
         return $this->hasMany(Comment::class, 'news_id');
     }  
 
-    public function like()
+    public function likes()
     {
         return $this->hasMany(Like::class, 'news_id');
     }

@@ -22,7 +22,7 @@ class Location extends Model
         return $this->belongsTo(Region::class, 'region_id'); 
     }
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class, 'location_id');
     }

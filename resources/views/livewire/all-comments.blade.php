@@ -28,14 +28,12 @@
         </div>
     </div>
 
-    @if ($checkedPage && $comments->count() != $comments->total())
+    @if (count($checkedRecords) != 0)
         <div class="px-1 mb-4">
-            @if ($checkedAllRecords)
-                Bạn đã chọn <strong>{{ $comments->total() - 1 }}</strong> bình luận.
-            @else
-                Bạn đã chọn <strong>{{ count($checkedRecords) }}</strong> bình luận. Bạn có muốn chọn tất cả
-                <strong>{{ $comments->total() - 1 }}</strong> bình luận đang được hiển thị? <a href="#"
-                    wire:click="checkAllRecords"><strong>Chọn tất cả user.</strong></a>
+            Bạn đã chọn <strong>{{ count($checkedRecords) }}</strong> bình luận.
+            @if ($checkedPage && $comments->count() != $comments->total())
+                Bạn có muốn chọn tất cả <strong>{{ $comments->total() }}</strong> bình luận đang được hiển thị? <a
+                    wire:click="checkAllRecords"><strong>Chọn tất cả bình luận.</strong></a>
             @endif
         </div>
     @endif
@@ -61,19 +59,23 @@
             <tbody id="table-content">
                 @foreach ($comments as $key => $comment)
                     <tr wire:key="row-{{ $comment->id }}"
-                        class="@if ($this->isChecked($comment->id)) table-primary @endif">
-                        <td>
-                            <input class="form-check-input form-check-input-sm" type="checkbox"
-                                wire:model.live="checkedRecords" value="{{ $comment->id }}">
+                        @if ($this->isChecked($comment->id)) class="table-primary"> @endif <td>
+                        <input class="form-check-input form-check-input-sm" type="checkbox"
+                            wire:model.live="checkedRecords" value="{{ $comment->id }}">
                         </td>
                         <td>{{ $key + $comments->firstItem() }}</td>
-                        <td>{{ $comment->user->first_name }}</td>
+                        <td>
+                            @if ($comment->user_id != 0)
+                                {{ $comment->user->first_name }}
+                            @endif
+                        </td>
                         <td class="text-start">{{ str($comment->title)->words(5) }}</td>
                         <td class="text-start">{{ str($comment->content)->words(40) }}</td>
                         <td>{{ $comment->created_at }}</td>
                         <td>
-                            <a data-bs-toggle="tooltip" title="Ẩn/hiện bình luận" wire:click="changeStatus({{ $comment->id }})">
-                                @if ($comment->status == 1)
+                            <a data-bs-toggle="tooltip" title="Ẩn/hiện bình luận"
+                                wire:click="changeStatus({{ $comment->id }})">
+                                @if ($comment->is_active == 1)
                                     <i class="fa-solid fa-eye text-primary"></i>
                                 @else
                                     <i class="fa-solid fa-eye-slash"></i>

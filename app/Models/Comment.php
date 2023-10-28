@@ -41,19 +41,19 @@ class Comment extends Model
     public function scopeSearch($query, $term)
     {
         $term = '%' . $term . '%';
-        return $query->where(function ($query) use ($term) {
-            return $query->where('content', 'LIKE', $term)
+        $query->where(function ($query) use ($term) {
+            $query->where('content', 'LIKE', $term)
                 ->orWhere('created_at', 'LIKE', $term)
                 ->orWhereHas('user', function ($query) use ($term) {
-                    return $query->where('first_name', 'LIKE', $term)
+                    $query->where('first_name', 'LIKE', $term)
                         ->orWhere('last_name', 'LIKE', $term)
                         ->orWhere('email', 'LIKE', $term);
                 })
                 ->orWhereHas('review', function ($query) use ($term) {
-                    return $query->where('title', 'LIKE', $term);
+                    $query->where('title', 'LIKE', $term);
                 })
                 ->orWhereHas('news', function ($query) use ($term) {
-                    return $query->where('title', 'LIKE', $term);
+                    $query->where('title', 'LIKE', $term);
                 });
         });
     }

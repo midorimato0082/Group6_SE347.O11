@@ -110,11 +110,11 @@ class EditAdmin extends Component
             $this->user->password = md5($this->newPassword);
 
         $this->user->email = Str::lower($this->user->email);
-        if ($this->originalEmail != $this->user->email && User::where('email', $this->user->email)->first())
+        if ($this->originalEmail != $this->user->email && User::firstWhere('email', $this->user->email))
             return session()->flash('fail', 'Địa chỉ email này đã tồn tại trong dữ liệu.');
 
 
-        if ($this->originalPhone != $this->user->phone && User::where('phone', $this->user->phone)->first())
+        if ($this->originalPhone != $this->user->phone && User::firstWhere('phone', $this->user->phone))
             return session()->flash('fail', 'Số điện thoại này này đã tồn tại trong dữ liệu.');
 
 

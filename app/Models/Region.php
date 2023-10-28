@@ -16,7 +16,7 @@ class Region extends Model
         'is_active',
     ];
 
-    public function location()
+    public function locations()
     {
         return $this->hasMany(Location::class, 'location_id');
     }

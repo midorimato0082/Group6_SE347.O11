@@ -17,11 +17,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('review_id')->nullable();
             $table->integer('news_id')->nullable();
-<<<<<<<< HEAD:database/migrations/2023_10_17_142737_create_comments_table.php
             $table->boolean('is_active')->default('1');
-========
-            $table->boolean('is_active')->default('1');  
->>>>>>>> feature/user-management:database/migrations/2023_10_24_102438_create_comments_table.php
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

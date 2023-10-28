@@ -127,6 +127,8 @@ class ProfileAdmin extends Component
             $this->user->avatar = $avatarName;
             $this->user->save();
 
+            session()->put('user.avatar', $this->user->avatar);
+
             $this->clear();
         }
     }

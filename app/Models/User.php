@@ -33,7 +33,7 @@ class User extends Model
         return $this->last_name . ' ' . $this->first_name;
     }
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class, 'user_id');
     }
@@ -43,12 +43,12 @@ class User extends Model
         return $this->hasMany(News::class, 'user_id');
     }
 
-    public function comment()
+    public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id');
     }
 
-    public function like()
+    public function likes()
     {
         return $this->hasMany(Like::class, 'user_id');
     }
@@ -56,8 +56,8 @@ class User extends Model
     public function scopeSearch($query, $term)
     {
         $term = '%' . $term . '%';
-        return $query->where(function ($query) use ($term) {
-            return $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'")
+        $query->where(function ($query) use ($term) {
+            $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'")
                 ->orWhere('email', 'LIKE', $term)
                 ->orWhere('phone', 'LIKE', $term);
         });

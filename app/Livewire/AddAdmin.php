@@ -104,9 +104,7 @@ class AddAdmin extends Component
         if ($this->avatar) {
             $avatarName = $user->id . '.' . $this->avatar->extension();
             $this->avatar->storeAs('user', $avatarName);
-            $user->avatar = $avatarName;
-
-            $user->save();
+            $user->update(['avatar' => $avatarName]);
         }
 
         $this->reset();
