@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('phone', 10)->unique()->nullable();  
             $table->string('password', 255);
             $table->string('avatar', 255)->nullable();  
-            $table->string('code', 255)->nullable();
-            $table->dateTime('email_verified_at')->nullable();            
-            $table->boolean('is_admin')->default('0');             
+            $table->boolean('is_admin')->default('0');            
+            $table->dateTime('email_verified_at')->nullable();
+            $table->string('code', 255)->nullable();            
+            $table->dateTime('code_created_at')->nullable();
             $table->timestamps();
         });
     }

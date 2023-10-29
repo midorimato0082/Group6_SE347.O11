@@ -17,15 +17,17 @@ class User extends Model
         'phone',
         'password',
         'avatar',
-        'code',
+        'is_admin',
         'email_verified_at',
-        'is_admin'
+        'code',
+        'code_created_at'    
     ];
 
     protected $hidden = [
         'password',
-        'code',
-        'email_verified_at'
+        'email_verified_at',
+        'code',        
+        'code_created_at'
     ];
 
     protected function getFullNameAttribute()
