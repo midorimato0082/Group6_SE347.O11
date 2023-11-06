@@ -172,3 +172,15 @@ var wow = new WOW({
 })
 wow.init();
 // -----------------------------
+
+// Breadcrumb - Latest Reviews Section
+$(function () {
+    if (window.location.pathname != '/')
+        $('#breadcrumb div').removeClass('d-none');
+
+    $('.latest-reviews').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more');
+    });
+});
+// -----------------------------

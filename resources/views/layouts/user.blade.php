@@ -4,7 +4,7 @@
 @include('includes.head')
 
 <body>
-    <header class="mb-5">
+    <header>
         <div class="container mt-4 d-flex align-items-center">
             <a href="{{ url('') }}" class="logo">
                 <img src="{{ asset('images/others/logo.png') }}" alt="Logo">
@@ -25,6 +25,7 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-left">
                             <li class="nav-item"><a class="nav-link" href="{{ url('') }}">Trang chủ</a></li>
 
+                            {{-- Biến $categories đã được truyền từ app/Providers/ViewServiceProvider --}}
                             @foreach ($categories as $category)
                                 <li class="nav-item"><a class="nav-link"
                                         href="{{ url('category/' . $category->slug) }}">{{ $category->name }}</a></li>
@@ -66,11 +67,14 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
                                         @if (session('user.is_admin') == 1)
-                                            <a href="{{ url('dashboard') }}" class="dropdown-item"><i
-                                                    class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                                            <a href="{{ url('dashboard') }}" class="dropdown-item">
+                                                <i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                                            <a href="{{ url('profile-admin') }}" class="dropdown-item">
+                                                <i class="fa fa-user-edit me-2"></i>Hồ sơ</a>
+                                        @else
+                                            <a href="{{ url('profile') }}" class="dropdown-item">
+                                                <i class="fa fa-user-edit me-2"></i>Hồ sơ</a>
                                         @endif
-                                        <a href="{{ url('profile-admin') }}" class="dropdown-item"><i
-                                                class="fa fa-user-edit me-2"></i>Hồ sơ</a>
                                         <a href="{{ url('logout') }}" class="dropdown-item"><i
                                                 class="fa fa-sign-out me-2"></i>Đăng xuất</a>
                                     </div>
@@ -92,8 +96,25 @@
 
     </header>
 
-    @yield('content')
+    {{-- Breadcrumb --}}
+    <section id="breadcrumb">
+        <div class="container mt-4 px-0 d-none">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-black py-2 px-3 rounded-2">
+                    <li class="breadcrumb-item"><a href="{{ url('') }}">Trang chủ</a></li>
+                    {{-- Truyền thêm nội dung tương ứng cho breadcrumb, xem mẫu ở category-page.blade.php --}}
+                    @yield('breadcrumn')
+                </ol>
+            </nav>
+        </div>
+    </section>
 
+    {{-- Main content --}}
+    <section>
+        @yield('content')
+    </section>
+
+    {{-- Footer --}}
     <footer class="bg-black text-white bottom-0 w-100 pt-5 mt-5">
         <div class="container">
             <div class="row">
@@ -108,7 +129,9 @@
                     <a href="{{ url('region/mien-bac') }}">
                         <h3 class="mb-4 fw-bold">Homestay Miền Bắc</h3>
                     </a>
-                    @foreach ($reviewsBac as $review)
+
+                    {{-- Biến $bacReviews, $namReviews đã được truyền từ app/Providers/ViewServiceProvider --}}
+                    @foreach ($bacReviews as $review)
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ url('/review/' . $review->slug) }}">
@@ -130,7 +153,7 @@
                     <a href="{{ url('/region/mien-nam') }}">
                         <h3 class="mb-4 fw-bold">Homestay Miền Nam</h3>
                     </a>
-                    @foreach ($reviewsNam as $review)
+                    @foreach ($namReviews as $review)
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ url('/review/' . $review->slug) }}">

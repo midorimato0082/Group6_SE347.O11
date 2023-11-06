@@ -1,15 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
-    <h1>Trang chủ</h1>
+    @include('user.carousel-reviews')
+
+    {{-- Code nội dung tiếp theo ở đây --}}
 @endsection

@@ -14,9 +14,6 @@
 {{-- Wow --}}
 <script src="{{ asset('js/wow.min.js') }}"></script>
 
-{{-- Slick --}}
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
 {{-- Custom JS --}}
 {{-- @vite('resources/js/app.js') --}}
 <script src="{{ asset('js/main.js') }}"></script>

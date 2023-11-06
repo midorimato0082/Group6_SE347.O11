@@ -702,3 +702,72 @@ footer .final a {
     display: none;
   }
 /* ---------------------------- */
+
+/* Breadcrumb */
+.breadcrumb {
+    --bs-breadcrumb-divider-color: white;
+    --bs-breadcrumb-item-active-color: white;
+}
+
+.breadcrumb-item a {
+    color: white;
+}
+
+.breadcrumb-item.active {
+    font-weight: bold;
+}
+/* ---------------------------- */
+
+/* Carousel */
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item h2 {
+    color: #f87a19;
+    font-weight: bolder;
+}
+
+.carousel-item h2:hover {
+    color: white;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.35);
+    right: 0;
+    left: 0;
+    border-radius: 8px;
+}
+/* ---------------------------- */
+
+/* Page Content right */
+.latest-reviews {
+    height: 100vh; 
+    overflow-y: scroll;
+}
+
+.latest-reviews::-webkit-scrollbar {
+    display: none;
+}
+
+.latest-reviews img {
+    width: 100%;
+    height: 30%;
+    border-radius: 10px;
+    box-shadow: 0 10px 31px #000000ab;
+}
+
+.latest-reviews h5:hover {
+    color: #f87a19;
+}
+
+.latest-reviews p {
+    font-size: 14px;
+    padding: 5px 0;
+}
+/* ---------------------------- */
