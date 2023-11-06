@@ -36,7 +36,7 @@ $(function () {
         return false;
     });
 
-    $(".nav-item").on("hide.bs.dropdown", function (e) {
+    $("#sidebar .nav-item").on("hide.bs.dropdown", function (e) {
         if (e.clickEvent) {
             e.preventDefault();
         }
@@ -138,4 +138,37 @@ $(function () {
     });
 });
 
+// -----------------------------
+
+// Header
+$(function () {
+    $('.navbar-left').find('a').filter(function () {
+        return this.href == window.location.href.split("#")[0].split("?")[0];
+    }).addClass("active");
+
+    $('.search-header').on('click', function () {
+        $('.input-header').toggleClass("input-header-open");
+    });
+});
+// -----------------------------
+
+// Button scroll to top
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 30) {
+        $('#btn-to-top').fadeIn();
+    } else {
+        $('#btn-to-top').fadeOut();
+    }
+});
+
+$('#btn-to-top').click(function () {
+    $('html, body').animate({ scrollTop: 0 }, '300');
+});
+// -----------------------------
+
+// WOW
+var wow = new WOW({
+    boxClass: 'wow', // default
+})
+wow.init();
 // -----------------------------

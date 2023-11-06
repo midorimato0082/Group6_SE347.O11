@@ -66,7 +66,7 @@
                                     ])
                                 >
                                     <div class="col-md-4">
-                                        <img src="images/news/{{ $new->images }}" class="image-card-dashboard img-fluid rounded-start" alt="{{ $new->title }}">
+                                        <img src="{{ asset('images/news/' . $new->id . '/' . explode(' | ', $new->images)[0]) }}" class="image-card-dashboard img-fluid rounded-start" alt="{{ $new->title }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -98,7 +98,7 @@
                                     ])
                                 >
                                     <div class="col-md-4" height="220px">
-                                        <img src="images/reviews/{{ $review->images }}" class="image-card-dashboard img-fluid rounded-start" alt="{{ $review->title }}">
+                                        <img src="{{ asset('images/reviews/' . $review->id . '/' . explode(' | ', $review->images)[0]) }}" class="image-card-dashboard img-fluid rounded-start" alt="{{ $review->title }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">

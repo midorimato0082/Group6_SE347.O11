@@ -24,6 +24,7 @@ return new class extends Migration
             $table->timestamps();  
             $table->integer('view_count')->default('0');
             $table->integer('like_count')->default('0');
+            $table->integer('dislike_count')->default('0');
             $table->integer('comment_count')->default('0');
 
             $table->foreign('admin_id')->references('id')->on('users');

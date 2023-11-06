@@ -9,17 +9,15 @@
         {{-- Sidebar --}}
         <div class="sidebar pe-1 pb-3">
             <nav class="navbar">
-                <a href="/" class="navbar-brand mx-4 mb-3">
-                    <h3 class="brand-name">Review Travel</h3>
+                <a href="{{ url('') }}" class="navbar-brand mx-4 mb-3">
+                    <h3>Review Travel</h3>
                 </a>
 
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative img-profile">
-                        <img class="rounded-circle" src="{{ asset('images/user/' . session('user.avatar')) }}"
+                        <img class="rounded-circle" src="{{ asset('images/users/' . session('user.avatar')) }}"
                             alt="Avatar">
-                        <div
-                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
-                        </div>
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3 profile-info">
                         <span>Xin chào,</span>
@@ -95,20 +93,20 @@
         <div class="content">
             {{-- Navbar --}}
             <nav class="navbar navbar-expand navbar-dark sticky-top px-4 py-0">
-                <a href="#" class="sidebar-toggler flex-shrink-0">
+                <a class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
 
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2"
-                                src="{{ asset('images/user/' . session('user.avatar')) }}" alt="Avatar"">
+                                src="{{ asset('images/users/' . session('user.avatar')) }}" alt="Avatar"">
                             <span class="d-none d-lg-inline-flex">{{ session('user.name') }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-                            <a href="{{ url('profile-admin') }}" class="dropdown-item"><i class="fa fa-user-edit"></i> Hồ sơ</a>
-                            <a href="{{ url('logout') }}" class="dropdown-item"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                            <a href="{{ url('profile-admin') }}" class="dropdown-item"><i class="fa fa-user-edit me-2"></i>Hồ sơ</a>
+                            <a href="{{ url('logout') }}" class="dropdown-item"><i class="fa fa-sign-out me-2"></i>Đăng xuất</a>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    @livewire('all-reviews')
+    @livewire('admin.all-reviews')
 @endsection

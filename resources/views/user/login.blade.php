@@ -9,7 +9,7 @@
 @section('right-box')
     <h1 class="title text-wrap text-center mb-4">ĐĂNG NHẬP</h1>
 
-    @livewire('login')
+    @livewire('user.login')
 
     <div class="row">
         <p>Bạn không có tài khoản đăng nhập? <a href="register">Hãy đăng ký ở đây</a></p>

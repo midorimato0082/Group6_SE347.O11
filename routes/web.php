@@ -73,14 +73,25 @@ Route::middleware('isLoggedIn')->group(function () {
 
     // Comment Management
     Route::get('all-comments', 'CommentController@viewAll');
-    Route::post('delete-comment/{id}', 'CommentController@delete');
 });
 
+// Home Page - Tính
+Route::get('', 'HomePageController@viewHomePage');
 
+// Category Page - Nguyên
+Route::get('/category/{slug}', 'MenuPageController@viewCategoryPage');
 
+// Region Page - Nguyên
+Route::get('/region/{slug}', 'MenuPageController@viewRegionPage');
 
-// Home
-Route::get('', 'HomeController@viewHome');
+// Location Page - Nguyên
+Route::get('/location/{slug}', 'MenuPageController@viewLocationPage');
+
+// Tag Page - Nguyên
+Route::get('/tag/{tag}', 'MenuPageController@viewTagPage');
+
+// Profile Page - Trí
+Route::get('/profile', 'HomePageController@viewProfile');
 
 // Errors
 Route::get('error/{code}', 'ErrorController@viewError');

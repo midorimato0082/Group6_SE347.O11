@@ -54,9 +54,9 @@ class UserSeeder extends Seeder
                 'is_admin' => 1
             ],
             [
-                'first_name' => 'Name 1',
-                'last_name' => 'No',
-                'email' => 'user1@gmail.com',
+                'first_name' => 'Bảo',
+                'last_name' => 'Nguyễn Ngọc',
+                'email' => 'baonn@gmail.com',
                 'phone' => null,
                 'password' => 'e10adc3949ba59abbe56e057f20f883e',
                 'avatar' => '5.jpg',
@@ -64,9 +64,9 @@ class UserSeeder extends Seeder
                 'is_admin' => 0
             ],
             [
-                'first_name' => 'Name 2',
-                'last_name' => 'No',
-                'email' => 'user2@gmail.com',
+                'first_name' => 'Thương',
+                'last_name' => 'Trần Thị',
+                'email' => 'thuongtt@gmail.com',
                 'phone' => null,
                 'password' => 'e10adc3949ba59abbe56e057f20f883e',
                 'avatar' => 'no-avatar.png',
@@ -74,9 +74,9 @@ class UserSeeder extends Seeder
                 'is_admin' => 0
             ],
             [
-                'first_name' => 'Name 3',
-                'last_name' => 'No',
-                'email' => 'user3@gmail.com',
+                'first_name' => 'Phương',
+                'last_name' => 'Lê Ngọc',
+                'email' => 'midorimato0082@gmail.com',
                 'phone' => null,
                 'password' => 'e10adc3949ba59abbe56e057f20f883e',
                 'avatar' => '7.jpg',
@@ -84,9 +84,9 @@ class UserSeeder extends Seeder
                 'is_admin' => 0
             ],
             [
-                'first_name' => 'Name 4',
-                'last_name' => 'No',
-                'email' => 'user4@gmail.com',
+                'first_name' => 'Tuấn',
+                'last_name' => 'Trần Minh',
+                'email' => 'tuantm@gmail.com',
                 'phone' => null,
                 'password' => 'e10adc3949ba59abbe56e057f20f883e',
                 'avatar' => '8.jpg',
@@ -94,9 +94,9 @@ class UserSeeder extends Seeder
                 'is_admin' => 0
             ],
             [
-                'first_name' => 'Name 5',
-                'last_name' => 'No',
-                'email' => 'user5@gmail.com',
+                'first_name' => 'Hà',
+                'last_name' => 'Hồ Ngọc',
+                'email' => 'hahn@gmail.com',
                 'phone' => null,
                 'password' => 'e10adc3949ba59abbe56e057f20f883e',
                 'avatar' => 'no-avatar.png',

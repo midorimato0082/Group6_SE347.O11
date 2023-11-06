@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    @livewire('all-locations')
+    @livewire('admin.all-locations')
 @endsection

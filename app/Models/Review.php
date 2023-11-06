@@ -40,11 +40,23 @@ class Review extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'review_id'); 
+        return $this->hasMany(Comment::class, 'review_id');
     }
 
     public function likes()
     {
         return $this->hasMany(Like::class, 'review_id');
+    }
+
+    public function getRegionAttribute()
+    {
+        return Region::find($this->location->region_id)->name;
+    }
+
+    public function scopeGetRegion($query, $term)
+    {
+        $query->whereHas('location', function ($query) use ($term) {
+            $query->join('regions', 'locations.region_id', '=', 'regions.id')->where('regions.name', $term);
+        });
     }
 }

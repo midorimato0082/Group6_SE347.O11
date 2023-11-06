@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    @livewire('all-categories')
+    @livewire('admin.all-categories')
 @endsection

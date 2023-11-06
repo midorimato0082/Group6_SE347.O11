@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 ul {
@@ -578,4 +579,126 @@ p.error-avatar {
     height: 80%;
     object-fit: cover;
 }
+/* ---------------------------- */
+
+/* Header */
+.logo img {
+    height: 5rem;
+    float: left;
+}
+
+.logo h1 {
+    font-family: myFont;
+    font-size: 4rem;
+    color: black;
+    font-weight: bold;
+    float: left;
+    margin-left: 1rem;
+}
+
+header .navbar-header {
+    background: #f68a39;
+    border-radius: 8px;
+    box-shadow: 0px 6px 15px #000000a6;
+}
+
+header button.navbar-toggler {
+    border: #000000a6 solid;
+}
+
+.navbar-left .nav-link {
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 1rem;
+}
+
+.navbar-left .nav-link:hover {
+    color: white;
+    box-shadow: inset 0 -3px white;
+}
+
+.navbar-left .nav-link.active {
+    color: white;
+}
+
+header .navbar .dropdown-menu {
+    background-color: #f68a39;
+}
+
+header .navbar .dropdown-item {
+    color: black;
+    font-weight: bold;
+}
+
+header .navbar .dropdown-item:hover {
+    background-color: #dee2d9;
+}
+
+header .navbar .dropdown-toggle::after {
+    margin-left: 4px;
+    vertical-align: middle;
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+header .navbar .dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(-180deg);
+}
+
+.input-header {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    width: 0px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+}
+
+.input-header-open {
+    display: block;
+    width: 200px;
+}
+/* ---------------------------- */
+
+/* Footer */
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #f68a39;
+    /* font-size: small; */
+}
+
+footer .item p{
+    font-size: smaller;
+}
+
+footer .item img{
+    width: 100px;
+    height: 100px;
+}
+
+footer .final {
+    border-top: 1px solid white;
+}
+
+footer .final a {
+    color: #f68a39;
+}
+/* ---------------------------- */
+
+/* Button scroll to top */
+#btn-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+  }
 /* ---------------------------- */
