@@ -772,6 +772,8 @@ footer .final a {
 }
 /* ---------------------------- */
 
+/* home-page */
+
 .card-body.flex-container {
     display: flex;
     flex-direction: row;
@@ -821,4 +823,9 @@ footer .final a {
 .card-desc {
     text-align: center;
     font-weight: 700;
+}
+
+.home-page-body {
+    width: 90%;
+    margin-left: 5%;
 }

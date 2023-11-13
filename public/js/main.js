@@ -166,13 +166,6 @@ $('#btn-to-top').click(function () {
 });
 // -----------------------------
 
-// WOW
-var wow = new WOW({
-    boxClass: 'wow', // default
-})
-wow.init();
-// -----------------------------
-
 // Breadcrumb - Latest Reviews Section
 $(function () {
     if (window.location.pathname != '/')
