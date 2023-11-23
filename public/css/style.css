@@ -747,7 +747,7 @@ footer .final a {
 
 /* Page Content right */
 .latest-reviews {
-    height: 100vh; 
+    height: 100vh;
     overflow-y: scroll;
 }
 
@@ -771,3 +771,9 @@ footer .final a {
     padding: 5px 0;
 }
 /* ---------------------------- */
+
+.horizontal-card-image {
+    width: 285px;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+}
