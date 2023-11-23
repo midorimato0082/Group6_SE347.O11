@@ -747,7 +747,7 @@ footer .final a {
 
 /* Page Content right */
 .latest-reviews {
-    height: 100vh; 
+    height: 100vh;
     overflow-y: scroll;
 }
 
