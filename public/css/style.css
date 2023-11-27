@@ -829,3 +829,10 @@ footer .final a {
     width: 90%;
     margin-left: 5%;
 }
+
+/* Menu Page */
+.horizontal-card-image {
+    width: 285px;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+}
