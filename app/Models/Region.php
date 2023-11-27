@@ -18,6 +18,11 @@ class Region extends Model
 
     public function locations()
     {
-        return $this->hasMany(Location::class, 'location_id');
+        return $this->hasMany(Location::class, 'region_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasManyThrough(Review::class, Location::class, 'region_id', 'location_id');
     }
 }
