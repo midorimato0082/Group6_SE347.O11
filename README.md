@@ -1,6 +1,6 @@
 # Group6_SE347.O11
 
-Hướng dẫn cài đặt sau khi clone project
+Hướng dẫn cài đặt sau khi clone project.
 
 1. Download Composer và Node.js.
 2. cp .env.example .env

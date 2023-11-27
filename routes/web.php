@@ -28,14 +28,16 @@ Route::get('register', 'RegisterController@viewRegister')->middleware('alreadyLo
 Route::post('register', 'RegisterController@register');
 Route::get('verify/{code}', 'RegisterController@verifyAccount')->name('verify');
 
-
 Route::middleware('isLoggedIn')->group(function () {
     // Dashboard
     Route::get('dashboard', 'DashboardController@viewDashboard');
 
     // User Management
-    Route::get('all-users', 'UserController@viewAll');
-    Route::get('edit-admin/{id}', 'UserController@viewEdit');
+    Route::get('all-user', 'UserController@viewAll');
+    Route::get('edit-user/{id}', 'UserController@viewEdit');
+    Route::post('update-user/{id}', 'UserController@update');
+    Route::post('delete-user/{id}', 'UserController@delete');
+    Route::post('delete-multiple-user', 'UserController@deleteMultiple');
     Route::get('add-admin', 'UserController@viewAddAdmin');
     Route::get('profile-admin', 'UserController@viewProfile');
 
@@ -92,6 +94,8 @@ Route::get('/tag/{tag}', 'MenuPageController@viewTagPage');
 
 // Profile Page - Trí
 Route::get('/profile', 'HomePageController@viewProfile');
+// Home
+Route::get('', 'HomeController@viewHome');
 
 // Errors
 Route::get('error/{code}', 'ErrorController@viewError');
