@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->increments('id')->unsigned(false);
+            $table->increments('id');
             $table->integer('user_id');
             $table->integer('review_id')->nullable();
             $table->integer('news_id')->nullable();

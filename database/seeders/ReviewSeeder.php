@@ -25,10 +25,7 @@ class ReviewSeeder extends Seeder
                 'location_id' => 1,
                 'admin_id' => 1,
                 'created_at' => '2023-10-28 14:45:19',
-                'view_count' => 5,
-                'like_count' => 1,
-                'dislike_count' => 0,
-                'comment_count' => 2
+                'view_count' => 5
             ],
             [
                 'title' => 'Homestay miền bắc Hali Home Ninh Bình Không Ai Nỡ Lòng Rời Xa',
@@ -41,10 +38,7 @@ class ReviewSeeder extends Seeder
                 'location_id' => 2,
                 'admin_id' => 1,
                 'created_at' => '2023-10-29 12:45:19',
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 1,
-                'comment_count' => 2
+                'view_count' => 5
             ],
             [
                 'title' => 'Review Chi Tiết Top 5 Homestay Ninh Bình Giá Rẻ, Gần Các Khu Du Lịch',
@@ -57,10 +51,7 @@ class ReviewSeeder extends Seeder
                 'location_id' => 2,
                 'admin_id' => 2,
                 'created_at' => '2023-11-1 15:45:19',
-                'view_count' => 10,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 10
             ],
             [
                 'title' => 'Tuyệt Chiêu Du Lịch Bến Tre Ngon Bổ Rẻ Từ A Đến Z',
@@ -73,10 +64,7 @@ class ReviewSeeder extends Seeder
                 'location_id' => 4,
                 'admin_id' => 2,
                 'created_at' => '2023-11-1 18:45:19',
-                'view_count' => 2,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 2
             ],
             [
                 'title' => 'Ở Nifty Heaven Homestay Ngắm Trọn Cảnh Đà Lạt Từ Trên Cao!',
@@ -87,12 +75,9 @@ class ReviewSeeder extends Seeder
                 'tags' => 'homestay nguyên căn đà lạt, nifty heaven đà lạt',
                 'category_id' => 1,
                 'location_id' => 2,
-                'admin_id' => 3,
+                'admin_id' => 5,
                 'created_at' => '2023-11-3 12:45:19',
-                'view_count' => 1,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 1
             ],
             [
                 'title' => 'Nơi Nghỉ Chân Chất Lượng Khi Du Lịch Kon Tum',
@@ -103,12 +88,9 @@ class ReviewSeeder extends Seeder
                 'tags' => 'du lịch kom tum',
                 'category_id' => 2,
                 'location_id' => 4,
-                'admin_id' => 3,
+                'admin_id' => 5,
                 'created_at' => '2023-11-4 12:45:19',
-                'view_count' => 4,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 4
             ],
             [
                 'title' => 'Top Những Khách Sạn Không Gian Đẹp Gần Biển Và Chất Lượng Phục Vụ Tốt Tại Nha Trang',
@@ -119,12 +101,9 @@ class ReviewSeeder extends Seeder
                 'tags' => 'nha trang, hotel nha trang',
                 'category_id' => 2,
                 'location_id' => 5,
-                'admin_id' => 4,
+                'admin_id' => 7,
                 'created_at' => now(),
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 5
             ],
         ]);
     }

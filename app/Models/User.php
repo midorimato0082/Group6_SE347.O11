@@ -2,47 +2,53 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Model
+class User extends Authenticatable implements MustVerifyEmail
 {
+    use HasApiTokens, Notifiable;
+
     protected $table = 'users';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'first_name',
         'last_name',
+        'first_name',
         'email',
-        'phone',
         'password',
-        'avatar',
-        'is_admin',
-        'email_verified_at',
-        'code',
-        'code_created_at'    
+        'phone',
+        'avatar'
     ];
 
     protected $hidden = [
-        'password',
-        'email_verified_at',
-        'code',        
-        'code_created_at'
+        'password'
     ];
 
-    protected function getFullNameAttribute()
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    protected $with = ['role'];
+
+    public function role()
     {
-        return $this->last_name . ' ' . $this->first_name;
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'user_id');
+        return $this->hasMany(Review::class, 'admin_id');
     }
 
     public function news()
     {
-        return $this->hasMany(News::class, 'user_id');
+        return $this->hasMany(News::class, 'admin_id');
     }
 
     public function comments()
@@ -55,13 +61,42 @@ class User extends Model
         return $this->hasMany(Like::class, 'user_id');
     }
 
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    protected function getFullNameAttribute()
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
+
+    public function getIsAdminAttribute() {
+        return $this->role->name !== 'User' ? true : false;
+    }
+
+    public function getAvatarUrl()
+    {
+        return asset($this->avatar ?
+            'images/avatars/' . $this->avatar
+            : ($this->isAdmin ?
+                'images/avatars/no-avatar.jpg'
+                : 'images/avatars/no-avatar-admin.png'));
+    }
+
     public function scopeSearch($query, $term)
     {
         $term = '%' . $term . '%';
-        $query->where(function ($query) use ($term) {
-            $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'")
-                ->orWhere('email', 'LIKE', $term)
-                ->orWhere('phone', 'LIKE', $term);
+
+        $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'")
+            ->orWhere('email', 'LIKE', $term)
+            ->orWhere('phone', 'LIKE', $term);
+    }
+
+    public function scopeGetAdmin($query)
+    {
+        return $query->whereDoesntHave('role', function ($query) {
+            $query->select('name')->where('name', 'User');
         });
     }
 }

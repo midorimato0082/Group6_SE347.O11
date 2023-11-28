@@ -17,7 +17,6 @@ class News extends Model
         'content',
         'images',
         'tags',
-        'admin_id',
         'is_active'
     ];
 
@@ -32,5 +31,10 @@ class News extends Model
     public function likes()
     {
         return $this->hasMany(Like::class, 'news_id');
+    }
+
+    public function getFirstImageUrl()
+    {
+        return asset('images/news/' . ($this->images ?  explode(' | ', $this->images)[0] : 'no-image.jpg'));
     }
 }

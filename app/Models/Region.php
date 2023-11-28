@@ -23,6 +23,7 @@ class Region extends Model
 
     public function reviews()
     {
-        return $this->hasManyThrough(Review::class, Location::class, 'region_id', 'location_id');
+        return $this->throughLocations()->hasReviews();
+        // return $this->hasManyThrough(Review::class, Location::class, 'region_id', 'location_id');
     }
 }

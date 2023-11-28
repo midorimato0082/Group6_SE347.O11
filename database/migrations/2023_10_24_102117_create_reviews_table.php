@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->increments('id')->unsigned(false);
+            $table->increments('id');
             $table->string('title', 255); 
             $table->string('slug', 30); 
             $table->text('desc'); 
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->integer('location_id');
             $table->integer('admin_id');
-            $table->boolean('is_active')->default('1');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();  
             $table->integer('view_count')->default('0');
             $table->integer('like_count')->default('0');

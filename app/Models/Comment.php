@@ -40,9 +40,9 @@ class Comment extends Model
 
     public function scopeSearch($query, $term)
     {
-        $term = '%' . $term . '%';
-        $query->where(function ($query) use ($term) {
-            $query->where('content', 'LIKE', $term)
+        return $query->when(!empty($term), function ($query) use ($term) {
+            $term = '%' . trim($term) . '%';
+            return $query->where('content', 'LIKE', $term)
                 ->orWhere('created_at', 'LIKE', $term)
                 ->orWhereHas('user', function ($query) use ($term) {
                     $query->where('first_name', 'LIKE', $term)

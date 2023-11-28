@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->increments('id')->unsigned(false);
+            $table->increments('id');
             $table->string('name', 40)->unique(); 
             $table->string('slug', 20)->unique(); 
             $table->integer('region_id');
-            $table->boolean('is_active')->default('1');  
+            $table->boolean('is_active')->default(true);  
             $table->timestamps();
 
             $table->foreign('region_id')->references('id')->on('regions');

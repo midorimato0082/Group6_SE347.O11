@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,94 +15,100 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'first_name' => 'Phượng',
                 'last_name' => 'Nguyễn Thị Bích',
+                'first_name' => 'Phượng', 
                 'email' => '17520926@gm.uit.edu.vn',
+                'password' => Hash::make('123456'),
                 'phone' => '0789456123',
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
                 'avatar' => '1.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 1
+                'role_id' => 3,
+                'is_active' => true,
+                'email_verified_at' => '2023-10-13 01:48:00',
+                'created_at' => '2023-10-13 01:48:00'
             ],
             [
-                'first_name' => 'Nguyên',
                 'last_name' => 'Bùi Lê Anh',
+                'first_name' => 'Nguyên',               
                 'email' => '22521718@gm.uit.edu.vn',
-                'phone' => '0789456120',
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => '2.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 1
-            ],
-            [
-                'first_name' => 'Trí',
-                'last_name' => 'Lê Minh',
-                'email' => '22521543@gm.uit.edu.vn',
+                'password' => Hash::make('123456'),
                 'phone' => '0789456121',
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => '3.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 1
+                'avatar' => '2.jpg',
+                'role_id' => 2,
+                'is_active' => true,
+                'email_verified_at' => '2023-10-15 01:48:00',
+                'created_at' => '2023-10-15 01:48:00'
             ],
             [
-                'first_name' => 'Tính',
-                'last_name' => 'Phạm Hoàng',
-                'email' => '22521484@gm.uit.edu.vn',
-                'phone' => '0789456122',
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => '4.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 1
-            ],
-            [
-                'first_name' => 'Bảo',
-                'last_name' => 'Nguyễn Ngọc',
-                'email' => 'baonn@gmail.com',
-                'phone' => null,
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => '5.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 0
-            ],
-            [
-                'first_name' => 'Thương',
                 'last_name' => 'Trần Thị',
+                'first_name' => 'Thương',               
                 'email' => 'thuongtt@gmail.com',
+                'password' => Hash::make('123456'),
                 'phone' => null,
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => 'no-avatar.png',
-                'email_verified_at' => null,
-                'is_admin' => 0
+                'avatar' => '3.jpg',
+                'role_id' => 1,
+                'is_active' => true,
+                'email_verified_at' => '2023-10-18 02:48:00',
+                'created_at' => '2023-10-16 01:48:00'
             ],
             [
-                'first_name' => 'Phương',
                 'last_name' => 'Lê Ngọc',
+                'first_name' => 'Phương',               
                 'email' => 'midorimato0082@gmail.com',
+                'password' => Hash::make('123456'),
                 'phone' => null,
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => '7.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 0
+                'avatar' => '4.jpg',
+                'role_id' => 1,
+                'is_active' => true,
+                'email_verified_at' => null,
+                'created_at' => '2023-10-18 01:48:00'
             ],
             [
-                'first_name' => 'Tuấn',
+                'last_name' => 'Lê Minh',
+                'first_name' => 'Trí',               
+                'email' => '22521543@gm.uit.edu.vn',
+                'password' => Hash::make('123456'),
+                'phone' => '0789456120',
+                'avatar' => '5.jpg',
+                'role_id' => 2,
+                'is_active' => true,
+                'email_verified_at' => '2023-10-19 01:48:00',
+                'created_at' => '2023-10-19 01:48:00'
+            ],
+            [
                 'last_name' => 'Trần Minh',
+                'first_name' => 'Tuấn',               
                 'email' => 'tuantm@gmail.com',
+                'password' => Hash::make('123456'),
                 'phone' => null,
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => '8.jpg',
-                'email_verified_at' => now(),
-                'is_admin' => 0
+                'avatar' => null,
+                'role_id' => 1,
+                'is_active' => true,
+                'email_verified_at' => '2023-10-20 02:48:00',
+                'created_at' => '2023-10-20 01:48:00'
             ],
             [
-                'first_name' => 'Hà',
+                'last_name' => 'Phạm Hoàng',
+                'first_name' => 'Tính',               
+                'email' => '22521484@gm.uit.edu.vn',
+                'password' => Hash::make('123456'),
+                'phone' => '0789456128',
+                'avatar' => '7.jpg',
+                'role_id' => 2,
+                'is_active' => true,
+                'email_verified_at' => '2023-10-21 01:48:00',
+                'created_at' => '2023-10-21 01:48:00'
+            ],
+            [
                 'last_name' => 'Hồ Ngọc',
+                'first_name' => 'Hà',               
                 'email' => 'hahn@gmail.com',
+                'password' => Hash::make('123456'),
                 'phone' => null,
-                'password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'avatar' => 'no-avatar.png',
-                'email_verified_at' => now(),
-                'is_admin' => 0
+                'avatar' => '8.jpg',
+                'role_id' => 1,
+                'is_active' => false,
+                'email_verified_at' => '2023-11-5 02:48:00',
+                'created_at' => '2023-11-5 01:48:00'
             ],
         ]);
     }

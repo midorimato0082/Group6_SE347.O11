@@ -23,10 +23,7 @@ class NewsSeeder extends Seeder
                 'tags' => 'phú quốc',
                 'admin_id' => 1,
                 'created_at' => '2023-10-27 12:45:19',
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 1
+                'view_count' => 5
             ],
             [
                 'title' => 'Du Khách Lên Tiếng “Tố” Homestay Đà Lạt “Nhà Mây” Lừa Đảo, Ăn Chặn!',
@@ -37,10 +34,7 @@ class NewsSeeder extends Seeder
                 'tags' => 'homestay đà lạt',
                 'admin_id' => 2,
                 'created_at' => '2023-10-29 12:45:19',
-                'view_count' => 5,
-                'like_count' => 1,
-                'dislike_count' => 0,
-                'comment_count' => 2
+                'view_count' => 5
             ],
             [
                 'title' => 'Một Số Lưu Ý Khi Chọn Ở Homestay Đà Lạt! Đừng Để Bị Lừa!',
@@ -51,10 +45,7 @@ class NewsSeeder extends Seeder
                 'tags' => 'đà lạt chặt chém',
                 'admin_id' => 1,
                 'created_at' => '2023-11-1 12:45:19',
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 5
             ],
             [
                 'title' => 'Flamingo Đại Lải Resort: Thực Hư Về Chất Lượng Dịch Vụ!',
@@ -63,12 +54,9 @@ class NewsSeeder extends Seeder
                 'content' => '<p>Tọa lạc tại vị trí đắc địa, Garden Hostel Đà Lạt cách vườn hoa Đà Lạt chỉ chưa đầy 600 m. Chùa Tàu Thiên Vương Cổ Sát chỉ cách khoảng 1.3 km, Chợ Đà Lạt cách khoảng 2km.</p>',
                 'images' => '16027615240.jpg | 16027828092.jpg',
                 'tags' => 'đà lạt resort',
-                'admin_id' => 4,
+                'admin_id' => 7,
                 'created_at' => '2023-11-3 12:45:19',
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 5
             ],
             [
                 'title' => 'Chia Sẻ Kinh Nghiệm Chụp Ảnh “Sống Ảo” Bằng Điện Thoại Khi Đi Du Lịch',
@@ -77,12 +65,9 @@ class NewsSeeder extends Seeder
                 'content' => '<p>Tọa lạc tại vị trí đắc địa, Garden Hostel Đà Lạt cách vườn hoa Đà Lạt chỉ chưa đầy 600 m. Chùa Tàu Thiên Vương Cổ Sát chỉ cách khoảng 1.3 km, Chợ Đà Lạt cách khoảng 2km.</p>',
                 'images' => '25011963_1738810346427337_2012105063354335232_n26.jpg | caracat161.jpg',
                 'tags' => 'du lịch, cẩm nang',
-                'admin_id' => 3,
+                'admin_id' => 5,
                 'created_at' => '2023-11-3 14:45:19',
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 5
             ],
             [
                 'title' => 'Villa De Pomelo – Khu Vườn Hơi “Có Mùi”',
@@ -93,10 +78,7 @@ class NewsSeeder extends Seeder
                 'tags' => 'villa de pomelo, gần hà nội',
                 'admin_id' => 2,
                 'created_at' => now(),
-                'view_count' => 5,
-                'like_count' => 0,
-                'dislike_count' => 0,
-                'comment_count' => 0
+                'view_count' => 5
             ],
         ]);
     }
