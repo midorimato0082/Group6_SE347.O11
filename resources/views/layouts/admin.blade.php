@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 @include('includes.head')
 
@@ -9,24 +9,26 @@
         {{-- Sidebar --}}
         <div class="sidebar pe-1 pb-3">
             <nav class="navbar">
-                <a href="{{ url('') }}" class="navbar-brand mx-4 mb-3">
-                    <h3>Review Travel</h3>
+                <a href="{{ route('home') }}" class="navbar-brand mx-4 mb-3">
+                    <h3>{{ config('app.name') }}</h3>
                 </a>
 
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative img-profile">
-                        <img class="rounded-circle" src="{{ asset('images/users/' . session('user.avatar')) }}"
-                            alt="Avatar">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        <img class="rounded-circle" src="{{ Auth::user()->getAvatarUrl() }}" alt="Avatar">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
                     </div>
                     <div class="ms-3 profile-info">
                         <span>Xin chào,</span>
-                        <h2>{{ session('user.first_name') }}</h2>
+                        <h2>{{ Auth::user()->first_name }}</h2>
                     </div>
                 </div>
 
                 <div id="sidebar" class="navbar-nav w-100">
-                    <a href="{{ url('dashboard') }}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Tổng quan</a>
+                    <a href="{{ route('dashboard') }}" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Tổng quan</a>
 
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -78,13 +80,17 @@
                         </div>
                     </div>
 
-                    <a href="{{ url('all-comments') }}" class="nav-item nav-link"><i class="fa fa-comment me-2"></i>Bình luận</a>
+                    <a href="{{ url('all-comments') }}" class="nav-item nav-link"><i
+                            class="fa fa-comment me-2"></i>Bình luận</a>
                 </div>
 
                 <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('logout') }}">
+                    <a href="{{ route('logout') }}" data-toggle="tooltip" data-placement="top" title="Logout">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </nav>
         </div>
@@ -100,13 +106,18 @@
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2"
-                                src="{{ asset('images/users/' . session('user.avatar')) }}" alt="Avatar"">
-                            <span class="d-none d-lg-inline-flex">{{ session('user.name') }}</span>
+                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->getAvatarUrl() }}"
+                                alt="Avatar"">
+                            <span class="d-none d-lg-inline-flex">{{ Auth::user()->fullName }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-                            <a href="{{ url('profile-admin') }}" class="dropdown-item"><i class="fa fa-user-edit me-2"></i>Hồ sơ</a>
-                            <a href="{{ url('logout') }}" class="dropdown-item"><i class="fa fa-sign-out me-2"></i>Đăng xuất</a>
+                            <a href="{{ url('profile') }}" class="dropdown-item"><i
+                                    class="fa fa-user-edit me-2"></i>Hồ sơ</a>
+                            <a href="{{ route('logout') }}" class="dropdown-item"><i
+                                    class="fa fa-sign-out me-2"></i>Đăng xuất</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -126,9 +137,11 @@
             {{-- Footer --}}
             <footer class="bg-white pe-3 position-absolute w-100 bottom-0 start-0">
                 <div class="float-end">
-                    Review Travel
+                    <small>Website Design: Group 6 - SE347.O11</small>
                 </div>
             </footer>
+
+            <button id="btn-to-top" class="btn btn-orange btn-lg rounded-5"><i class="fa fa-arrow-up"></i></button>
         </div>
 
         @include('includes.scripts')
