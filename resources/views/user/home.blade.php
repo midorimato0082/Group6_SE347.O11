@@ -3,8 +3,7 @@
 @section('content')
     @include('user.carousel-reviews')
 
-    {{-- Code nội dung tiếp theo ở đây --}}
-    <div class="home-page-body">
+    <div class="container px-0">
         @if (! empty($reviews))
         <div class="card mx-auto my-3">
             <div class="card-header" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
@@ -19,7 +18,7 @@
                         ])
                     >
                         <div class="card-desc" data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine">
-                            <img src="{{ asset('images/reviews/' . $review->id . '/' . explode(' | ', $review->images)[0]) }}" class="image-card-dashboard img-fluid rounded-start">
+                            <img src="{{ $review->getFirstImageUrl() }}" class="image-card-dashboard img-fluid rounded-start">
                             <p title="{{ $review->title }}" class="card-title truncate-text-2">{{ $review->title }}</p>
                         </div>
                     </div>
@@ -42,7 +41,7 @@
                         ])
                     >
                         <div class="card-desc" data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine">
-                            <img src="{{ asset('images/news/' . $new->id . '/' . explode(' | ', $new->images)[0]) }}" class="image-card-dashboard img-fluid rounded-start">
+                            <img src="{{ $new->getFirstImageUrl() }}" class="image-card-dashboard img-fluid rounded-start">
                             <p title="{{ $new->title }}" class="card-title truncate-text-2">{{ $new->title }}</p>
                         </div>
                     </div>

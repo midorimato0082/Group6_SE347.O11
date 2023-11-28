@@ -18,7 +18,7 @@
                     <div class="card mb-4 bg-transparent border-0">
                         <div class="row g-0">
                             <div class="col-md-4 position-relative">
-                                <img src="{{ asset('images/reviews/' . $review->id . '/' . explode(' | ', $review->images)[0]) }}" class="img-fluid rounded horizontal-card-image" alt="{{ $review->$title }}">
+                                <img src="{{ $review->getFirstImageUrl() }}" class="img-fluid rounded horizontal-card-image" alt="{{ $review->title }}">
                                 <p class="position-absolute bg-warning px-2 py-1 rounded fw-bold" style="bottom: -8px; left: 10px; font-size: 14px"><a class="text-black" href="{{ '/location/' . $review->location->slug }}">{{ $review->location->name }}</a></p>
                             </div>
                             <div class="col-md-8">

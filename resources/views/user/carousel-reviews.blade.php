@@ -9,7 +9,7 @@
     <div class="carousel-inner rounded-2">
         @foreach ($reviewsCarousel as $key => $review)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="3000">
-                <img src="{{ asset('images/reviews/' . $review->id . '/' . explode(' | ', $review->images)[0]) }}"
+                <img src="{{ $review->getFirstImageUrl() }}"
                     class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
                     <a href="{{ url('/review/' . $review->slug) }}">

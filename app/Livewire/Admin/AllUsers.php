@@ -26,7 +26,8 @@ class AllUsers extends Component
 
     public function getUsersQueryProperty()
     {
-        return User::where('is_admin', 'LIKE',  '%' . $this->role . '%')->search(trim($this->keyword))->orderBy('updated_at', 'desc');
+        // where('is_admin', 'LIKE',  '%' . $this->role . '%')->
+        return User::search(trim($this->keyword))->orderBy('updated_at', 'desc');
     }
 
     public function getUsersProperty()

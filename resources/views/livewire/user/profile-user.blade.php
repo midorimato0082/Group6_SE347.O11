@@ -8,7 +8,7 @@
                     @if ($successAvatar == 1)
                         <img src="{{ $newAvatar->temporaryUrl() }}" class="rounded-circle img-fluid profile-admin">
                     @else
-                        <img src="{{ asset('images/users/' . $originalAvatar) }}" class="rounded-circle img-fluid profile-admin">
+                        <img src="{{ asset('images/avatars/' . $originalAvatar) }}" class="rounded-circle img-fluid profile-admin">
                     @endif
                     <h4 class="fw-bold mt-3">{{ $user->fullName }}</h4>
                     <span class="btn btn-blue btn-file mt-1">Cập nhật avatar<input type="file"

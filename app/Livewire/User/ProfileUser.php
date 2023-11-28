@@ -3,6 +3,7 @@
 namespace App\Livewire\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -31,7 +32,7 @@ class ProfileUser extends Component
 
     public function getInfo()
     {
-        $this->user = User::find(session('user.id'));
+        $this->user = Auth::user();
         $this->originalEmail = $this->user->email;
         $this->originalPhone = $this->user->phone;
         $this->originalAvatar = $this->user->avatar;
