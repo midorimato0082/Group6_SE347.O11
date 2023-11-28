@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin')
 
 @section('content')
 <form action="/save-category" method="post" enctype="multipart/form-data">
@@ -25,4 +25,4 @@
         </div>
     </div>
 </form>
-@endsection
+@endsection --}}

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin')
 
 @section('content')
 <form action="/update-location/{{ $location->id  }}" method="post" enctype="multipart/form-data">
@@ -36,4 +36,4 @@
     </div>
 </form>
 
-@endsection
+@endsection --}}
