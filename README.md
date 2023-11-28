@@ -1,14 +1,20 @@
 # Group6_SE347.O11
 
-Hướng dẫn cài đặt sau khi clone project
+<b>Chuẩn bị:</b>
+<ul>
+    <li>Đã download Composer và Node.js.</li>
+    <li>Php >= 8.1</li>
+</ul>
 
-1. Download Composer và Node.js.
-2. cp .env.example .env
-3. Config database name in .env (DB_DATABASE=)
-4. composer install
-5. npm install
-6. php artisan key:generate
-7. composer update
-8. php artisan migrate
-9. php artisan db:seed
-10. php artisan serve
+<b>Hướng dẫn cài đặt sau khi clone project:<b>
+<ol>
+    <li>cp .env.example .env</li>
+    <li>Config database name in .env (DB_DATABASE=)</li>
+    <li>composer install</li>
+    <li>npm install</li>
+    <li>php artisan key:generate</li>
+    <li>composer update</li>
+    <li>php artisan migrate</li>
+    <li>php artisan db:seed</li>
+    <li>php artisan serve</li>
+</ol>
