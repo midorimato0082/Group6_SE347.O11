@@ -6,7 +6,7 @@
     <li>Php >= 8.1</li>
 </ul>
 
-<b>Hướng dẫn cài đặt sau khi clone project:<b>
+<b>Hướng dẫn cài đặt sau khi clone project:</b>
 <ol>
     <li>cp .env.example .env</li>
     <li>Config database name in .env (DB_DATABASE=)</li>
