@@ -4,7 +4,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuPagesController;
 use App\Http\Controllers\ReviewController;
+use App\Livewire\Admin\ReviewManagement\AddReview;
 use App\Livewire\Admin\ReviewManagement\AllReviews;
+use App\Livewire\Admin\ReviewManagement\EditReview;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Authentication
 Auth::routes(['verify' => true]);
 
 // Home Page
@@ -51,6 +54,9 @@ Route::middleware(['auth', 'auth.roles:Admin,Super Admin'])->group(function () {
     // Location Management
 
     // Review Management
+    Route::get('/all-reviews', AllReviews::class);
+    Route::get('/add-review', AddReview::class);
+    Route::get('/edit-review/{review}', EditReview::class)->name('edit.review');
 
     // News Management
 

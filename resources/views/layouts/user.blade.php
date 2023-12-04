@@ -114,8 +114,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-xl-4 mb-5 mb-sm-5 mb-xl-3">
                     <h3 class="mb-4 fw-bold">About us</h3>
-                    <p>Chuyên trang review & đánh giá các homestay - hostel - resort mới nhất, có view đẹp nhất với chi
-                        phí phải chăng.</p>
+                    <p>Chuyên trang review các homestay, hotel, motel và resort có view đẹp, tiện nghi, tuyệt vời và thoải mái để lưu trú tạm thời khi đi du lịch xa nhà.</p>
                     <a>Liên hệ truyền thông quảng cáo: 0999999999</a>
                 </div>
 

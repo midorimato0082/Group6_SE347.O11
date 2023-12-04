@@ -59,9 +59,9 @@ class Login extends Component
         if (!$this->isActive())
             return;
 
-        if (Auth::attempt($this->only(['email', 'password']))) {
+        if (Auth::attempt($this->only(['email', 'password']), $this->remember)) {
             $request->session()->regenerate();
-            $this->rememberMe();
+            // $this->rememberMe();
             $this->reset();
             return Auth::user()->isAdmin ? $this->redirectRoute('dashboard') : ( Auth::user()->email_verified_at ? $this->redirectRoute('home') : $this->redirectRoute('verification.notice'));
         } 
@@ -70,16 +70,16 @@ class Login extends Component
         $this->addError('password', 'Mật khẩu không chính xác.');
     }
 
-    private function rememberMe()
-    {
-        if ($this->remember) {
-            Cookie::queue('email', $this->email, 1440);
-            Cookie::queue('password', $this->password, 1440);
-        } else {
-            Cookie::queue(Cookie::forget('email'));
-            Cookie::queue(Cookie::forget('password'));
-        }
-    }
+    // private function rememberMe()
+    // {
+    //     if ($this->remember) {
+    //         Cookie::queue('email', $this->email, 1440);
+    //         Cookie::queue('password', $this->password, 1440);
+    //     } else {
+    //         Cookie::queue(Cookie::forget('email'));
+    //         Cookie::queue(Cookie::forget('password'));
+    //     }
+    // }
 
     private function isActive()
     {

@@ -29,6 +29,7 @@ $(function () {
 
     $(document).bind('close-modal', function () {
         $('#delete-modal').modal('hide');
+        $('#import-modal').modal('hide');
         $('#edit-profile-modal').modal('hide');
     });
 
@@ -48,11 +49,28 @@ $(function () {
     $(document).bind('alert-success', function (e) {
         toastr.success(e.detail.message, 'Thành công!')
     });
+
+    $('#startDate').on('change', function () {
+        Livewire.dispatch('set-createdFrom', { value: this.value });
+    });
+
+    $('#endDate').on('change', function () {
+        Livewire.dispatch('set-createdTo', { value: this.value });
+    });
     // --------------------------------------
 
-    // View Edit
-    $('#add-review').on('click', function () {
+    // View Add/Edit
+    $('#save-review').on('click', function () {
         Livewire.dispatch('get-tags', { tags: $('input[data-role="tagsinput"]').val() });
+    });
+
+    $('#clear-review').on('click', function () {
+        $('input[data-role="tagsinput"]').tagsinput('removeAll');
+    });
+
+    $(document).bind('clear-tags', function (e) {
+        $('input[data-role="tagsinput"]').tagsinput('removeAll');
+        $('input[data-role="tagsinput"]').tagsinput('add', e.detail.tags);
     });
     // --------------------------------------
 
@@ -118,3 +136,17 @@ function setupLayoutAdmin() {
     if (current_url.includes('edit'))
         $('a.' + value_editing).removeClass('d-none').css('pointer-events', 'none');
 }
+
+
+Alpine.data('data', () => ({
+    open: false,
+
+    filter() {
+        this.open = !this.open;
+        this.open || Livewire.dispatch('close-filter');
+    },
+
+    // init() {
+    //     this.$watch('checkedRecords', value => console.log(this.checkedRecords.length))
+    // }
+}))

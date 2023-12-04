@@ -63,6 +63,12 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+
+        'data' => [
+            'driver' => 'local',
+            'root' => base_path('database/data'),
+            'throw' => false,
+        ],
     ],
 
     /*

@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
                     aria-label="Close"></button>
             </div>
-            <form wire:submit.prevent="delete">
+            <form wire:submit.prevent="destroy">
                 <div class="modal-body text-danger text-center">
                     <h4 class="fw-bold">Bạn chắc chắc muốn xóa dữ liệu này?</h4>
                     <i class="fas fa-trash fa-4x animated rotateIn mt-1"></i>

@@ -412,8 +412,7 @@ h1.title {
     color: white;
 }
 
-.btn-red:hover,
-.btn-red:focus {
+.btn-red:hover {
     background-color: red;
     color: white;
     text-shadow: 2px 2px 10px #2a3f54;
@@ -437,6 +436,10 @@ th:last-of-type {
 
 .table-hover tbody tr:hover td {
     background: #f68a39;
+}
+
+.table-hover tbody tr.filter-row:hover td {
+    background: none;
 }
 
 .img-table {
@@ -531,6 +534,13 @@ a:hover {
     border-bottom: #5a6268 2px solid;
     background-color: #2a3f54;
 }
+
+p.error {
+    font-size: small;
+    margin-left: 1%;
+    line-height: 0.5rem;
+    color: rgb(222, 0, 0);
+}
 /* ---------------------------- */
 
 /* View Edit/Add */
@@ -560,6 +570,10 @@ input[readonly] {
 
 .ck-content .image {
     max-width: 80%;
+}
+
+.ck .ck-sticky-panel .ck-sticky-panel__content_sticky{ 
+    margin-top: 4%;
 }
 
 .bootstrap-tagsinput .tag {
