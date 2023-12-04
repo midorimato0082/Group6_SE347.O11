@@ -80,8 +80,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return asset($this->avatar ?
             'images/avatars/' . $this->avatar
             : ($this->isAdmin ?
-                'images/avatars/no-avatar.jpg'
-                : 'images/avatars/no-avatar-admin.png'));
+                'images/others/no-avatar.jpg'
+                : 'images/others/no-avatar-admin.png'));
     }
 
     public function scopeSearch($query, $term)

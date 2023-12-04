@@ -15,30 +15,43 @@ class Review extends Model
         'slug',
         'desc',
         'content',
-        'images',
         'tags',
         'category_id',
         'location_id',
+        'admin_id',
         'is_active'
     ];
 
-    // protected $with = ['category:id,name', 'location', 'admin'];    // Kiến thức Eloquent: Relationships phần Eager Loading
-    protected $with = ['category:name', 'location', 'admin'];
+    // Kiến thức Eloquent: Relationships phần Eager Loading   
+    protected $with = ['images:name,review_id', 'category:id,name', 'location:id,name,region_id', 'admin:id,first_name,last_name,email'];
+
+    // Kiến thức Eloquent: Relationships
+    public function images()
+    {
+        return $this->hasMany(ReviewImages::class, 'review_id');
+    }
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        // Dùng default để khi mã id category đó đã bị xóa thì sẽ trả về giá trị cột name là trống
+        return $this->belongsTo(Category::class, 'category_id')->withDefault(function (Category $category) {
+            $category->name = null;
+        });
     }
 
     public function location()
     {
-        return $this->belongsTo(Location::class, 'location_id');
+        return $this->belongsTo(Location::class, 'location_id')->withDefault(function (Location $location) {
+            $location->name = null;
+        });
     }
 
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id')->withDefault(function (User $user) {
-            $user->first_name = '';
+            $user->first_name = null;
+            $user->last_name = null;
+            $user->email = null;
         });
     }
 
@@ -55,33 +68,24 @@ class Review extends Model
     // Hàm lấy url của hình đầu tiên, viết hàm này để set thuộc tính src của tag image trong view ngắn gọn hơn
     public function getFirstImageUrl()
     {
-        return asset('images/reviews/' . ($this->images ?  explode(' | ', $this->images)[0] : 'no-image.jpg'));
+        return $this->images->isNotEmpty() ? $this->images->first()->url : asset('images/others/no-image.jpg');
     }
 
     // Hàm lấy url của tất cả các hình của bài viết
     public function getImagesUrl()
     {
-        if (empty($this->images))
-            return [asset('images/reviews/no-image.jpg')];
+        if ($this->images->isEmpty())
+            return [asset('images/others/no-image.jpg')];
 
-        foreach (explode(' | ', $this->images) as $image) {
-            $imagesUrl[] = asset('images/reviews/' . $image);
-        }
+        foreach ($this->images as $image)
+            $imagesUrl[] = $image->url;
         return $imagesUrl;
     }
 
-    // Kiến thức Mutate Eloquent Model Attributes phần Using an Accessor. Hàm lấy name của region_id tương ứng.
-    public function getRegionAttribute()
-    {
-        return Region::find($this->location->region_id)->name;
-    }
-
     // Hàm lấy các review có region name là $term. Ví dụ lấy các bài viết thuộc miền bắc.
-    public function scopeGetRegion($query, $term)
+    public function scopeWhereRegion($query, $term)
     {
-        return $query->whereHas('location.region', function ($query) use ($term) {
-            return $query->where('name', $term);
-        });
+        return $query->whereRelation('location.region', 'name', $term);
     }
 
     // Hàm lấy giá trị cho cột comment_count (số lượt bình luận của review), like_count, dislike_count. Database mới đã bỏ các cột này đi. Bây giờ hệ thống sẽ tự generate nó.
@@ -98,7 +102,7 @@ class Review extends Model
 
     public function scopeSearch($query, $term)
     {
-        return $query->when(!empty($term), function ($query) use ($term) {
+        return $query->when($term, function ($query) use ($term) {
             $term = '%' . trim($term) . '%';
             return $query->where('title', 'LIKE', $term)
                 ->orWhere('tags', 'LIKE', $term)
@@ -109,15 +113,15 @@ class Review extends Model
 
     public function scopeFilter($query, $category, $region, $location, $admin, $status, $dateFrom, $dateTo)
     {
-        return $query->when(!empty($category), function ($query) use ($category) {
+        return $query->when($category, function ($query) use ($category) {
             return $query->where('category_id', $category);
-        })->when(!empty($region), function ($query) use ($region) {
-            return $query->getRegion($region);
-        })->when(!empty($location), function ($query) use ($location) {
+        })->when($region, function ($query) use ($region) {
+            return $query->whereRegion($region);
+        })->when($location, function ($query) use ($location) {
             return $query->where('location_id', $location);
-        })->when(!empty($admin), function ($query) use ($admin) {
+        })->when($admin, function ($query) use ($admin) {
             return $query->where('admin_id', $admin);
-        })->when($status !== "", function ($query) use ($status) {
+        })->when($status != '', function ($query) use ($status) {
             return $query->where('is_active', $status);
         })->whereDate('reviews.created_at', '>=', $dateFrom)->whereDate('reviews.created_at', '<=', $dateTo);
     }
@@ -126,13 +130,13 @@ class Review extends Model
     {
         switch ($sortBy) {
             case 'category':
-                return $query->join('categories', 'reviews.category_id', '=', 'categories.id')->orderBy('categories.name', $sortDirection);
+                return $query->leftJoin('categories', 'reviews.category_id', '=', 'categories.id')->orderBy('categories.name', $sortDirection);
             case 'region':
-                return $query->join('locations', 'reviews.location_id', '=', 'locations.id')->join('regions', 'locations.region_id', '=', 'regions.id')->orderBy('regions.name', $sortDirection);
+                return $query->leftJoin('locations', 'reviews.location_id', '=', 'locations.id')->leftJoin('regions', 'locations.region_id', '=', 'regions.id')->orderBy('regions.name', $sortDirection);
             case 'location':
-                return $query->join('locations', 'reviews.location_id', '=', 'locations.id')->orderBy('locations.name', $sortDirection);
+                return $query->leftJoin('locations', 'reviews.location_id', '=', 'locations.id')->orderBy('locations.name', $sortDirection);
             case 'admin':
-                return $query->join('users', 'reviews.admin_id', '=', 'users.id')->orderBy('users.first_name', $sortDirection);
+                return $query->leftJoin('users', 'reviews.admin_id', '=', 'users.id')->orderBy('users.first_name', $sortDirection);
             default:
                 return $query->orderBy($sortBy, $sortDirection);
         }

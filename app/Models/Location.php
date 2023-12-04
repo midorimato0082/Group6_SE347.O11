@@ -19,7 +19,9 @@ class Location extends Model
 
     public function region()
     {
-        return $this->belongsTo(Region::class, 'region_id'); 
+        return $this->belongsTo(Region::class, 'region_id')->withDefault(function (Region $region) {
+            $region->name = null;
+        });; 
     }
 
     public function reviews()
@@ -27,12 +29,10 @@ class Location extends Model
         return $this->hasMany(Review::class, 'location_id');
     }
 
-    public function scopeGetRegion($query, $region) // Hàm lấy name các location thuộc vùng $region. Ví dụ lấy các location thuộc miền bắc.
+    public function scopeWhereRegion($query, $region) // Hàm lấy name các location thuộc vùng $region. Ví dụ lấy các location thuộc miền bắc.
     {
-        return $query->when(!empty($region), function ($query) use ($region) {
-            return $query->whereHas('region', function ($query) use ($region) {
-                $query->select('name')->where('name', $region);
-            });
+        return $query->when($region, function ($query) use ($region) {
+            return $query->whereRelation('region', 'name', $region);
         });
     }
 }

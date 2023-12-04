@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('review_id')->nullable();
             $table->integer('news_id')->nullable();
-            $table->boolean('is_active')->default('1');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
