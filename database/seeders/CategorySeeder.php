@@ -24,11 +24,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Resort',
                 'slug' => 'resort'
-            ],
-            [
-                'name' => 'Motel',
-                'slug' => 'motel'
-            ],
+            ]
         ]);
     }
 }

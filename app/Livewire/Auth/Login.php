@@ -12,12 +12,12 @@ class Login extends Component
 {
     public $email, $password, $remember;
 
-    public function mount()
-    {
-        $this->email = Cookie::get('email');
-        $this->password = Cookie::get('password');
-        $this->remember = Cookie::has('email') ?  true : false;
-    }
+    // public function mount()
+    // {
+    //     $this->email = Cookie::get('email');
+    //     $this->password = Cookie::get('password');
+    //     $this->remember = Cookie::has('email') ?  true : false;
+    // }
 
     public function render()
     {

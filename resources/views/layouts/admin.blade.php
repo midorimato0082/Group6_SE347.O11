@@ -15,7 +15,7 @@
 
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative img-profile">
-                        <img class="rounded-circle" src="{{ Auth::user()->getAvatarUrl() }}" alt="Avatar">
+                        <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}" alt="Avatar">
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
@@ -37,16 +37,6 @@
                             <a href="{{ url('all-users') }}" class="dropdown-item">Danh sách User</a>
                             <a href="{{ url('add-admin') }}" class="dropdown-item">Thêm Admin</a>
                             <a class="dropdown-item admin d-none" onclick="return false">Cập nhật Admin</a>
-                        </div>
-                    </div>
-
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-list-alt me-2"></i>Danh mục</a>
-                        <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="{{ url('all-categories') }}" class="dropdown-item">Danh sách danh mục</a>
-                            <a href="{{ url('add-category') }}" class="dropdown-item">Thêm danh mục</a>
-                            <a class="dropdown-item category d-none" onclick="return false">Cập nhật danh mục</a>
                         </div>
                     </div>
 
@@ -106,9 +96,9 @@
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->getAvatarUrl() }}"
+                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->avatar_url }}"
                                 alt="Avatar"">
-                            <span class="d-none d-lg-inline-flex">{{ Auth::user()->fullName }}</span>
+                            <span class="d-none d-lg-inline-flex">{{ Auth::user()->full_name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
                             <a href="{{ url('profile') }}" class="dropdown-item"><i

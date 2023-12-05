@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -26,12 +27,14 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token'
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_active' => 'boolean'
     ];
 
     protected $with = ['role'];
@@ -66,22 +69,27 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    protected function getFullNameAttribute()
+    protected function fullName(): Attribute
     {
-        return $this->last_name . ' ' . $this->first_name;
+        return new Attribute(
+            get: fn () => $this->last_name . ' ' . $this->first_name
+        );
     }
 
-    public function getIsAdminAttribute() {
-        return $this->role->name !== 'User' ? true : false;
+    protected function isAdmin(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->role->name !== 'User'
+        );
     }
 
-    public function getAvatarUrl()
+    protected function avatarUrl(): Attribute
     {
-        return asset($this->avatar ?
-            'images/avatars/' . $this->avatar
-            : ($this->isAdmin ?
-                'images/others/no-avatar.jpg'
-                : 'images/others/no-avatar-admin.png'));
+        return new Attribute(
+            get: fn () => asset($this->avatar ?
+                'images/avatars/' . $this->avatar :
+                'images/others/' . ($this->is_admin ? 'no-avatar-admin.png' : 'no-avatar.jpg'))
+        );
     }
 
     public function scopeSearch($query, $term)

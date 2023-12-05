@@ -68,12 +68,12 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle profile-nav py-0" data-bs-toggle="dropdown">
                                         <img class="rounded-circle me-1"
-                                            src="{{ Auth::user()->getAvatarUrl() }}" alt="Avatar">
+                                            src="{{ Auth::user()->avatar_url }}" alt="Avatar">
                                         <span class="d-lg-inline-flex fw-bold text-dark align-middle">Xin chào,
                                             {{ Auth::user()->first_name }}</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-                                        @if (Auth::user()->isAdmin)
+                                        @if (Auth::user()->is_admin)
                                             <a href="{{ route('dashboard') }}" class="dropdown-item">
                                                 <i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                                         @endif
@@ -127,7 +127,7 @@
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ route('review', $review->slug) }}">
-                                    <img src="{{ $review->getFirstImageUrl() }}" class="rounded-3">
+                                    <img src="{{ $review->first_image }}" class="rounded-3">
                                 </a>
                             </div>
                             <div class="col ms-3">
@@ -148,7 +148,7 @@
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ route('review', $review->slug) }}">
-                                    <img src="{{ $review->getFirstImageUrl() }}" class="rounded-3">
+                                    <img src="{{ $review->first_image }}" class="rounded-3">
                                 </a>
                             </div>
                             <div class="col ms-3">
