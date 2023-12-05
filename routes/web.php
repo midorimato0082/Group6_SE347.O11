@@ -4,6 +4,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuPagesController;
 use App\Http\Controllers\ReviewController;
+use App\Livewire\Admin\LocationManagement\AddLocation;
+use App\Livewire\Admin\LocationManagement\AllLocations;
+use App\Livewire\Admin\LocationManagement\EditLocation;
 use App\Livewire\Admin\ReviewManagement\AddReview;
 use App\Livewire\Admin\ReviewManagement\AllReviews;
 use App\Livewire\Admin\ReviewManagement\EditReview;
@@ -49,9 +52,10 @@ Route::middleware(['auth', 'auth.roles:Admin,Super Admin'])->group(function () {
 
     // User Management
 
-    // Category Management
-
     // Location Management
+    Route::get('/all-locations', AllLocations::class);
+    Route::get('/add-location', AddLocation::class);
+    Route::get('/edit-location/{location}', EditLocation::class)->name('edit.location');
 
     // Review Management
     Route::get('/all-reviews', AllReviews::class);

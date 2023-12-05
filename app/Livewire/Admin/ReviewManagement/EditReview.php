@@ -30,7 +30,7 @@ class EditReview extends Component
         $this->fill(
             $this->review->only('title', 'desc', 'content', 'category_id', 'tags', 'location_id', 'is_active'),
         ); 
-        $this->is_active = 1 ? true : false;
+        
         $this->oldImages = ReviewImages::where('review_id', $this->review->id)->get();
     }
 

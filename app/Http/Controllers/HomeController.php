@@ -20,6 +20,6 @@ class HomeController extends Controller
 
     public function showProfile() 
     {
-        return view('.user.profile')->with('title', 'Hồ sơ');
+        return view('user.profile')->with('title', 'Hồ sơ');
     }
 }

@@ -36,7 +36,7 @@ class ReviewPolicy
      */
     public function create(User $user)
     {
-        return $user->isAdmin
+        return $user->is_admin
             ? Response::allow()
             : Response::denyWithStatus(401);
     }

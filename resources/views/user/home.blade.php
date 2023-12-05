@@ -18,7 +18,7 @@
                         ])
                     >
                         <div class="card-desc" data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine">
-                            <img src="{{ $review->getFirstImageUrl() }}" class="image-card-dashboard img-fluid rounded-start">
+                            <img src="{{ $review->first_image }}" class="image-card-dashboard img-fluid rounded-start">
                             <p title="{{ $review->title }}" class="card-title truncate-text-2">{{ $review->title }}</p>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         ])
                     >
                         <div class="card-desc" data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine">
-                            <img src="{{ $new->getFirstImageUrl() }}" class="image-card-dashboard img-fluid rounded-start">
+                            <img src="{{ $new->first_image }}" class="image-card-dashboard img-fluid rounded-start">
                             <p title="{{ $new->title }}" class="card-title truncate-text-2">{{ $new->title }}</p>
                         </div>
                     </div>

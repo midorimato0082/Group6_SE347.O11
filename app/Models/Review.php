@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
@@ -20,6 +21,10 @@ class Review extends Model
         'location_id',
         'admin_id',
         'is_active'
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean'
     ];
 
     // Kiến thức Eloquent: Relationships phần Eager Loading   
@@ -66,9 +71,11 @@ class Review extends Model
     }
 
     // Hàm lấy url của hình đầu tiên, viết hàm này để set thuộc tính src của tag image trong view ngắn gọn hơn
-    public function getFirstImageUrl()
+    protected function firstImage(): Attribute
     {
-        return $this->images->isNotEmpty() ? $this->images->first()->url : asset('images/others/no-image.jpg');
+        return new Attribute(
+            get: fn () => $this->images->isNotEmpty() ? $this->images->first()->url : asset('images/others/no-image.jpg')
+        );
     }
 
     // Hàm lấy url của tất cả các hình của bài viết
