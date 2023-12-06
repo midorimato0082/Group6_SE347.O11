@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug', 30)->unique(); 
             $table->text('desc')->nullable(); 
             $table->longText('content')->nullable(); 
-            $table->string('tags')->nullable(); 
+            $table->string('tags', 255)->nullable(); 
             $table->integer('category_id')->unsigned();
             $table->integer('location_id')->unsigned();
             $table->unsignedBigInteger('admin_id');

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('desc')->nullable(); 
             $table->longText('content')->nullable(); 
             $table->text('images')->nullable(); 
-            $table->string('tags')->nullable(); 
+            $table->string('tags', 255)->nullable(); 
             $table->unsignedBigInteger('admin_id');
             $table->boolean('is_active')->default(true);
             $table->timestamps();  

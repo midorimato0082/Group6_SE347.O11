@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('content');
-            $table->unsignedBigInteger('user_id');
+            $table->longText('content');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('review_id')->nullable();
             $table->unsignedBigInteger('news_id')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('review_id')->references('id')->on('reviews');
-            $table->foreign('news_id')->references('id')->on('news');
+            $table->foreign('user_id')->references('id')->on('users')->nullable();
+            $table->foreign('review_id')->references('id')->on('reviews')->nullable();
+            $table->foreign('news_id')->references('id')->on('news')->nullable();
         });
     }
 
