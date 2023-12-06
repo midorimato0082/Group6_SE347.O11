@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name', 40)->unique(); 
             $table->string('slug', 20)->unique(); 
-            $table->integer('region_id');
+            $table->integer('region_id')->unsigned();
             $table->boolean('is_active')->default(true);  
             $table->timestamps();
 

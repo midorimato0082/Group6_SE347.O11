@@ -63,7 +63,7 @@ class Login extends Component
             $request->session()->regenerate();
             // $this->rememberMe();
             $this->reset();
-            return Auth::user()->isAdmin ? $this->redirectRoute('dashboard') : ( Auth::user()->email_verified_at ? $this->redirectRoute('home') : $this->redirectRoute('verification.notice'));
+            return Auth::user()->is_admin ? $this->redirectRoute('dashboard') : ( Auth::user()->email_verified_at ? $this->redirectRoute('home') : $this->redirectRoute('verification.notice'));
         } 
         
         $this->reset('password');
