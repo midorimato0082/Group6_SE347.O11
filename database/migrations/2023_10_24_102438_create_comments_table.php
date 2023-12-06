@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('content', 255);
-            $table->integer('user_id');
-            $table->integer('review_id')->nullable();
-            $table->integer('news_id')->nullable();
+            $table->id();
+            $table->string('content');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('review_id')->nullable();
+            $table->unsignedBigInteger('news_id')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 

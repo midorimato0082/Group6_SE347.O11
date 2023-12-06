@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('review_images', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name'); 
-            $table->integer('review_id');
+            $table->unsignedBigInteger('review_id');
             $table->timestamps();
 
             $table->foreign('review_id')->references('id')->on('reviews');    
