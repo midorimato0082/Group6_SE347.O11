@@ -25,4 +25,20 @@ class LocationController extends Controller
         $location = Location::where('id', $id)->firstOrFail();
         return view('admin.edit-location', compact('regions', 'location'))->with('title', 'Cập nhật địa điểm');
     }
+
+        // Các function thao tác với database
+        public function update($id, Request $request)
+        {
+
+        }
+
+        public function delete()
+        {
+            
+        }
+
+        public function save(Request $request)
+        {
+
+        }
 }
