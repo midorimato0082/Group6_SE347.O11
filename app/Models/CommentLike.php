@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Review extends Pivot
+class CommentLike extends Pivot
 {
-    protected $table = 'reviews';
+    protected $table = 'comment_likes';
 
     protected $fillable = [
-        'post_id',
-        'place_id'
+        'user_id',
+        'comment_id'
     ];
 }

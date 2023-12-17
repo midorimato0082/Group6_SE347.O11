@@ -2,11 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Review;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
-class ReviewPolicy
+class CommentPolicy
 {
     public function before(User $user, string $ability): bool|null
     {
@@ -14,7 +15,6 @@ class ReviewPolicy
             return true;
         return null;
     }
-
     /**
      * Determine whether the user can view any models.
      */
@@ -26,7 +26,7 @@ class ReviewPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Review $review)
+    public function view(User $user, Comment $comment)
     {
         //
     }
@@ -34,19 +34,17 @@ class ReviewPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): Response
+    public function create(User $user)
     {
-        return $user->is_admin
-            ? Response::allow()
-            : Response::denyWithStatus(401);
+
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Review $review): Response
+    public function update(User $user, Comment $comment): Response
     {
-        return $user->id === $review->admin_id
+        return ($user->id === $comment->user_id) || ($user->is_admin && $comment->user->is_admin === false)
             ? Response::allow()
             : Response::denyWithStatus(401);
     }
@@ -54,9 +52,9 @@ class ReviewPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Review $review): Response
+    public function delete(User $user, Comment $comment)
     {
-        return $user->id === $review->admin_id
+        return ($user->id === $comment->user_id) || ($user->is_admin && $comment->user->is_admin === false)
             ? Response::allow()
             : Response::denyWithStatus(401);
     }
@@ -64,7 +62,7 @@ class ReviewPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Review $review)
+    public function restore(User $user, Comment $comment)
     {
         //
     }
@@ -72,7 +70,7 @@ class ReviewPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Review $review)
+    public function forceDelete(User $user, Comment $comment)
     {
         //
     }

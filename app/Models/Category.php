@@ -13,11 +13,22 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+        'is_place',
         'is_active'
     ];
 
-    public function reviews()
+    protected $casts = [
+        'is_place' => 'boolean',
+        'is_active' => 'boolean'
+    ];
+
+    public function posts()
     {
-        return $this->hasMany(Review::class, 'category_id');
+        return $this->hasMany(Post::class, 'category_id');
+    }
+
+    public function places()
+    {
+        return $this->hasMany(Place::class, 'category_id');
     }
 }

@@ -12,18 +12,30 @@ class Region extends Model
 
     protected $fillable = [
         'name',
-        'slug',
-        'is_active',
+        'slug'
     ];
 
-    public function locations()
+    public function provinces()
     {
-        return $this->hasMany(Location::class, 'region_id');
+        return $this->hasMany(Province::class, 'region_id');
     }
 
-    public function reviews()
+    public function districts()
     {
-        return $this->throughLocations()->hasReviews();
-        // return $this->hasManyThrough(Review::class, Location::class, 'region_id', 'location_id');
+        return $this->throughProvinces()->hasDistricts();
+    }
+
+    public function scopeHasProvinces($query, $provinces)
+    {
+        return $query->when($provinces, function ($query) use ($provinces) {
+            return $query->whereHas('provinces', fn($query) => $query->whereIn('name', $provinces));
+        });
+    }
+
+    public function scopeHasDistricts($query, $districts)
+    {
+        return $query->when($districts, function ($query) use ($districts) {
+            return $query->whereHas('districts', fn($query) => $query->whereIn('districts.name', $districts));
+        });
     }
 }

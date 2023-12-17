@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasFactory;
 
     protected $table = 'users';
 
@@ -44,14 +45,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class, 'role_id');
     }
 
-    public function reviews()
+    public function posts()
     {
-        return $this->hasMany(Review::class, 'admin_id');
-    }
-
-    public function news()
-    {
-        return $this->hasMany(News::class, 'admin_id');
+        return $this->hasMany(Post::class, 'admin_id');
     }
 
     public function comments()
@@ -59,9 +55,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class, 'user_id');
     }
 
-    public function likes()
+    public function postlikes()
     {
-        return $this->hasMany(Like::class, 'user_id');
+        return $this->belongsToMany(Post::class, 'post_likes', 'user_id', 'post_id')->withPivot('is_like')->using(PostLike::class);
+    }
+
+    public function commentlikes()
+    {
+        return $this->belongsToMany(Comment::class, 'comment_likes', 'user_id', 'comment_id')->using(CommentLike::class);
+    }
+
+    public function places()
+    {
+        return $this->belongsToMany(Place::class, 'ratings', 'user_id', 'place_id')->withPivot('star')->using(Rating::class);
     }
 
     public function sendPasswordResetNotification($token): void
