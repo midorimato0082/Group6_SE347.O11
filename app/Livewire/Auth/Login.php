@@ -5,19 +5,13 @@ namespace App\Livewire\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Livewire\Component;
+
+use function App\intended;
 
 class Login extends Component
 {
     public $email, $password, $remember;
-
-    // public function mount()
-    // {
-    //     $this->email = Cookie::get('email');
-    //     $this->password = Cookie::get('password');
-    //     $this->remember = Cookie::has('email') ?  true : false;
-    // }
 
     public function render()
     {
@@ -55,38 +49,25 @@ class Login extends Component
     public function login(Request $request)
     {
         $this->validate();
-        
-        if (!$this->isActive())
-            return;
+
+        if(!$this->isActive()) return;
 
         if (Auth::attempt($this->only(['email', 'password']), $this->remember)) {
             $request->session()->regenerate();
-            // $this->rememberMe();
             $this->reset();
-            return Auth::user()->is_admin ? $this->redirectRoute('dashboard') : ( Auth::user()->email_verified_at ? $this->redirectRoute('home') : $this->redirectRoute('verification.notice'));
-        } 
-        
+
+            return Auth::user()->email_verified_at ? redirect()->intended() : to_route('verification.notice');
+        }
+
         $this->reset('password');
         $this->addError('password', 'Mật khẩu không chính xác.');
     }
 
-    // private function rememberMe()
-    // {
-    //     if ($this->remember) {
-    //         Cookie::queue('email', $this->email, 1440);
-    //         Cookie::queue('password', $this->password, 1440);
-    //     } else {
-    //         Cookie::queue(Cookie::forget('email'));
-    //         Cookie::queue(Cookie::forget('password'));
-    //     }
-    // }
-
-    private function isActive()
+    private function isActive() 
     {
-        if(User::where('email', $this->email)->value('is_active') === 0) {
-            $this->addError('email', 'Tài khoản của bạn đã bị vô hiệu hóa.');
-            return false;
-        }
-        return true;
+        if(User::where('email', $this->email)->value('is_active'))         
+            return true;
+        $this->addError('email', 'Tài khoản của bạn đã bị vô hiệu hóa.');
+        return false;
     }
 }

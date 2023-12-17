@@ -30,11 +30,6 @@ class Email extends Component
         ];
     }
 
-    public function updatedEmail()
-    {
-        $this->validate();
-    }
-
     public function sendResetLinkEmail()
     {
         $this->validate();

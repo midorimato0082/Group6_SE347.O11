@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Auth;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -15,13 +14,9 @@ class Logout extends Component
         HTML;
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return $this->redirectRoute('home');
+        return strpos(url()->previous(), 'email/verify') ? to_route('home') : redirect(url()->previous());
     }
 }

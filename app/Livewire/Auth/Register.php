@@ -35,7 +35,7 @@ class Register extends Component
         return [
             'lastName' => 'required|regex:/^[\pL\s\-]+$/u|max:40',
             'firstName' => 'required|regex:/^[\pL\s\-]+$/u|max:20',
-            'email' => 'required|email:rfc,dns|max:30|unique:users',
+            'email' => 'required|email:rfc,dns|unique:users',
             'password' => 'required|min:6|max:12|confirmed',
         ];
     }
@@ -51,7 +51,6 @@ class Register extends Component
             'firstName.max' => 'Tên tối đa chỉ có 20 ký tự.',
             'email.required' => 'Bạn cần nhập email.',
             'email.email' => 'Không đúng định dạng email.',
-            'email.max' => 'Email tối đa chỉ có 30 ký tự.',
             'email.unique' => 'Email đã tồn tại.',
             'password.required' => 'Bạn cần nhập mật khẩu.',
             'password.min' => 'Mật khẩu cần ít nhất 6 ký tự.',
