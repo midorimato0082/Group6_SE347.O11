@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,12 +17,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             RegionSeeder::class,
-            LocationSeeder::class,  
+            ProvinceSeeder::class,
             ReviewSeeder::class,
-            ReviewImagesSeeder::class,
-            NewsSeeder::class,
             CommentSeeder::class,
-            LikeSeeder::class
+            CommentLikeSeeder::class,
+            PostLikeSeeder::class,
+            RatingSeeder::class
         ]);
     }
 }

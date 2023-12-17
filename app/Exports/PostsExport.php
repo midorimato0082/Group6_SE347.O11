@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 
-class ReviewsExport implements FromQuery, WithMapping, WithHeadings, WithStrictNullComparison
+class PostsExport implements FromQuery, WithMapping, WithHeadings, WithStrictNullComparison
 {
     use Exportable;
 

@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 40)->unique(); 
-            $table->string('slug', 20)->unique(); 
-            $table->boolean('is_active')->default(true);  
+            $table->string('slug', 20)->unique();
             $table->timestamps();
         });
     }

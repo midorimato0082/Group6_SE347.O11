@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100)->unique();
             $table->string('slug', 30)->unique(); 
             $table->text('desc')->nullable(); 
             $table->longText('content')->nullable(); 
-            $table->text('images')->nullable(); 
-            $table->string('tags', 255)->nullable(); 
+            $table->string('tags', 255)->nullable();
+            $table->integer('category_id')->unsigned();
             $table->unsignedBigInteger('admin_id');
             $table->boolean('is_active')->default(true);
             $table->timestamps();  
-            $table->integer('view_count')->default('0');
-
+            $table->integer('view_count')->default(0);
+            
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('admin_id')->references('id')->on('users');
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('posts');
     }
 };

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 30)->unique(); 
-            $table->string('slug', 20)->unique();
-            $table->boolean('is_place')->default(true);
-            $table->boolean('is_active')->default(true);
+        Schema::create('post_images', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique(); 
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
+
+            $table->foreign('post_id')->references('id')->on('posts');    
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('post_images');
     }
 };

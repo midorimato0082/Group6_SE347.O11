@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Validators\ValidationException;
 class Import extends Component
 {
     use WithFileUploads;
-    public $table;
+    public $data;
     public $file, $id;
     public $failures;
 
@@ -42,11 +42,8 @@ class Import extends Component
 
         $this->validate();
 
-        switch ($this->table) {
+        switch ($this->data) {
             case 'user':
-                //
-                break;
-            case 'location':
                 //
                 break;
             case 'bài viết':

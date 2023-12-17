@@ -15,15 +15,23 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'name' => 'Homestay',
-                'slug' => 'homestay'
+                'slug' => 'homestay',
+                'is_place' => true
             ],
             [
                 'name' => 'Khách sạn',
-                'slug' => 'hotel'
+                'slug' => 'hotel',
+                'is_place' => true
             ],
             [
                 'name' => 'Resort',
-                'slug' => 'resort'
+                'slug' => 'resort',
+                'is_place' => true
+            ],
+            [
+                'name' => 'Tin tức',
+                'slug' => 'tin-tuc',
+                'is_place' => false
             ]
         ]);
     }

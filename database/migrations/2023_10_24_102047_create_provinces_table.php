@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 40)->unique(); 
             $table->string('slug', 20)->unique(); 
-            $table->integer('region_id')->unsigned();
-            $table->boolean('is_active')->default(true);  
+            $table->integer('region_id')->unsigned();  
             $table->timestamps();
 
             $table->foreign('region_id')->references('id')->on('regions');
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('provinces');
     }
 };

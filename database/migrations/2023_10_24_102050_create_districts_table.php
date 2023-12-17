@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('review_images', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255); 
-            $table->unsignedBigInteger('review_id');
+        Schema::create('districts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 40); 
+            $table->string('slug', 20); 
+            $table->integer('province_id')->unsigned();  
             $table->timestamps();
 
-            $table->foreign('review_id')->references('id')->on('reviews');    
+            $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('review_images');
+        Schema::dropIfExists('districts');
     }
 };
