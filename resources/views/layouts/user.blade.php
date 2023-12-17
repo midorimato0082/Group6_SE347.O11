@@ -30,15 +30,12 @@
                                         href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
                             @endforeach
 
-                            <li class="nav-item"><a class="nav-link" href="{{ url('news') }}">Tin tức</a></li>
-
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Địa
-                                    điểm</a>
-                                <ul class="dropdown-menu border-0">
-                                    @foreach ($locations as $location)
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tỉnh thành</a>
+                                <ul class="dropdown-menu border-0 menu-provinces">
+                                    @foreach ($provinces as $province)
                                         <li><a class="dropdown-item"
-                                                href="{{ route('location', $location->slug) }}">{{ $location->name }}</a>
+                                                href="{{ route('province', $province->slug) }}">{{ $province->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -62,13 +59,11 @@
                                         nhập
                                     </a>
                                 </li>
-                            @endguest
-
-                            @auth
+                            @else
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle profile-nav py-0" data-bs-toggle="dropdown">
-                                        <img class="rounded-circle me-1"
-                                            src="{{ Auth::user()->avatar_url }}" alt="Avatar">
+                                        <img class="rounded-circle me-1" src="{{ Auth::user()->avatar_url }}"
+                                            alt="Avatar">
                                         <span class="d-lg-inline-flex fw-bold text-dark align-middle">Xin chào,
                                             {{ Auth::user()->first_name }}</span>
                                     </a>
@@ -82,14 +77,18 @@
                                         @livewire('auth.logout')
                                     </div>
                                 </li>
-                            @endauth
-
+                            @endguest
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
+
+    {{-- TÌm kiếm --}}
+    <section id="search-result" class="d-none">
+        @livewire('user.result-search')
+    </section>
 
     {{-- Breadcrumb --}}
     <section id="breadcrumb">
@@ -114,7 +113,8 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-xl-4 mb-5 mb-sm-5 mb-xl-3">
                     <h3 class="mb-4 fw-bold">About us</h3>
-                    <p>Chuyên trang review các homestay, hotel, motel và resort có view đẹp, tiện nghi, tuyệt vời và thoải mái để lưu trú tạm thời khi đi du lịch xa nhà.</p>
+                    <p>Chuyên trang review các homestay, hotel, motel và resort có view đẹp, tiện nghi, tuyệt vời và
+                        thoải mái để lưu trú tạm thời khi đi du lịch xa nhà.</p>
                     <a>Liên hệ truyền thông quảng cáo: 0999999999</a>
                 </div>
 
@@ -123,39 +123,39 @@
                         <h3 class="mb-4 fw-bold">Homestay Miền Bắc</h3>
                     </a>
 
-                    @foreach ($bacReviews as $review)
+                    @foreach ($bacPosts as $post)
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                <a href="{{ route('review', $review->slug) }}">
-                                    <img src="{{ $review->first_image }}" class="rounded-3">
+                                <a href="{{ route('post', $post->slug) }}">
+                                    <img src="{{ $post->first_image }}" class="rounded-3">
                                 </a>
                             </div>
                             <div class="col ms-3">
-                                <a href="{{ route('review', $review->slug) }}">
-                                    <h5>{{ $review->title }}</h5>
+                                <a href="{{ route('post', $post->slug) }}">
+                                    <h5>{{ $post->title }}</h5>
                                 </a>
-                                <p>{{ $review->created_at }}</p>
+                                <p>{{ $post->created_at }}</p>
                             </div>
                         </div>
                     @endforeach
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-6 col-xl-4 mb-5 mb-sm-5 mb-xl-3 item">
-                    <a href="{{ url('/region/mien-nam') }}">
-                        <h3 class="mb-4 fw-bold">Homestay Miền Nam</h3>
+                    <a href="{{ url('region/mien-trung') }}">
+                        <h3 class="mb-4 fw-bold">Homestay Miền Trung</h3>
                     </a>
-                    @foreach ($namReviews as $review)
+                    @foreach ($trungPosts as $post)
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                <a href="{{ route('review', $review->slug) }}">
-                                    <img src="{{ $review->first_image }}" class="rounded-3">
+                                <a href="{{ route('post', $post->slug) }}">
+                                    <img src="{{ $post->first_image }}" class="rounded-3">
                                 </a>
                             </div>
                             <div class="col ms-3">
-                                <a href="{{ route('review', $review->slug) }}">
-                                    <h5>{{ $review->title }}</h5>
+                                <a href="{{ route('post', $post->slug) }}">
+                                    <h5>{{ $post->title }}</h5>
                                 </a>
-                                <p>{{ $review->created_at }}</p>
+                                <p>{{ $post->created_at }}</p>
                             </div>
                         </div>
                     @endforeach

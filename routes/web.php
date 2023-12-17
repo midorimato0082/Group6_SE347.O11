@@ -3,7 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuPagesController;
-use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PostController;
 use App\Livewire\Admin\LocationManagement\AddLocation;
 use App\Livewire\Admin\LocationManagement\AllLocations;
 use App\Livewire\Admin\LocationManagement\EditLocation;
@@ -36,14 +36,13 @@ Route::get('/profile', [HomeController::class, 'showProfile'])->middleware('auth
 // Menu Pages
 Route::get('/category/{slug}', [MenuPagesController::class, 'showCategoryPage'])->name('category');
 Route::get('/region/{slug}', [MenuPagesController::class, 'showRegionPage'])->name('region');
-Route::get('/location/{slug}', [MenuPagesController::class, 'showLocationPage'])->name('location');
+Route::get('/province/{slug}', [MenuPagesController::class, 'showProvincePage'])->name('province');
+Route::get('/district/{slug}', [MenuPagesController::class, 'showDistrictPage'])->name('district');
 Route::get('/tag/{tag}', [MenuPagesController::class, 'showTagPage'])->name('tag');
-Route::get('/author/{id}', [MenuPagesController::class, 'showAuthorPage'])->name('author');
-Route::get('/news', [MenuPagesController::class, 'showNewsPage']);
+Route::get('/author/{email}', [MenuPagesController::class, 'showAuthorPage'])->name('author');
 
-// Details Content
-Route::get('/review/{slug}', [ReviewController::class, 'showReview'])->name('review');
-Route::get('/news/{slug}', [NewsController::class, 'showNews'])->name('news');
+// Details Post
+Route::get('/{slug}', [PostController::class, 'showPost'])->name('post');
 
 // Admin Pages
 Route::middleware(['auth', 'auth.roles:Admin,Super Admin'])->group(function () {

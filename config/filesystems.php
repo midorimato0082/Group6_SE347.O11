@@ -66,7 +66,7 @@ return [
 
         'data' => [
             'driver' => 'local',
-            'root' => base_path('database/data'),
+            'root' => database_path('data'),
             'throw' => false,
         ],
     ],

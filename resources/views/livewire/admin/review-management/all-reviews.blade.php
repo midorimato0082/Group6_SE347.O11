@@ -1,6 +1,6 @@
 {{-- Kiến thức x-data, x-on, x-show, :class đến từ Alpine.js được tích hợp sẵn trong livewire3. Xử lý event viết trong main.js --}}
 <div class="all-content" x-data="data">
-
+    
     @include('livewire.admin.delete-confirm-modal')
     @include('livewire.admin.import-modal', ['data' => 'bài viết'])
 
@@ -192,8 +192,8 @@
                         <td>{{ $review->location->region->name }}</td>
                         <td>{{ $review->location->name }}</td>
                         <td>{{ $review->admin->first_name }}</td>
-                        <td>{{ $review->created_at }}</td>
-                        <td>{{ $review->updated_at }}</td>
+                        <td>{{ $review->created_time }}</td>
+                        <td>{{ $review->updated_time }}</td>
                         <td>{{ $review->view_count }}</td>
                         <td>{{ $review->comments_count }}</td>
                         <td>{{ $review->like_count }}</td>

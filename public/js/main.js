@@ -97,20 +97,101 @@ $(function () {
     });
     // -----------------------------
 
-    // Breadcrumb - Latest Reviews Section
-
+    // Breadcrumb & Latest Posts Section
     $('#breadcrumb').ready(function () {
         if (window.location.pathname != '/' && !window.location.pathname.includes('/email/verify'))
             $('#breadcrumb div').removeClass('d-none');
     });
 
-    $('.latest-reviews').on('scroll', function () {
+    $('.latest-posts').on('scroll', function () {
         if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
-            Livewire.dispatch('load-more');
+            Livewire.dispatch('load-more-latest-posts');
     });
-
     // -----------------------------
 
+    // Like
+    $('#like').on('click', function () {
+        $('.login-required').removeClass('d-none');
+        $('[data-bs-toggle="tooltip"]').tooltip('hide');
+    });
+    // -----------------------------
+
+    // Rating
+    $('#rating').on('click', function () {
+        Livewire.dispatch('save-rating');
+        $('#rating').addClass('d-none');
+        $('#rating-reset').removeClass('d-none');
+    });
+
+    $('#rating-reset').on('click', function () {
+        Livewire.dispatch('reset-rating');
+        $('#rating').removeClass('d-none');
+        $('#rating-reset').addClass('d-none');
+    });
+    // -----------------------------
+
+    // Filter in Page Content Right
+    $('.filter-provinces').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-provinces');
+    });
+
+    $('.filter-districts').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-districts');
+    });
+    // -----------------------------
+
+    // Share post
+    var popupSize = {
+        width: 780,
+        height: 550
+    };
+
+    $(document).on('click', '.btn-share', function (e) {
+        var verticalPos = Math.floor(($(window).width() - popupSize.width) / 2),
+            horisontalPos = Math.floor(($(window).height() - popupSize.height) / 2);
+
+        var popup = window.open($(this).prop('href'), 'social',
+            'width=' + popupSize.width + ',height=' + popupSize.height +
+            ',left=' + verticalPos + ',top=' + horisontalPos +
+            ',location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1');
+
+        if (popup) {
+            popup.focus();
+            e.preventDefault();
+        }
+
+        $('[data-bs-toggle="tooltip"]').tooltip('hide');
+    });
+    // -----------------------------
+
+    // Search in Page
+    $('.search-header').on('click', function () {
+        if (!$('.input-header').hasClass('input-header-open'))
+            $('#search-result').addClass('d-none');
+        else {
+            let $value = $('.input-header').val();
+            if ($value !== '') {
+                $('#search-result').removeClass('d-none');
+                Livewire.dispatch('search-page', { search: $value });
+            }
+            $('.input-header').on('keyup', function () {
+                let $value = $(this).val();
+                if ($value !== '') {
+                    $('#search-result').removeClass('d-none');
+                    Livewire.dispatch('search-page', { search: $value });
+                } else {
+                    $('#search-result').addClass('d-none');
+                }
+            });
+        }
+    });
+
+    $(".input-header").on('keyup change search', function() {
+        $('#search-result').addClass('d-none');    
+    });
+    // -----------------------------
 });
 
 function setupLayoutAdmin() {

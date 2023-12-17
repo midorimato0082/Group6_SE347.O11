@@ -53,7 +53,7 @@
                 <img src="{{ $avatar->temporaryUrl() }}" class="rounded-circle mb-3 img-upload">
                 <a wire:click.prevent="removeAvatar"><i class="fa fa-times text-danger fw-bold"></i></a>               
             @else
-                <img src="{{ asset('images/avatars/no-avatar.jpg') }}" class="rounded-circle mb-3 img-upload">
+                <img src="{{ asset('images/others/no-avatar.jpg') }}" class="rounded-circle mb-3 img-upload">
             @endif
 
             <div class="input-group custom-file-btn">

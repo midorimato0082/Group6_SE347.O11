@@ -11,7 +11,7 @@
         @endif
 
         <div class="form-outline mb-3">
-            <input wire:model.blur="email" type="email"
+            <input wire:model="email" type="email"
                 class="form-control bg-light rounded-2 @error('email') is-invalid @enderror" placeholder="Email"
                 required autofocus>
             @error('email')

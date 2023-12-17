@@ -1,53 +1,102 @@
 @extends('layouts.user')
 
 @section('content')
-    @include('user.carousel-reviews')
+    @include('user.carousel-posts')
 
-    <div class="container px-0">
-        @if (! empty($reviews))
-        <div class="card mx-auto my-3">
-            <div class="card-header" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
-                <h5 class="card-title text-center">NHIỀU NGƯỜI QUAN TÂM</h5>
+    <div class="container" data-aos-easing="ease-out-back" data-aos-delay="0" data-aos-duration="1000">
+        <div class="heading mt-3" data-aos="fade-right">
+            <h5>ĐỊA ĐIỂM NỔI BẬT</h5>
+        </div>
+        <div class="row mt-4 mx-1">
+            @foreach ($bestPlacePosts->take(3) as $post)
+                <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="fade-right">
+                    <a href="{{ route('post', $post->slug) }}">
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img"></a>
+                    <div class="my-2">
+                        <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="row mt-4 mx-1">
+            @foreach ($bestPlacePosts->slice(3) as $key => $post)
+                <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="fade-right">
+                    <a href="{{ route('post', $post->slug) }}">
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img"></a>
+                    <div class="my-2">
+                        <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="heading mt-3" data-aos="fade-down">
+            <h5>NHIỀU NGƯỜI QUAN TÂM</h5>
+        </div>
+
+        <div class="row mt-4 mx-3">
+            <div class="col-md-3 col-lg-3 col-xl-3" data-aos="fade-down-right">
+                @foreach ($bestViewPosts->slice(1, 2) as $post)
+                    <div class="row">
+                        <a href="{{ route('post', $post->slug) }}">
+                            <img src="{{ $post->first_image }}" class="img-fluid home-img-small"></a>
+                        <div class="my-2">
+                            <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <div class="card-body flex-container">
-                @foreach ($reviews as $review)
-                    <div
-                        @class([
-                            'row flex-item',
-                            'mt-3'
-                        ])
-                    >
-                        <div class="card-desc" data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine">
-                            <img src="{{ $review->first_image }}" class="image-card-dashboard img-fluid rounded-start">
-                            <p title="{{ $review->title }}" class="card-title truncate-text-2">{{ $review->title }}</p>
+
+            <div class="col-md-6 col-lg-6 col-xl-6 d-flex align-items-center">
+                <div class="row flex-fill" data-aos="flip-down">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <a href="{{ route('post', $bestViewPosts[0]->slug) }}">
+                            <img src="{{ $bestViewPosts[0]->first_image }}" class="img-fluid home-img"></a>
+                        <div class="my-2 text-center">
+                            <a href="{{ route('post', $bestViewPosts[0]->slug) }}"
+                                class="home-title-img">{{ $bestViewPosts[0]->title }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-lg-3 col-xl-3" data-aos="fade-down-left">
+                @foreach ($bestViewPosts->slice(3) as $post)
+                    <div class="row">
+                        <a href="{{ route('post', $post->slug) }}">
+                            <img src="{{ $post->first_image }}" class="img-fluid home-img-small"></a>
+                        <div class="my-2">
+                            <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
-    @endif
 
-    @if (! empty($news))
-        <div class="card mx-auto my-3">
-            <div class="card-header" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
-                <h5 class="card-title text-center">TIN TỨC MỚI NHẤT</h5>
-            </div>
-            <div class="card-body flex-container-reverse">
-                @foreach ($news as $new)
-                    <div
-                        @class([
-                            'row flex-item',
-                            'mt-3'
-                        ])
-                    >
-                        <div class="card-desc" data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine">
-                            <img src="{{ $new->first_image }}" class="image-card-dashboard img-fluid rounded-start">
-                            <p title="{{ $new->title }}" class="card-title truncate-text-2">{{ $new->title }}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+        <div class="heading mt-3" data-aos="zoom-in-down">
+            <h5>BÀI VIẾT MỚI NHẤT</h5>
         </div>
-    @endif
+        <div class="row mt-4 mx-1">
+            @foreach ($latestPosts->take(3) as $post)
+                <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="zoom-in">
+                    <a href="{{ route('post', $post->slug) }}">
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img"></a>
+                    <div class="my-2">
+                        <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="row mt-4 mx-1">
+            @foreach ($latestPosts->slice(3) as $key => $post)
+                <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="zoom-in">
+                    <a href="{{ route('post', $post->slug) }}">
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img"></a>
+                    <div class="my-2">
+                        <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection
