@@ -14,25 +14,25 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="tab1" data-bs-toggle="tab" data-bs-target="#tab1-pane"
                         type="button" role="tab" aria-controls="tab1-pane" aria-selected="true">
-                        Bình luận
+                        Bình luận của bạn
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="tab2" data-bs-toggle="tab" data-bs-target="#tab2-pane" type="button"
                         role="tab" aria-controls="tab2-pane" aria-selected="false">
-                        Thích bình luận
+                        Đã thích bình luận
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="tab3" data-bs-toggle="tab" data-bs-target="#tab3-pane" type="button"
                         role="tab" aria-controls="tab3-pane" aria-selected="false">
-                        Thích bài viết
+                        Đã thích bài viết
                     </button>
                 </li>
             </ul>
         </div>
 
-        <div class="row mt-4 tab-content">
+        <div class="row my-4 tab-content">
             <div class="tab-pane fade show active tab-pane-scroll" id="tab1-pane" role="tabpanel" aria-labelledby="tab1"
                 tabindex="0">
                 @livewire('user.profile.tab1')

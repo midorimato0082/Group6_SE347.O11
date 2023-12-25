@@ -307,6 +307,16 @@ $(function () {
         if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
             Livewire.dispatch('load-more-tab3');
     });
+
+    $('#tab4-pane').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-tab4');
+    });
+
+    $('#tab5-pane').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-tab5');
+    });
     // -----------------------------
 });
 

@@ -9,7 +9,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Tab2 extends Component
+class Tab4 extends Component
 {
     use WithPagination;
 
@@ -17,7 +17,7 @@ class Tab2 extends Component
 
     public function render()
     {
-        return view('livewire.admin.profile.tab2');
+        return view('livewire.admin.profile.tab4');
     }
 
     #[Computed]
@@ -26,7 +26,7 @@ class Tab2 extends Component
         return Post::where('admin_id', Auth::user()->id)->count()->latest()->paginate($this->perPage);
     }
 
-    #[On('load-more-tab2')]
+    #[On('load-more-tab4')]
     public function loadMore() {
         $this->perPage += 3;
     }
