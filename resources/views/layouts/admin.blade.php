@@ -30,48 +30,29 @@
                     <a href="{{ route('dashboard') }}" class="nav-item nav-link"><i
                             class="fa fa-tachometer-alt me-2"></i>Tổng quan</a>
 
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-user me-2"></i>User</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{{ url('all-users') }}" class="dropdown-item">Danh sách User</a>
-                            <a href="{{ url('add-admin') }}" class="dropdown-item">Thêm Admin</a>
-                            <a class="dropdown-item admin d-none" onclick="return false">Cập nhật Admin</a>
-                        </div>
-                    </div>
+                    <a href="{{ url('all-users') }}" class="nav-item nav-link"><i class="fas fa-users me-2"></i>User</a>
 
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-map-marker me-2"></i>Địa điểm</a>
-                        <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="{{ url('all-locations') }}" class="dropdown-item">Danh sách địa điểm</a>
-                            <a href="{{ url('add-location') }}" class="dropdown-item">Thêm địa điểm</a>
-                            <a class="dropdown-item location d-none" onclick="return false">Cập nhật địa điểm</a>
-                        </div>
-                    </div>
+                    <a href="{{ url('all-categories') }}" class="nav-item nav-link"><i
+                            class="fa fa-list-alt me-2"></i>Danh mục</a>
 
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-edit me-2"></i>Bài
                             viết</a>
                         <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="{{ url('all-reviews') }}" class="dropdown-item">Danh sách bài viết</a>
-                            <a href="{{ url('add-review') }}" class="dropdown-item">Thêm bài viết</a>
-                            <a class="dropdown-item review d-none" onclick="return false">Cập nhật bài viết</a>
+                            <a href="{{ url('all-posts') }}" class="dropdown-item">Danh sách bài viết</a>
+                            <a href="{{ url('add-post') }}" class="dropdown-item">Thêm bài viết</a>
+                            <a class="dropdown-item post d-none" onclick="return false">Cập nhật bài viết</a>
                         </div>
                     </div>
 
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-newspaper me-2"></i>Tin tức</a>
-                        <div class="dropdown-menu bg-transparent border-0 child-menu">
-                            <a href="{{ url('all-news') }}" class="dropdown-item">Danh sách tin tức</a>
-                            <a href="{{ url('add-news') }}" class="dropdown-item">Thêm tin tức</a>
-                            <a class="dropdown-item news d-none" onclick="return false">Cập nhật tin tức</a>
-                        </div>
-                    </div>
+                    <a href="{{ url('all-places') }}" class="nav-item nav-link"><i
+                            class="fa fa-map-marker me-2"></i>Địa điểm</a>
 
                     <a href="{{ url('all-comments') }}" class="nav-item nav-link"><i
                             class="fa fa-comment me-2"></i>Bình luận</a>
+
+                    <a href="{{ url('profile') }}" class="nav-item nav-link"><i
+                            class="fa fa-user me-2"></i>Hồ sơ</a>
                 </div>
 
                 <div class="sidebar-footer hidden-small">
@@ -96,13 +77,12 @@
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->avatar_url }}"
-                                alt="Avatar"">
+                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->avatar_url }}" alt="Avatar"">
                             <span class="d-none d-lg-inline-flex">{{ Auth::user()->full_name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">
-                            <a href="{{ url('profile') }}" class="dropdown-item"><i
-                                    class="fa fa-user-edit me-2"></i>Hồ sơ</a>
+                            <a href="{{ url('profile') }}" class="dropdown-item"><i class="fa fa-user-edit me-2"></i>Hồ
+                                sơ</a>
                             <a href="{{ route('logout') }}" class="dropdown-item"><i
                                     class="fa fa-sign-out me-2"></i>Đăng xuất</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

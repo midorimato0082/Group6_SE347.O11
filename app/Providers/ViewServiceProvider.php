@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
        View::composer('layouts.user', function ($view) {
-            $categories = Category::where('is_active', true)->where('is_place', true)->orderBy('name', 'asc')->get(['name', 'slug']);
+            $categories = Category::where('is_active', true)->orderBy('name', 'asc')->get(['name', 'slug']);
             $provinces = Province::orderBy('name', 'asc')->get(['name', 'slug']);
 
             $bacPosts = Post::where('is_active', true)->whereRegion('Miền Bắc')->latest()->take(3)->get(['id', 'title', 'slug', 'created_at']);

@@ -9,6 +9,6 @@
         </p>
     </div>
     <div>
-        <button wire:click="resend" class="btn btn-orange" @disabled($errors->any())>Gửi lại email xác nhận</button>
+        <button wire:click="resend" class="btn btn-sm btn-orange" @disabled($errors->any())>Gửi lại email xác nhận</button>
     </div>
 </div>

@@ -5,9 +5,7 @@ namespace App\Livewire\Auth;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -106,7 +104,7 @@ class Register extends Component
         return User::create([
             'last_name' => $this->lastName,
             'first_name' => $this->firstName,
-            'email' => $this->email,
+            'email' => Str::lower($this->email),
             'password' => Hash::make($this->password),
             'avatar' => $this->avatar ? basename($this->avatar->store('avatars', 'images')) : null
         ]);

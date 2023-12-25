@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Review;
+use App\Models\Post;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -19,25 +19,24 @@ class PostsExport implements FromQuery, WithMapping, WithHeadings, WithStrictNul
         $this->ids = $ids;
     }
 
-    public function map($review): array
+    public function map($post): array
     {
         return [
-            $review->id,
-            $review->title,
-            $review->desc,
-            $review->content,
-            $review->tags,
-            $review->category->name,
-            $review->location->region->name,
-            $review->location->name,
-            $review->admin->fullName . ' (' . $review->admin->email . ')',
-            $review->created_at,
-            $review->updated_at,
-            $review->view_count,
-            $review->comments_count,
-            $review->like_count,
-            $review->dislike_count,
-            $review->is_active ? 'Hiển thị' : 'Ẩn'
+            $post->id,
+            $post->title,
+            $post->desc,
+            $post->content,
+            $post->tags,
+            $post->category->name,
+            $post->places_name,
+            $post->admin->fullName . ' (' . $post->admin->email . ')',
+            $post->created_time,
+            $post->updated_time,
+            $post->view_count,
+            $post->comments_count,
+            $post->like_count,
+            $post->dislike_count,
+            $post->is_active ? 'Hiển thị' : 'Ẩn'
         ];
     }
 
@@ -50,8 +49,7 @@ class PostsExport implements FromQuery, WithMapping, WithHeadings, WithStrictNul
             'Nội dung',
             'Thẻ',
             'Danh mục',
-            'Vùng',
-            'Địa điểm',
+            'Địa điểm review',
             'Tác giả',
             'Thời gian tạo',
             'Thời gian cập nhật gần nhất',
@@ -64,6 +62,6 @@ class PostsExport implements FromQuery, WithMapping, WithHeadings, WithStrictNul
     }
 
     public function query() {
-        return Review::whereKey($this->ids)->count();
+        return Post::whereKey($this->ids)->count();
     }
 }

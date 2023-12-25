@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Place;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +30,6 @@ class HomeController extends Controller
 
     public function showProfile()
     {
-        return view('user.profile')->with('title', 'Hồ sơ');
+        return Auth::user()->is_admin ? view('admin.profile')->with('title', 'Hồ sơ') : view('user.profile')->with('title', 'Hồ sơ');
     }
 }

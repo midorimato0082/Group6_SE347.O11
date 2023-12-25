@@ -31,4 +31,20 @@ class Category extends Model
     {
         return $this->hasMany(Place::class, 'category_id');
     }
+
+    public function scopeSearch($query, $term)
+    {
+        return $query->when($term, function ($query) use ($term) {
+            $term = '%' . trim($term) . '%';
+            return $query->where('categories.name', 'LIKE', $term)
+                ->orWhere('categories.created_at', 'LIKE', $term);
+        });
+    }
+
+    public function scopeFilter($query, $status, $dateFrom, $dateTo)
+    {
+        return $query->when($status != '', function ($query) use ($status) {
+            return $query->where('categories.is_active', $status);
+        })->whereDate('categories.created_at', '>=', $dateFrom)->whereDate('categories.created_at', '<=', $dateTo);
+    }
 }

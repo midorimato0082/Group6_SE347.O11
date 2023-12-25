@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,27 +13,26 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            [
-                'name' => 'Homestay',
-                'slug' => 'homestay',
-                'is_place' => true
-            ],
-            [
-                'name' => 'Khách sạn',
-                'slug' => 'hotel',
-                'is_place' => true
-            ],
-            [
-                'name' => 'Resort',
-                'slug' => 'resort',
-                'is_place' => true
-            ],
-            [
-                'name' => 'Tin tức',
-                'slug' => 'tin-tuc',
-                'is_place' => false
-            ]
+        Category::create([
+            'name' => 'Homestay',
+            'slug' => 'homestay'
+        ]);
+
+        Category::create([
+            'name' => 'Khách sạn',
+            'slug' => 'hotel'
+        ]);
+
+        Category::create([
+            'name' => 'Resort',
+            'slug' => 'resort'
+        ]);
+
+        Category::create([
+            'name' => 'Tin tức',
+            'slug' => 'tin-tuc',
+            'is_place' => false,
+            'is_active' => false
         ]);
     }
 }

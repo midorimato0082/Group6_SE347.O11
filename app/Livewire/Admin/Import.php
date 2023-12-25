@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Admin;
 
+use App\Imports\AdminsImport;
+use App\Imports\PlacesImport;
 use App\Imports\ReviewsImport;
-use Livewire\Attributes\Layout;
+use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Validators\ValidationException;
@@ -15,7 +17,6 @@ class Import extends Component
     public $file, $id;
     public $failures;
 
-    #[Layout('livewire.admin.import-modal')]
     public function render()
     {
         return view('livewire.admin.import');
@@ -38,19 +39,19 @@ class Import extends Component
 
     public function import()
     {
-        $this->authorize('create', Review::class);
+        $this->authorize('create', Post::class);
 
         $this->validate();
 
         switch ($this->data) {
             case 'user':
-                //
+                $import = new AdminsImport();
                 break;
             case 'bài viết':
                 $import = new ReviewsImport();
                 break;
-            case 'tin tức':
-                //
+            case 'địa điểm':
+                $import = new PlacesImport();
                 break;
         }
 
@@ -67,5 +68,6 @@ class Import extends Component
         $this->id++;
         $this->dispatch('close-modal');
         $this->dispatch('alert-success', message: 'Import dữ liệu thành công.');
+        $this->dispatch('saved');
     }
 }

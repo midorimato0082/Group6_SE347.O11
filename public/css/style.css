@@ -53,6 +53,7 @@ h1.title {
     background-color: #f87a19;
     color: white;
     text-shadow: 2px 2px 10px #f68a39;
+    box-shadow: 2px 2px 10px #000000ab;
 }
 
 .btn:disabled {
@@ -515,7 +516,8 @@ a:hover {
 
 #delete-modal,
 #edit-profile-modal,
-#import-modal {
+#import-modal,
+#add-modal {
     margin-top: 5%;
 }
 
@@ -535,16 +537,20 @@ a:hover {
     background-color: #2a3f54;
 }
 
-p.error {
-    font-size: small;
+.error {
+    font-size: 0.875em;
     margin-left: 1%;
     line-height: 0.5rem;
-    color: rgb(222, 0, 0);
+    color: #dc3545;
+}
+
+.img-modal {
+    width: 100px;
+    height: 100px;
 }
 /* ---------------------------- */
 
 /* View Edit/Add */
-
 .text-loading {
     color: #f68a39;
     font-weight: bold;
@@ -556,6 +562,7 @@ p.error {
 
 p.error-avatar {
     font-size: small;
+    font-weight: bold;
     margin-top: 1%;
     color: rgb(222, 0, 0);
 }
@@ -584,50 +591,51 @@ input[readonly] {
     padding: 0.3rem;
     border-radius: 5px;
 }
-/* ---------------------------- */
 
-/* View Profile Admin */
-.profile-admin {
-    width: 400px;
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice {
+    background-color: #3c5b7a;
+    color: white;
 }
 
-.btn-file {
-    position: relative;
-    overflow: hidden;
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice__remove {
+    color: white;
 }
 
-.btn-file input[type="file"] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+#new-district {
+    line-height: 1.3;
+    margin-left: 5px;
 }
 /* ---------------------------- */
 
 /* View Dashboard */
-.truncate-text-2 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
+.dashboard .card {
+    border-radius: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
 }
 
-.post-item {
-    height: 220px !important;
+.dashboard .card-title {
+    font-size: 4rem;
+    color: #3c5b7a;
+    font-weight: bold;
 }
 
-.image-card-dashboard {
-    width: 150px;
-    height: 80%;
+.dashboard .card-footer {
+    color: #3c5b7a;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.dashboard-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 0.8rem;
     object-fit: cover;
 }
 /* ---------------------------- */
@@ -718,7 +726,6 @@ header .navbar .dropdown-toggle::after {
     scroll-behavior: smooth;
     position: sticky;
     top: 0;
-    /* padding-top: 0.5rem; */
 }
 
 .menu-provinces::-webkit-scrollbar {
@@ -852,23 +859,27 @@ footer .final a {
     max-height: 200px;
 }
 
-.scroll-panel::-webkit-scrollbar-track {
+.scroll-panel::-webkit-scrollbar-track,
+.tab-pane-scroll::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #dee2d9;
     border-radius: 10px;
 }
 
-.scroll-panel::-webkit-scrollbar {
-    width: 10px;
+.scroll-panel::-webkit-scrollbar,
+.tab-pane-scroll::-webkit-scrollbar {
+    width: 11px;
     background-color: #dee2d9;
 }
 
-.scroll-panel::-webkit-scrollbar-thumb {
+.scroll-panel::-webkit-scrollbar-thumb,
+.tab-pane-scroll::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: #f68a39;
 }
 
-.scroll-panel::-webkit-scrollbar-thumb:hover {
+.scroll-panel::-webkit-scrollbar-thumb:hover,
+.tab-pane-scroll::-webkit-scrollbar-thumb:hover {
     background-color: #fb6d00;
 }
 /* ---------------------------- */
@@ -918,7 +929,7 @@ footer .final a {
     box-shadow: 2px 2px 10px #000000ab;
     width: 100%;
     height: 200px;
-    border-radius: 0.375rem;
+    border-radius: 0.8rem;
     object-fit: cover;
 }
 
@@ -1010,7 +1021,7 @@ footer .final a {
 
 /* ---------------------------- */
 
-/* Detail Page */
+/* Post Page */
 .btn-share {
     display: inline-block;
     color: #ffffff;
@@ -1083,6 +1094,7 @@ a.text-orange:hover {
     border: 2px solid #f87e21;
     color: white;
     text-shadow: 2px 2px 10px #f87e21;
+    box-shadow: 2px 2px 10px #000000ab;
 }
 
 .next-prev a {
@@ -1127,7 +1139,8 @@ a.text-orange:hover {
     color: #fb6d00;
 }
 
-a.comment-liked, a.comment-replied {
+a.comment-liked,
+a.comment-replied {
     color: #fb6d00;
 }
 
@@ -1140,5 +1153,131 @@ a.comment-liked, a.comment-replied {
 
 .btn-link:hover {
     color: #fb6d00;
+}
+
+.link-place {
+    color: #000000;
+}
+
+.link-place:hover {
+    color: #fb6d00;
+}
+/* ---------------------------- */
+
+/* View Profile User */
+.profile-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.profile {
+    font-size: 1.1rem;
+    border-radius: 0.8rem;
+    border: 1px #6c757d solid;
+    padding: 2rem 3rem;
+}
+
+.profile .row {
+    border-bottom: 1px #6c757d solid;
+    margin-bottom: 1rem;
+}
+
+.page .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    color: #fb6d00;
+    background-color: #212529;
+    border: 1px #212529 solid;
+    box-shadow: 2px 2px 10px #000000ab;
+}
+
+.page .nav-link {
+    color: #000000;
+    font-weight: bold;
+}
+
+.page .nav-link:hover {
+    color: white;
+    background-color: #212529;
+    border: #212529 1px solid;
+    box-shadow: 2px 2px 10px #000000ab;
+}
+
+.page .nav-item {
+    border-bottom: 1px #212529 solid;
+}
+
+.tab-content img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.8rem;
+}
+
+.fa-circle {
+    font-size: 0.5rem;
+}
+
+.tab-pane-scroll {
+    scroll-behavior: smooth;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.modal-user .modal-header {
+    background-color: #212529;
+}
+
+.modal-user .btn-dark:hover {
+    background-color: red;
+}
+/* ---------------------------- */
+
+/* View Profile Admin */
+.admin .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    color: white;
+    background-color: #3c5b7a;
+    border: 1px #3c5b7a solid;
+    box-shadow: 2px 2px 5px #000000ab;
+}
+
+.admin .nav-link {
+    color: #2d455d;
+    font-weight: bold;
+}
+
+.admin .nav-link:hover {
+    color: white;
+    background-color: #2d455d;
+    border: #2d455d 1px solid;
+    box-shadow: 2px 2px 5px #000000ab;
+}
+
+.admin .nav-item {
+    border-bottom: 1px #2d455d solid;
 }
 /* ---------------------------- */

@@ -27,6 +27,7 @@
                                     title="{{ $post->admin->email }}">
                                     <b>{{ $post->admin->first_name }}</b>
                                 </a>
+
                                 <span class="ms-4">Vào ngày
                                     <b>{{ $post->created_time }}</b>
                                 </span>
@@ -75,6 +76,11 @@
                 </div>
 
                 {{-- Content --}}
+                <p style="text-align:justify; line-height:1.8rem" class="mt-4 me-3">
+                    <span style="color:hsl(0,0%,0%);font-family:Arial, Helvetica, sans-serif">
+                        {{ $post->desc }}
+                    </span> 
+                </p>
                 <div class="mt-4 details me-3">
                     {!! $post->content !!}
                 </div>
@@ -112,7 +118,7 @@
                             </button>
                         </div>
                     @else
-                        <livewire:user.like-post :$post />
+                        <livewire:user.post.like-post :$post />
                     @endguest
 
                     <p class="mt-3 text-orange fw-bold">Bài viết đã có {{ $post->view_count }} lượt xem.</p>
@@ -137,46 +143,44 @@
                     <div class="mt-4">
                         <i class="fa-solid fa-ranking-star me-1"></i>
                         @auth
-                            <i>Bạn đã đến {{ strtolower($post->category->name) }} này rồi?
+                            <i id="required-rating">Bạn đã đến {{ strtolower($post->category->name) }} này rồi?
                                 Vui lòng để lại
                                 <b>đánh giá</b>
                                 góp phần giúp chúng tôi cải thiện nội dung nhé.
                             </i>
-                        @else
-                            <i><b>Đánh giá</b> của những người đã đến {{ strtolower($post->category->name) }}</i>
-                        @endauth
-
-                        @foreach ($places as $place)
-                            @auth
-                                <livewire:user.rating-place :$place :key="$place->id" />
-                            @else
-                                <div class="row d-flex text-start align-items-center mt-3 ms-3">
-                                    <div class="col-sm-5 col-md-4 col-lg-4 col-xl-3">
-                                        <i class="fa-solid fa-location-dot me-1"></i>
-                                        {{ $place->name }}
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-3 result-rating">
-                                        <p class="mb-0" data-bs-toggle="tooltip" title="{{ $place->starTooltip }}"
-                                            data-bs-placement="left">
-                                            {!! str_repeat('<i class="fa fa-star star-color fa-lg"></i>', $place->star) !!}
-                                        </p>
-                                    </div>
-                                    <div class="col result-rating">
-                                        {{ $place->users->count() }} đánh giá
-                                    </div>
-                                </div>
-                            @endauth
-                        @endforeach
-
-                        @auth
+                            <i class="d-none result-rating"><b>Đánh giá</b> của những người đã đến
+                                {{ strtolower($post->category->name) }}</i>
+                            @foreach ($places as $place)
+                                <livewire:user.post.rating-place :$place :key="$place->id" />
+                            @endforeach
                             <div class="row ms-3 mt-3">
                                 <div class="col offset-sm-5 offset-md-4 offset-lg-4 offset-xl-3">
                                     <button id="rating" class="btn btn-sm btn-orange">Đánh giá</button>
                                     <button id="rating-reset" class="btn btn-sm btn-orange d-none">Đánh giá lại</button>
                                 </div>
                             </div>
+                        @else
+                            <i><b>Đánh giá</b> của những người đã đến {{ strtolower($post->category->name) }}</i>
+                            @foreach ($places as $place)
+                                <div class="row d-flex text-start align-items-center mt-3 ms-3">
+                                    <div class="col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                        <i class="fa-solid fa-location-dot me-1"></i>
+                                        <a href="{{ route('place', $place->slug) }}"
+                                            class="link-place">{{ $place->name }}</a>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-3">
+                                        <p class="mb-0" data-bs-toggle="tooltip"
+                                            title="{{ $place->star . ' - ' . $place->starTooltip }}"
+                                            data-bs-placement="left">
+                                            {!! str_repeat('<i class="fa fa-star star-color fa-lg me-2"></i>', $place->star) !!}
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        {{ $place->users->count() }} đánh giá
+                                    </div>
+                                </div>
+                            @endforeach
                         @endauth
-
                     </div>
                 @endif
 
@@ -194,10 +198,10 @@
                 </div>
 
                 {{-- Comment --}}
-                <livewire:user.comments-post :$post />
+                <livewire:user.post.comments-post :$post />
             </div>
 
-            @livewire('user.latest-posts')
+            @livewire('user.post.latest-posts')
         </div>
     </div>
 @endsection

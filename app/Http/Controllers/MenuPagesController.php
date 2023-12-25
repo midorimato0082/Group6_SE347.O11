@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Location;
+use App\Models\District;
+use App\Models\Place;
 use App\Models\Post;
+use App\Models\Province;
 use App\Models\Region;
-use App\Models\Review;
+use App\Models\User;
 
 class MenuPagesController extends Controller
 {
@@ -16,36 +18,53 @@ class MenuPagesController extends Controller
         // Bài viết có nhiều lượt like thuộc danh mục
         $carouselPosts = Post::where('is_active', true)->where('category_id', $category->id)->count()->orderBy('like_count', 'DESC')->take(5)->get();
   
-        return view('user.category-page', compact('carouselPosts', 'category'))->with('title', $category->name);
+        return view('user.menu-pages.category-page', compact('carouselPosts', 'category'))->with('title', $category->name);
     }
 
     public function showRegionPage($slug) {
         $region = Region::where('slug', $slug)->first();
 
-        // Bài viết có nhiều lượt like thuộc region
         $carouselPosts = Post::where('is_active', true)->whereRegion($region->name)->count()->orderBy('like_count', 'DESC')->take(5)->get();
 
-        return view('user.region-page', compact('carouselPosts', 'region'))->with('title', $region->name);
+        return view('user.menu-pages.region-page', compact('carouselPosts', 'region'))->with('title', $region->name);
     }
 
-    public function showLocationPage($slug) {
-        $location = Location::where('slug', $slug)->first();
-        $reviewsCarousel = Review::where('is_active', 1)->where('location_id', $location->id)->count()->orderBy('like_count', 'DESC')->take(5)->get();
-        $reviews = $location->reviews;
-        $categories = Category::all('name', 'slug');
+    public function showProvincePage($slug) {
+        $province = Province::where('slug', $slug)->first();
 
-        return view('user.location-page', compact('reviewsCarousel', 'reviews', 'location', 'categories'))->with('title', $location->name);
+        $carouselPosts = Post::where('is_active', true)->whereRelation('places.district.province', 'id', $province->id)->count()->orderBy('like_count', 'DESC')->take(5)->get();
+
+        return view('user.menu-pages.province-page', compact('carouselPosts', 'province'))->with('title', $province->name);
     }
 
-    
+    public function showDistrictPage($slug) {
+        $district = District::where('slug', $slug)->first();
 
-    public function showTagPage($slug) {
-        $reviews = Review::query()->where('tags', "LIKE", "%{$slug}%")->get();
+        $carouselPosts = Post::where('is_active', true)->whereRelation('places.district', 'id', $district->id)->count()->orderBy('like_count', 'DESC')->take(5)->get();
 
-        $name = str_replace('-', ' ', $slug);
+        return view('user.menu-pages.district-page', compact('carouselPosts', 'district'))->with('title', $district->name);
+    }
 
-        $reviewsCarousel = $reviews->take(5);
+    public function showPlacePage($slug) {
+        $place = Place::where('slug', $slug)->first();
 
-        return view('user.tag-page', compact('reviewsCarousel', 'reviews', 'name'))->with('title', $name);
+        $carouselPosts = Post::where('is_active', true)->whereRelation('places', 'name', $place->name)->count()->orderBy('like_count', 'DESC')->take(5)->get();
+
+        return view('user.menu-pages.place-page', compact('carouselPosts', 'place'))->with('title', $place->name);
+    }
+
+    public function showTagPage($tag) {
+
+        $carouselPosts = Post::where('is_active', true)->where('tags', 'LIKE', '%'.$tag.'%')->count()->orderBy('like_count', 'DESC')->take(5)->get();
+
+        return view('user.menu-pages.tag-page', compact('carouselPosts', 'tag'))->with('title', 'Tag: ' . $tag);
+    }
+
+    public function showAuthorPage($email) {
+        $user = User::where('email', $email)->first();
+
+        $carouselPosts = Post::where('is_active', true)->whereRelation('admin', 'email', $email)->count()->orderBy('like_count', 'DESC')->take(5)->get();
+
+        return view('user.menu-pages.author-page', compact('carouselPosts', 'user'))->with('title', 'Tác giả: ' . $user->full_name);
     }
 }

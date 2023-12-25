@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-use function App\intended;
-
 class Login extends Component
 {
     public $email, $password, $remember;

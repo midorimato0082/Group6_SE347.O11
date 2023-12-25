@@ -36,16 +36,16 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id')->withDefault(function (Category $category) {
-            $category->name = null;
+            $category->name = 'Deleted';
+            $category->slug = 'Deleted';
         });
     }
 
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id')->withDefault(function (User $user) {
-            $user->first_name = null;
-            $user->last_name = null;
-            $user->email = null;
+            $user->first_name = 'Deleted';
+            $user->email = 'Deleted';
         });
     }
 
@@ -133,6 +133,16 @@ class Post extends Model
         );
     }
 
+    // Tên các place được bài viết review
+    protected function getPlacesNameAttribute()
+    {
+        $places = array();
+        foreach ($this->places as $place)
+            $places[] = $place->name;
+
+        return implode(', ', $places);
+    }
+
     // Lấy giá trị cho cột comment_count (số lượt bình luận của review), like_count, dislike_count.
     public function scopeCount($query)
     {
@@ -172,15 +182,42 @@ class Post extends Model
                 $ids = $posts->pluck('id')->toArray();
                 $sortedIds = implode(',', $ids);
                 return $query->orderByRaw("FIELD(id, $sortedIds)");
+            case 'category':
+                return $query
+                ->select('posts.*', 'categories.name')
+                ->leftJoin('categories', 'posts.category_id', '=', 'categories.id')
+                ->orderBy('categories.name', $sortDirection);
+            case 'places':
+                $posts = $sortDirection === 'asc' ? $query->get()->sortBy('places_name') : $query->get()->sortByDesc('places_name');
+                $ids = $posts->pluck('id')->toArray();
+                $sortedIds = implode(',', $ids);
+                return $query->orderByRaw("FIELD(id, $sortedIds)");
+            case 'admin':
+                return $query
+                ->select('posts.*', 'users.first_name')
+                ->leftJoin('users', 'posts.admin_id', '=', 'users.id')
+                ->orderBy('users.first_name', $sortDirection);
             default:
                 return $query->orderBy($sortBy, $sortDirection);
         }
     }
 
-    // Lọc tìm kiếm trên page
-    public function scopeFilter($query, $regions, $provinces, $districts, $minPrice, $maxPrice, $star)
+    //Show Post trên menu page
+    public function scopeShow($query, $category, $region)
     {
-        return $query->when($regions, function ($query) use ($regions) {
+        return $query->when($category, function ($query) use ($category) {
+            return $query->where('category_id', $category);
+        })->when($region, function ($query) use ($region) {
+            return $query->whereRegion($region);
+        });
+    }
+
+    // Lọc tìm kiếm trên page
+    public function scopeFilter($query, $categories, $regions, $provinces, $districts, $minPrice, $maxPrice, $star)
+    {
+        return $query->when($categories, function ($query) use ($categories) {
+            return $query->whereHas('category', fn ($query) => $query->whereIn('name', $categories));
+        })->when($regions, function ($query) use ($regions) {
             return $query->whereHas('places.district.province.region', fn ($query) => $query->whereIn('name', $regions));
         })->when($provinces, function ($query) use ($provinces) {
             return $query->whereHas('places.district.province', fn ($query) => $query->whereIn('name', $provinces));
@@ -208,46 +245,32 @@ class Post extends Model
         });
     }
 
-    // public function scopeSearch($query, $term)
-    // {
-    //     return $query->when($term, function ($query) use ($term) {
-    //         $term = '%' . trim($term) . '%';
-    //         return $query->where('title', 'LIKE', $term)
-    //             ->orWhere('tags', 'LIKE', $term)
-    //             ->orWhereRelation('admin', 'email', 'LIKE', $term)
-    //             ->orWhere('reviews.created_at', 'LIKE', $term)
-    //             ->orWhere('reviews.updated_at', 'LIKE', $term);
-    //     });
-    // }
+    public function scopeSearch($query, $term)
+    {
+        return $query->when($term, function ($query) use ($term) {
+            $term = '%' . trim($term) . '%';
+            return $query->where('title', 'LIKE', $term)
+                ->orWhere('tags', 'LIKE', $term)
+                ->orWhereRelation('admin', 'email', 'LIKE', $term)
+                ->orWhereHas('admin', function ($query) use ($term) {
+                    $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'");
+                })
+                ->orWhereRelation('places', 'name', 'LIKE', $term)
+                ->orWhere('posts.created_at', 'LIKE', $term)
+                ->orWhere('posts.updated_at', 'LIKE', $term);
+        });
+    }
 
-    // public function scopeFilter($query, $category, $region, $location, $admin, $status, $dateFrom, $dateTo)
-    // {
-    //     return $query->when($category, function ($query) use ($category) {
-    //         return $query->where('category_id', $category);
-    //     })->when($region, function ($query) use ($region) {
-    //         return $query->whereRegion($region);
-    //     })->when($location, function ($query) use ($location) {
-    //         return $query->where('location_id', $location);
-    //     })->when($admin, function ($query) use ($admin) {
-    //         return $query->where('admin_id', $admin);
-    //     })->when($status != '', function ($query) use ($status) {
-    //         return $query->where('is_active', $status);
-    //     })->whereDate('reviews.created_at', '>=', $dateFrom)->whereDate('reviews.created_at', '<=', $dateTo);
-    // }
-
-    // public function scopeSort($query, $sortBy, $sortDirection)
-    // {
-    //     switch ($sortBy) {
-    //         case 'category':
-    //             return $query->leftJoin('categories', 'reviews.category_id', '=', 'categories.id')->orderBy('categories.name', $sortDirection);
-    //         case 'region':
-    //             return $query->leftJoin('locations', 'reviews.location_id', '=', 'locations.id')->leftJoin('regions', 'locations.region_id', '=', 'regions.id')->orderBy('regions.name', $sortDirection);
-    //         case 'location':
-    //             return $query->leftJoin('locations', 'reviews.location_id', '=', 'locations.id')->orderBy('locations.name', $sortDirection);
-    //         case 'admin':
-    //             return $query->leftJoin('users', 'reviews.admin_id', '=', 'users.id')->orderBy('users.first_name', $sortDirection);
-    //         default:
-    //             return $query->orderBy($sortBy, $sortDirection);
-    //     }
-    // }
+    public function scopeFilter2($query, $category, $region, $admin, $status, $dateFrom, $dateTo)
+    {
+        return $query->when($category, function ($query) use ($category) {
+            return $query->where('category_id', $category);
+        })->when($region, function ($query) use ($region) {
+            return $query->whereRegion($region);
+        })->when($admin, function ($query) use ($admin) {
+            return $query->where('admin_id', $admin);
+        })->when($status != '', function ($query) use ($status) {
+            return $query->where('is_active', $status);
+        })->whereDate('posts.created_at', '>=', $dateFrom)->whereDate('posts.created_at', '<=', $dateTo);
+    }
 }

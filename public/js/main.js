@@ -31,6 +31,8 @@ $(function () {
         $('#delete-modal').modal('hide');
         $('#import-modal').modal('hide');
         $('#edit-profile-modal').modal('hide');
+        $('#add-modal').modal('hide');
+        $('#edit-modal').modal('hide');
     });
 
     Livewire.hook('commit', ({ succeed }) => {
@@ -60,17 +62,108 @@ $(function () {
     // --------------------------------------
 
     // View Add/Edit
-    $('#save-review').on('click', function () {
+    $('#save-post').on('click', function () {
         Livewire.dispatch('get-tags', { tags: $('input[data-role="tagsinput"]').val() });
+        Livewire.dispatch('get-places', { places: $('#place-dropdown').val() });
     });
 
-    $('#clear-review').on('click', function () {
+    $('#clear-post').on('click', function () {
         $('input[data-role="tagsinput"]').tagsinput('removeAll');
+        $('#place-dropdown').val(null).trigger('change');
     });
 
     $(document).bind('clear-tags', function (e) {
         $('input[data-role="tagsinput"]').tagsinput('removeAll');
         $('input[data-role="tagsinput"]').tagsinput('add', e.detail.tags);
+    });
+
+    $('#place-dropdown').select2({
+        maximumSelectionLength: 5
+    });
+
+    $(document).bind('set-places', function (e) {
+        $('#place-dropdown').children().remove();
+        $.each(e.detail.places, function (key, value) {
+            $('#place-dropdown').append($('<option></option>')
+                .attr('value', key)
+                .text(value));
+        });
+    });
+
+    $(document).bind('clear-places', function (e) {
+        $('#place-dropdown').val(e.detail.places).trigger('change');
+    });
+
+    $('#province-dropdown').select2({
+        dropdownParent: $('#add-modal')
+    });
+
+    $('#district-dropdown').select2({
+        dropdownParent: $('#add-modal'),
+    });
+
+    $('#new-district').on('click', function () {
+        $('#input-new-district').removeClass('d-none');
+    });
+
+    $('#province-dropdown').on('change', function (e) {
+        Livewire.dispatch('get-province', { province: e.target.value });
+    });
+
+    $(document).bind('set-districts', function (e) {
+        $('#district-dropdown').children().remove();
+        $.each(e.detail.districts, function (key, value) {
+            $('#district-dropdown').append($('<option></option>')
+                .attr('value', key)
+                .text(value));
+        });
+    });
+
+    $('#save-place').on('click', function () {
+        Livewire.dispatch('get-district', { district: $('#district-dropdown').val() });
+    });
+
+    $('#province-dropdown-edit').select2({
+        dropdownParent: $('#edit-modal')
+    });
+
+    $('#district-dropdown-edit').select2({
+        dropdownParent: $('#edit-modal')
+    });
+
+    $(document).bind('set-province-edit', function (e) {
+        $('#province-dropdown-edit').val(e.detail.province).trigger('change');
+    });
+
+    let secondChange = false;
+    $('#province-dropdown-edit').on('change', function (e) {
+        if (secondChange)
+            Livewire.dispatch('get-province-edit', { province: e.target.value });
+        else
+            secondChange = true;
+    });
+
+    $('#update-place').on('click', function () {
+        Livewire.dispatch('get-district-edit', { district: $('#district-dropdown-edit').val() });
+    });
+
+    $(document).bind('set-districts-edit', function (e) {
+        $('.option').remove();
+
+        $.each(e.detail.districts, function (key, value) {
+            $('#district-dropdown-edit').append($('<option class="option"></option>')
+                .attr('value', key)
+                .text(value));
+        });
+    });
+
+    $(document).bind('clear-edit', function (e) {
+        secondChange = false;
+        $('.option').remove();
+    });
+
+    $('#new-district-edit').on('click', function () {
+        $('#input-new-district-edit').removeClass('d-none');
     });
     // --------------------------------------
 
@@ -119,14 +212,20 @@ $(function () {
     // Rating
     $('#rating').on('click', function () {
         Livewire.dispatch('save-rating');
-        $('#rating').addClass('d-none');
         $('#rating-reset').removeClass('d-none');
+        $('.result-rating').removeClass('d-none');
+
+        $('#rating').addClass('d-none');
+        $('#required-rating').addClass('d-none');
     });
 
     $('#rating-reset').on('click', function () {
         Livewire.dispatch('reset-rating');
-        $('#rating').removeClass('d-none');
         $('#rating-reset').addClass('d-none');
+        $('.result-rating').addClass('d-none');
+
+        $('#rating').removeClass('d-none');
+        $('#required-rating').removeClass('d-none');
     });
     // -----------------------------
 
@@ -188,8 +287,25 @@ $(function () {
         }
     });
 
-    $(".input-header").on('keyup change search', function() {
-        $('#search-result').addClass('d-none');    
+    $(".input-header").on('keyup change search', function () {
+        $('#search-result').addClass('d-none');
+    });
+    // -----------------------------
+
+    // Profile Page
+    $('#tab1-pane').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-tab1');
+    });
+
+    $('#tab2-pane').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-tab2');
+    });
+
+    $('#tab3-pane').on('scroll', function () {
+        if (this.scrollTop + this.clientHeight >= this.scrollHeight - 1)
+            Livewire.dispatch('load-more-tab3');
     });
     // -----------------------------
 });
@@ -217,7 +333,6 @@ function setupLayoutAdmin() {
     if (current_url.includes('edit'))
         $('a.' + value_editing).removeClass('d-none').css('pointer-events', 'none');
 }
-
 
 Alpine.data('data', () => ({
     open: false,

@@ -17,6 +17,6 @@ class Logout extends Component
     public function logout()
     {
         Auth::logout();
-        return strpos(url()->previous(), 'email/verify') ? to_route('home') : redirect(url()->previous());
+        return strpos(url()->previous(), 'email/verify') || strpos(url()->previous(), 'profile') ? to_route('home') : redirect(url()->previous());
     }
 }

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row mt-4">
-        @forelse ($posts as $post)
+        @forelse ($this->posts as $post)
             <div class="col-md-3 col-lg-3 col-xl-3 px-3">
                 <a href="{{ route('post', $post->slug) }}">
                     <img src="{{ $post->first_image }}" class="img-fluid home-img-small"></a>

@@ -27,14 +27,20 @@ class Comment extends Model
 
     protected $withCount = ['likes'];
 
+    protected $with = ['post', 'user', 'replies'];
+
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault(function (User $user) {
+            $user->first_name = 'Deleted';
+        });
     }
 
     public function post()
     {
-        return $this->belongsTo(Post::class, 'post_id');
+        return $this->belongsTo(Post::class, 'post_id')->withDefault(function (Post $post) {
+            $post->title = 'Deleted';
+        });
     }
 
     public function likes()
@@ -66,20 +72,56 @@ class Comment extends Model
         return is_null($this->reply_id);
     }
 
-    // public function scopeSearch($query, $term)
-    // {
-    //     return $query->when(!empty($term), function ($query) use ($term) {
-    //         $term = '%' . trim($term) . '%';
-    //         return $query->where('content', 'LIKE', $term)
-    //             ->orWhere('created_at', 'LIKE', $term)
-    //             ->orWhereHas('user', function ($query) use ($term) {
-    //                 $query->where('first_name', 'LIKE', $term)
-    //                     ->orWhere('last_name', 'LIKE', $term)
-    //                     ->orWhere('email', 'LIKE', $term);
-    //             })
-    //             ->orWhereHas('review', function ($query) use ($term) {
-    //                 $query->where('title', 'LIKE', $term);
-    //             });
-    //     });
-    // }
+    protected function repliesCount(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->replies->count()
+        );
+    }
+
+    // Search
+    public function scopeSearch($query, $term)
+    {
+        return $query->when($term, function ($query) use ($term) {
+            $term = '%' . trim($term) . '%';
+            return $query->where('comments.content', 'LIKE', $term)
+                ->orWhereHas('user', function ($query) use ($term) {
+                    $query->whereRaw("TRIM(CONCAT(last_name, ' ', first_name)) like '{$term}'");
+                })
+                ->orWhereRelation('user', 'email', 'LIKE', $term)
+                ->orWhere('comments.created_at', 'LIKE', $term)
+                ->orWhereRelation('post', 'title', 'LIKE', $term);
+        });
+    }
+
+    public function scopeFilter($query, $status, $dateFrom, $dateTo)
+    {
+        return $query->when($status != '', function ($query) use ($status) {
+            return $query->where('comments.is_active', $status);
+        })->whereDate('comments.created_at', '>=', $dateFrom)->whereDate('comments.created_at', '<=', $dateTo);
+    }
+
+    // Sắp xếp
+    public function scopeSort($query, $sortBy, $sortDirection)
+    {
+        switch ($sortBy) {
+            case 'user':
+                return $query
+                    ->select('comments.*', 'users.first_name')
+                    ->leftJoin('users', 'comments.user_id', '=', 'users.id')
+                    ->orderBy('users.first_name', $sortDirection);
+            case 'title':
+                return $query
+                    ->select('comments.*', 'posts.title')
+                    ->leftJoin('posts', 'comments.post_id', '=', 'posts.id')
+                    ->orderBy('posts.title', $sortDirection);
+            case 'replies':
+                $comments = $sortDirection === 'asc' ? $query->get()->sortBy('replies_count ') : $query->get()->sortByDesc('replies_count ');
+                $ids = $comments->pluck('id')->toArray();
+                $sortedIds = implode(',', $ids);
+                return $query->orderByRaw("FIELD(id, $sortedIds)");
+            default:
+                return $query->orderBy($sortBy, $sortDirection);
+        }
+    }
 }
