@@ -14,7 +14,7 @@ class HomeController extends Controller
         $carouselPosts = Post::where('is_active', 1)->count()->orderBy('like_count', 'DESC')->take(5)->get();
 
         // Bài viết về các địa điểm có rating cao
-        $bestPlaces = Place::all()->sortByDesc('star')->take(5)->pluck('id');
+        $bestPlaces = Place::all()->sortByDesc('star')->take(6)->pluck('id');
         $bestPlacePosts = Post::where('is_active', true)->whereHas('places', function ($query) use ($bestPlaces) {
             $query->whereIn('places.id', $bestPlaces);
         })->take(6)->get();

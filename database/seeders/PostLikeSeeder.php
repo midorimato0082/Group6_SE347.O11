@@ -14,7 +14,7 @@ class PostLikeSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::whereRelation('role', 'name', 'User')->get();
+        $users = User::where('is_active', true)->get();
         $posts = Post::all();
 
         for ($i = 0; $i <= 20; $i++)

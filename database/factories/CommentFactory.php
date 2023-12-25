@@ -20,7 +20,7 @@ class CommentFactory extends Factory
     {
         return [
             'content' => fake()->paragraph(3),
-            'user_id' => User::whereRelation('role', 'name', 'User')->get()->random()->id,
+            'user_id' => User::where('is_active', true)->get()->random()->id,
             'post_id' => Post::all()->random()->id
         ];
     }
