@@ -14,10 +14,15 @@
                     {{ $comment->content }}
                 </p>
                 <p class="text-muted small mb-0">{{ $comment->created_time }}</p>
-                <b class="text-muted small">
-                    Có {{ $comment->likes_count }} người thích
-                    <span class="ms-2">
-                        Có {{ $comment->replies->count() }} phản hồi
+                <b class="small">
+                    <span data-bs-toggle="tooltip" title="Lượt thích">
+                        <i class="fa fa-thumbs-up"></i>
+                        {{ $comment->likes_count }}
+                    </span>
+
+                    <span data-bs-toggle="tooltip" title="Phản hồi">
+                        <i class="fa fa-reply ms-3"></i>
+                        {{ $comment->replies->count() }}
                     </span>
 
                     <span class="ms-2">

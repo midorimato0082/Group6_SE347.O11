@@ -10,11 +10,16 @@
                         {{ $post->title }}
                     </strong>
                 </a>
-                <p class="text-muted small mt-3">
-                    {{ $post->likes->where('id', Auth::user()->id)->first()->pivot->is_like ? 'Thích' : 'Không thích' }}
+                <p class="small mt-3">
+                    @if ($post->likes->where('id', Auth::user()->id)->first()->pivot->is_like)
+                        <i class="fa fa-thumbs-up"></i>
+                        Thích
+                    @else
+                        <i class="fa fa-thumbs-down"></i>
+                        Không Thích
+                    @endif
                 </p>
             </div>
         </div>
     @endforeach
 </div>
-

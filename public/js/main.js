@@ -351,8 +351,4 @@ Alpine.data('data', () => ({
         this.open = !this.open;
         this.open || Livewire.dispatch('close-filter');
     },
-
-    // init() {
-    //     this.$watch('checkedRecords', value => console.log(this.checkedRecords.length))
-    // }
 }))

@@ -70,7 +70,8 @@
         <div class="px-1 mb-3">
             Bạn đã chọn <b x-text="$wire.checkedRecords.length"></b> user.
             @if ($checkedPageRecords && $this->users->count() != $this->users->total())
-                Bạn có muốn chọn tất cả <b>{{ $this->users->total() }}</b> user đang được hiển thị trên tất cả các trang?
+                Bạn có muốn chọn tất cả <b>{{ $this->users->total() }}</b> user đang được hiển thị trên tất cả các
+                trang?
                 <a wire:click.prevent="checkAllRecords">
                     <b>Chọn tất cả user.</b>
                 </a>
@@ -181,23 +182,24 @@
                                     </i>
                                 </a>
                             @else
-                                <i class="fas fa-lg {{ $user->is_active ? 'fa-toggle-on text-primary' : 'fa-toggle-off' }}">
+                                <i
+                                    class="fas fa-lg {{ $user->is_active ? 'fa-toggle-on text-primary' : 'fa-toggle-off' }}">
                                 </i>
                             @endcan
                         </td>
                         <td>
                             @can('update', $user)
-                            <a wire:click="$dispatch('edit-user', { id: {{ $user->id }} })"
-                                data-bs-toggle="modal" data-bs-target="#edit-modal" data-bs-toggle="tooltip"
-                                title="Cập nhật user">
-                                <i class="fas fa-pencil fa-sm text-primary"></i>
-                            </a>
+                                <a wire:click="$dispatch('edit-user', { id: {{ $user->id }} })"
+                                    data-bs-toggle="tooltip" title="Cập nhật user">
+                                    <i data-bs-toggle="modal" data-bs-target="#edit-modal"
+                                        class="fas fa-pencil fa-sm text-primary"></i>
+                                </a>
 
-                            <a x-on:click="$wire.deletedId = {{ $user->id }}" data-bs-toggle="tooltip"
-                                title="Xóa user">
-                                <i data-bs-toggle="modal" data-bs-target="#delete-modal"
-                                    class="fa fa-times fa-lg text-danger"></i>
-                            </a>
+                                <a x-on:click="$wire.deletedId = {{ $user->id }}" data-bs-toggle="tooltip"
+                                    title="Xóa user">
+                                    <i data-bs-toggle="modal" data-bs-target="#delete-modal"
+                                        class="fa fa-times fa-lg text-danger"></i>
+                                </a>
                             @endcan
                         </td>
                     </tr>

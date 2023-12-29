@@ -211,9 +211,9 @@
                             </a>
                         </td>
                         <td>
-                            <a wire:click="$dispatch('edit-place', { id: {{ $place->id }} })" data-bs-toggle="modal" data-bs-target="#edit-modal" data-bs-toggle="tooltip"
+                            <a wire:click="$dispatch('edit-place', { id: {{ $place->id }} })" data-bs-toggle="tooltip"
                                 title="Cập nhật địa điểm">
-                                <i class="fas fa-pencil fa-sm text-primary"></i>
+                                <i data-bs-toggle="modal" data-bs-target="#edit-modal" class="fas fa-pencil fa-sm text-primary"></i>
                             </a>
 
                             <a x-on:click="$wire.deletedId = {{ $place->id }}" data-bs-toggle="tooltip"

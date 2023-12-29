@@ -14,18 +14,25 @@
 
 
                 </p>
-                <b class="text-muted small mt-0">
-                    Có {{ $post->view_count }} lượt xem
-                    <span class="ms-2">
-                        Có {{ $post->like_count }} người thích
+                <b class="small mt-0">
+                    <span data-bs-toggle="tooltip" title="Lượt xem">
+                        <i class="fa fa-eye"></i>
+                        {{ $post->view_count }}
                     </span>
 
-                    <span class="ms-2">
-                        Có {{ $post->dislike_count }} người không thích
+                    <span data-bs-toggle="tooltip" title="Lượt thích">
+                        <i class="fa fa-thumbs-up ms-3"></i>
+                        {{ $post->like_count }}
                     </span>
 
-                    <span class="ms-2">
-                        Có {{ $post->comments_count }} bình luận
+                    <span data-bs-toggle="tooltip" title="Lượt không thích">
+                        <i class="fa fa-thumbs-down ms-3"></i>
+                        {{ $post->dislike_count }}
+                    </span>
+
+                    <span data-bs-toggle="tooltip" title="Lượt bình luận">
+                        <i class="fa-solid fa-comment ms-3"></i>
+                        {{ $post->comments_count }}
                     </span>
 
                     <span class="ms-2">

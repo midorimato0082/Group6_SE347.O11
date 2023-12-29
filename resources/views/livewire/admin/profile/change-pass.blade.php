@@ -34,7 +34,7 @@
         <hr>
         <div class="row">
             <div class="text-end">
-                <button wire:click="clear" type="button" class="btn btn-sm btn-red me-1">Hủy</button>
+                <button wire:click="clear" data-bs-dismiss="modal" type="button" class="btn btn-sm btn-red me-1">Hủy</button>
                 <button type="submit" class="btn btn-sm btn-blue">Thay đổi</button>
             </div>
         </div>

@@ -517,24 +517,9 @@ a:hover {
 #delete-modal,
 #edit-profile-modal,
 #import-modal,
-#add-modal {
+#add-modal,
+#edit-modal {
     margin-top: 5%;
-}
-
-.nav-vertical-edit-profile .nav-item {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-.nav-vertical-edit-profile .nav-link {
-    color: #2a3f54;
-    font-weight: bold;
-}
-
-.nav-vertical-edit-profile .nav-link.active {
-    color: white;
-    border-bottom: #5a6268 2px solid;
-    background-color: #2a3f54;
 }
 
 .error {
@@ -1205,7 +1190,7 @@ a.comment-replied {
 }
 
 .page .nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
+.page .nav-tabs .nav-link.active {
     font-weight: bold;
     color: #fb6d00;
     background-color: #212529;
@@ -1253,11 +1238,27 @@ a.comment-replied {
 .modal-user .btn-dark:hover {
     background-color: red;
 }
+
+.nav-vertical-edit-profile-user .nav-item {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.nav-vertical-edit-profile-user .nav-link {
+    color: #000000;
+    font-weight: bold;
+}
+
+.nav-vertical-edit-profile-user .nav-link.active {
+    color: #fb6d00;
+    border-bottom: #5a6268 2px solid;
+    background-color: #212529;
+}
 /* ---------------------------- */
 
 /* View Profile Admin */
 .admin .nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
+.admin .nav-tabs .nav-link.active {
     font-weight: bold;
     color: white;
     background-color: #3c5b7a;
@@ -1279,5 +1280,21 @@ a.comment-replied {
 
 .admin .nav-item {
     border-bottom: 1px #2d455d solid;
+}
+
+.nav-vertical-edit-profile-admin .nav-item {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.nav-vertical-edit-profile-admin .nav-link {
+    color: #2a3f54;
+    font-weight: bold;
+}
+
+.nav-vertical-edit-profile-admin .nav-link.active {
+    color: white;
+    border-bottom: #5a6268 2px solid;
+    background-color: #2a3f54;
 }
 /* ---------------------------- */

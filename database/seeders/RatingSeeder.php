@@ -17,7 +17,7 @@ class RatingSeeder extends Seeder
         $places = Place::all();
         $users = User::whereRelation('role', 'name', 'User')->get();
 
-        for ($i = 0; $i <= 20; $i++)
+        for ($i = 0; $i <= 30; $i++)
             Rating::firstOrCreate(
                 [
                     'user_id' => $users->random()->id,

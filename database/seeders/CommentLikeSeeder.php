@@ -17,7 +17,7 @@ class CommentLikeSeeder extends Seeder
         $users = User::where('is_active', true)->get();
         $comments = Comment::all();
 
-        for ($i = 0; $i <= 20; $i++)
+        for ($i = 0; $i <= 30; $i++)
             CommentLike::firstOrCreate([
                 'user_id' => $users->random()->id,
                 'comment_id' => $comments->random()->id,

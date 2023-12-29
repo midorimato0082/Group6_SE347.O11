@@ -17,7 +17,7 @@ class PostLikeSeeder extends Seeder
         $users = User::where('is_active', true)->get();
         $posts = Post::all();
 
-        for ($i = 0; $i <= 20; $i++)
+        for ($i = 0; $i <= 30; $i++)
             PostLike::firstOrCreate(
                 [
                     'user_id' => $users->random()->id,

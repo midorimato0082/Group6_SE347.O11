@@ -14,7 +14,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 mt-3">
-                            <ul class="nav nav-pills flex-column nav-tabs nav-vertical-edit-profile" role="tablist">
+                            <ul class="nav nav-pills flex-column nav-tabs nav-vertical-edit-profile-user" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="pills-infor-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-infor" role="tab" aria-controls="pills-infor"
