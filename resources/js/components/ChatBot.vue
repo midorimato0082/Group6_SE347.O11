@@ -86,6 +86,7 @@ const chatboxFormSubmit = async (e) => {
                 autoReply(result.choices[0].message.content)
             })
             .catch(error => console.error('Lỗi:', error));
+
         chatboxInput.value = ''
     }
 }
