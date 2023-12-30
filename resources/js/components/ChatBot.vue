@@ -43,7 +43,6 @@ const toggleChatbox = () => {
 }
 
 const inputTyping = () => {
-    console.log(chatboxInput.value)
     let line = chatboxInput.value.split('\n').length
 
     if(inputRow.value < 6 || line < 6) {
