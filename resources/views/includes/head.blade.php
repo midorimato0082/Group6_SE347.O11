@@ -4,6 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title ?? config('app.name') }}</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <link rel="icon" href="{{ asset('images/others/logo-orange.png') }}" />
 
