@@ -50,7 +50,7 @@ const inputTyping = () => {
     }
 }
 
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY
+const apiKey = import.meta.env.VITE_PUSHER_OPENAI_API_KEY
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
 const chatboxFormSubmit = async (e) => {
