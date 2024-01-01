@@ -45,7 +45,7 @@ class AddAdmin extends Component
             'lastName.regex' => 'Họ chỉ bao gồm các chữ cái.',
             'last_name.max' => 'Họ tối đa chỉ có 40 ký tự.',
             'firstName.required' => 'Bạn cần nhập tên.',
-            'firstName.regex' => 'Tên chỉ bao gồm các chữ cái Latinh.',
+            'firstName.regex' => 'Tên chỉ bao gồm các chữ cái.',
             'firstName.max' => 'Tên tối đa chỉ có 20 ký tự.',
             'email.required' => 'Bạn cần nhập email.',
             'email.email' => 'Không đúng định dạng email.',

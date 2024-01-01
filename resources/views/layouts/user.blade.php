@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
 @include('includes.head')
 
@@ -169,9 +168,7 @@
             <p>Website Design: <a href="{{ route('home') }}">Group 6 - SE347.O11</a></p>
         </div>
     </footer>
-    <div id="app">
-        <chat-bot></chat-bot>
-    </div>
+
     <button id="btn-to-top" class="btn btn-orange btn-lg rounded-5"><i class="fa fa-arrow-up"></i></button>
 
     @include('includes.scripts')

@@ -63,7 +63,7 @@ class EditUser extends Component
             'last_name.regex' => 'Họ chỉ bao gồm các chữ cái.',
             'last_name.max' => 'Họ tối đa chỉ có 40 ký tự.',
             'first_name.required' => 'Bạn cần nhập tên.',
-            'first_name.regex' => 'Tên chỉ bao gồm các chữ cái Latinh.',
+            'first_name.regex' => 'Tên chỉ bao gồm các chữ cái.',
             'first_name.max' => 'Tên tối đa chỉ có 20 ký tự.',
             'email.required' => 'Bạn cần nhập email.',
             'email.email' => 'Không đúng định dạng email.',
