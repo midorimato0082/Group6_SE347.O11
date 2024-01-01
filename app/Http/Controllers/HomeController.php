@@ -24,7 +24,7 @@ class HomeController extends Controller
 
         // Bài viết mới nhất
         $latestPosts = Post::where('is_active', 1)->latest()->take(6)->get();
-        
+
         return view('user.home', compact('carouselPosts', 'bestPlacePosts', 'bestViewPosts', 'latestPosts'))->with('title', 'Trang chủ');
     }
 
