@@ -15,7 +15,7 @@ class ReviewsImport implements WithMultipleSheets
         return [
             'Bài viết' => new PostsImport(),
             'Hình' => new PostImagesImport(),
-            'Nơi review' => new PlacesImport()
+            'Địa điểm review' => new PlacesImport()
         ];
     }
 }

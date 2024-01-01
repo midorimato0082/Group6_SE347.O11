@@ -181,37 +181,4 @@ class Place extends Model
             return $query->where('is_active', $status);
         })->whereDate('places.created_at', '>=', $dateFrom)->whereDate('places.created_at', '<=', $dateTo);
     }
-
-
-    // Đếm tổng số sao
-    // public function sumStar()
-    // {
-    //     return $this->users->sum('pivot.star');
-    // }
-
-    // public function scopeSumStar($query) {
-    //     return $query->withSum('users as total_stars', 'ratings.star');
-    // }
-
-    // // Lấy số lượng người dùng rating mỗi địa điểm
-    // // protected function numberOfUserRatings(): Attribute
-    // // {
-    // //     return new Attribute(
-    // //         get: fn () => $this->ratings->count('pivot.star')
-    // //     );
-    // // }
-
-    // // Lấy những địa điểm có số sao tương ứng
-    // public function scopeHasStar($query, $star)
-    // {
-    //     return $query->whereRelation('users', 'star', $star);
-    // }
-
-
-
-    // // Tính số lượng người dùng rating mỗi địa điểm
-    // public function scopeCountRating($query)
-    // {
-    //     return $query->withCount('users');
-    // }
 }

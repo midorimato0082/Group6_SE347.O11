@@ -11,14 +11,14 @@ use App\Models\Review;
 use App\Rules\InCategoryRelatedPlace;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 
-class PlacesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, WithUpserts
+class PlacesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, WithUpserts, SkipsUnknownSheets
 {
     use Importable;
 
@@ -26,8 +26,8 @@ class PlacesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChu
     {
         $place = Place::updateOrCreate(
             [
-                'name' => $row['noi'],
-                'slug' => Str::slug(Str::limit($row['noi'], 30)),
+                'name' => $row['dia_diem'],
+                'slug' => Str::slug(Str::limit($row['dia_diem'], 30)),
                 'category_id' => isset($row['bai_viet']) ? Post::where('title', $row['bai_viet'])->value('category_id') : Category::where('name', $row['danh_muc'])->value('id'),
                 'address' => $row['dia_chi'],
                 'district_id' => District::updateOrCreate([
@@ -67,7 +67,7 @@ class PlacesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChu
     public function rules(): array
     {
         return [
-            'noi' => 'required',
+            'dia_diem' => 'required',
             'danh_muc' => ['required_without:bai_viet', 'exists:categories,name', new InCategoryRelatedPlace],
             'bai_viet' => 'required_without:danh_muc|exists:posts,title',
             'quan_huyen' => 'required',
@@ -80,8 +80,7 @@ class PlacesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChu
     public function customValidationMessages()
     {
         return [
-            'noi.required' => 'Không có tên nơi cần import.',
-            // 'loai_hinh.in' => 'Loại hình không hợp lệ.',
+            'dia_diem.required' => 'Không có tên nơi cần import.',
             'danh_muc.required_without' => 'Không có tên danh mục hay tên bài viết.',
             'danh_muc.exists' => 'Tên danh mục không tồn tại.',
             'bai_viet.required_without' => 'Không có tên danh mục hay tên bài viết.',
@@ -92,5 +91,11 @@ class PlacesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChu
             'gia_thap_nhat.numeric' => 'Giá trị của cột giá thấp nhất phải là số.',
             'gia_cao_nhat.numeric' => 'Giá trị của cột giá cao nhất phải là số.'
         ];
+    }
+
+    public function onUnknownSheet($sheetName)
+    {
+        // E.g. you can log that a sheet was not found.
+        info("Sheet {$sheetName} was skipped");
     }
 }

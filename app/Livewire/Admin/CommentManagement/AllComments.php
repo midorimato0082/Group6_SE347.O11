@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\CommentManagement;
 
 use App\Exports\CommentsExport;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
@@ -161,13 +162,23 @@ class AllComments extends Component
 
     private function deleteRecords()
     {
-        foreach ($this->checkedRecords as $id)
-            $this->authorize('delete', Comment::findOrFail($id));
+        $countDeleted = 0;
+        $hasCanNotDeleted = false;
 
-        foreach ($this->checkedRecords as $id)
-            Comment::findOrFail($id)->delete();
+        foreach ($this->checkedRecords as $id) {
+            $comment = Comment::findOrFail($id);
+            if (Auth::user()->role->name !== 'Super Admin' && Auth::user()->id !== $comment->user_id && $comment->user->first_name !== 'Deleted' && $comment->user->is_admin === true)
+                $hasCanNotDeleted = true;
+            else {
+                $comment->delete();
+                $countDeleted++;
+            }
+        }
+        if ($hasCanNotDeleted)
+            $this->dispatch('alert-warning', message: 'Bạn không có quyền xóa bình luận của các admin khác.');
 
-        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' dòng được chọn đã xóa');
+        if ($countDeleted > 0)
+            $this->dispatch('alert-success', message: 'Đã xóa ' . $countDeleted . ' bình luận trong số ' . count($this->checkedRecords) . ' bình luận được chọn.');
     }
 
     public function destroy()

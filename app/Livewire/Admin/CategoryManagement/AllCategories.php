@@ -170,7 +170,7 @@ class AllCategories extends Component
         foreach ($this->checkedRecords as $id)
             Category::findOrFail($id)->delete();
 
-        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' dòng được chọn đã xóa');
+        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' danh mục được chọn đã xóa');
     }
 
     public function destroy()

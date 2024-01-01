@@ -181,7 +181,7 @@ class AllPlaces extends Component
         foreach ($this->checkedRecords as $id)
             Place::findOrFail($id)->delete();
 
-        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' dòng được chọn đã xóa');
+        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' địa điểm được chọn đã xóa');
     }
 
     public function destroy()

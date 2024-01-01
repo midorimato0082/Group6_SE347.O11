@@ -188,19 +188,21 @@
                             @endcan
                         </td>
                         <td>
-                            @can('update', $user)
-                                <a wire:click="$dispatch('edit-user', { id: {{ $user->id }} })"
-                                    data-bs-toggle="tooltip" title="Cập nhật user">
-                                    <i data-bs-toggle="modal" data-bs-target="#edit-modal"
-                                        class="fas fa-pencil fa-sm text-primary"></i>
-                                </a>
+                            @if (Auth::user()->id !== $user->id)
+                                @can('update', $user)
+                                    <a wire:click="$dispatch('edit-user', { id: {{ $user->id }} })"
+                                        data-bs-toggle="tooltip" title="Cập nhật user">
+                                        <i data-bs-toggle="modal" data-bs-target="#edit-modal"
+                                            class="fas fa-pencil fa-sm text-primary"></i>
+                                    </a>
 
-                                <a x-on:click="$wire.deletedId = {{ $user->id }}" data-bs-toggle="tooltip"
-                                    title="Xóa user">
-                                    <i data-bs-toggle="modal" data-bs-target="#delete-modal"
-                                        class="fa fa-times fa-lg text-danger"></i>
-                                </a>
-                            @endcan
+                                    <a x-on:click="$wire.deletedId = {{ $user->id }}" data-bs-toggle="tooltip"
+                                        title="Xóa user">
+                                        <i data-bs-toggle="modal" data-bs-target="#delete-modal"
+                                            class="fa fa-times fa-lg text-danger"></i>
+                                    </a>
+                                @endcan
+                            @endif
                         </td>
                     </tr>
                 @endforeach

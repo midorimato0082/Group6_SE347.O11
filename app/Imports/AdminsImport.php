@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Rules\HasRightCreateSuperAdmin;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -55,7 +56,7 @@ class AdminsImport implements ToModel, WithHeadingRow, WithUpserts, WithBatchIns
             'ten' => 'required|regex:/^[\pL\s\-]+$/u|max:20',
             'email' => 'required|email:rfc,dns|unique:users',
             'so_dien_thoai' => 'nullable|digits:10|unique:users,phone',
-            'vai_tro' => 'required|not_in:User|exists:roles,name'           
+            'vai_tro' => ['required', 'not_in:User', 'exists:roles,name', new HasRightCreateSuperAdmin]           
         ];
     }
 

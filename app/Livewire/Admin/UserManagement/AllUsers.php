@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\UserManagement;
 use App\Exports\UsersExport;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -177,13 +178,31 @@ class AllUsers extends Component
 
     private function deleteRecords()
     {
-        foreach ($this->checkedRecords as $id)
-            $this->authorize('delete', User::findOrFail($id));
+        $countDeleted = 0;
+        $hasAdmin = false;
+        $hasSelf = false;
+        foreach ($this->checkedRecords as $id) {
+            $user = User::findOrFail($id);
+            if ($user->id === Auth::user()->id)
+                $hasSelf = true;
+            else {
+                if (Auth::user()->role->name !== 'Super Admin' && $user->is_admin)
+                    $hasAdmin = true;
+                else {
+                    $this->delete($user);
+                    $countDeleted++;
+                }
+            }
+        }
 
-        foreach ($this->checkedRecords as $id)
-            $this->delete(User::findOrFail($id));
+        if ($hasSelf)
+            $this->dispatch('alert-warning', message: 'Bạn không thể xóa bản thân.');
 
-        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' dòng được chọn đã xóa');
+        if ($hasAdmin)
+            $this->dispatch('alert-warning', message: 'Bạn không có quyền xóa các admin khác.');
+
+        if ($countDeleted > 0)
+            $this->dispatch('alert-success', message: 'Đã xóa ' . $countDeleted . ' user trong số ' . count($this->checkedRecords) . ' user được chọn.');
     }
 
     public function destroy()

@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\UserManagement;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
@@ -25,7 +26,7 @@ class AddAdmin extends Component
     #[Computed]
     public function roles()
     {
-        return Role::where('name', '!=', 'User')->get(['id', 'name']);
+        return Auth::user()->role->name === 'Super Admin' ? Role::where('name', '!=', 'User')->get(['id', 'name']) : Role::where('name', '=', 'Admin')->get(['id', 'name']);
     }
 
     protected function rules(): array

@@ -43,7 +43,7 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment): Response
     {
-        return ($user->id === $comment->user_id) || ($user->is_admin && $comment->user->is_admin === false)
+        return ($user->id === $comment->user_id) || ($user->is_admin && ($comment->user->is_admin === false || $comment->user->first_name === 'Deleted'))
             ? Response::allow()
             : Response::denyWithStatus(401);
     }
@@ -53,7 +53,7 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        return ($user->id === $comment->user_id) || ($user->is_admin && $comment->user->is_admin === false)
+        return ($user->id === $comment->user_id) || ($user->is_admin && ($comment->user->is_admin === false || $comment->user->first_name === 'Deleted'))
             ? Response::allow()
             : Response::denyWithStatus(401);
     }

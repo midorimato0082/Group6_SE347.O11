@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\Region;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -208,13 +209,24 @@ class AllPosts extends Component
 
     private function deleteRecords()
     {
-        foreach ($this->checkedRecords as $id)
-            $this->authorize('delete', Post::findOrFail($id));
+        $countDeleted = 0;
+        $hasCanNotDeleted = false;
+        
+        foreach ($this->checkedRecords as $id) {
+            $post = Post::findOrFail($id);
+            if (Auth::user()->role->name !== 'Super Admin' && $post->admin_id !== Auth::user()->id)
+                $hasCanNotDeleted = true;
+            else {
+                $this->delete($post);
+                $countDeleted++;
+            }
+        }
 
-        foreach ($this->checkedRecords as $id)
-            $this->delete(Post::findOrFail($id));
+        if ($hasCanNotDeleted)
+            $this->dispatch('alert-warning', message: 'Bạn không có quyền xóa bài viết của các admin khác.');
 
-        $this->dispatch('alert-success', message: count($this->checkedRecords) . ' dòng được chọn đã xóa');
+        if ($countDeleted > 0)
+            $this->dispatch('alert-success', message: 'Đã xóa ' . $countDeleted . ' bài viết trong số ' . count($this->checkedRecords) . ' bài viết được chọn.');
     }
 
     public function destroy()

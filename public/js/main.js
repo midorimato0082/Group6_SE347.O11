@@ -52,6 +52,10 @@ $(function () {
         toastr.success(e.detail.message, 'Thành công!')
     });
 
+    $(document).bind('alert-warning', function (e) {
+        toastr.warning(e.detail.message)
+    });
+
     $('#startDate').on('change', function () {
         Livewire.dispatch('set-createdFrom', { value: this.value });
     });

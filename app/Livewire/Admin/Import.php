@@ -39,6 +39,8 @@ class Import extends Component
 
     public function import()
     {
+        $this->reset('failures');
+        
         $this->authorize('create', Post::class);
 
         $this->validate();
@@ -64,10 +66,16 @@ class Import extends Component
             return $this->failures;
         };
 
-        $this->reset('file');
-        $this->id++;
+        $this->closeModal();
         $this->dispatch('close-modal');
         $this->dispatch('alert-success', message: 'Import dữ liệu thành công.');
         $this->dispatch('saved');
+    }
+
+    public function closeModal() 
+    {
+        $this->reset('file', 'failures');
+        $this->id++;
+        $this->clearValidation();
     }
 }
