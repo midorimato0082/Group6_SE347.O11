@@ -50,7 +50,7 @@ const inputTyping = () => {
     }
 }
 
-const apiKey = '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';
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
 const chatboxFormSubmit = async (e) => {
@@ -85,7 +85,10 @@ const chatboxFormSubmit = async (e) => {
             .then(result => {
                 autoReply(result.choices[0].message.content)
             })
-            .catch(error => console.error('Lỗi:', error));
+            .catch(error => console.error('Lỗi:', error))
+            .finally(() => {
+                isBotChatting.value = false;
+            })
 
         chatboxInput.value = ''
     }
@@ -119,7 +122,6 @@ const autoReply = (resultMessage) => {
 	`
     chatboxContent.value.push(message)
     scrollBottom()
-    isBotChatting.value = false;
 }
 
 const scrollBottom = () => {
