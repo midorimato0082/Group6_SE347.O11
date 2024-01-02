@@ -76,7 +76,7 @@
 
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle profile-nav d-flex align-items-center" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="{{ Auth::user()->avatar_url }}" alt="Avatar"">
                             <span class="d-none d-lg-inline-flex">{{ Auth::user()->full_name }}</span>
                         </a>

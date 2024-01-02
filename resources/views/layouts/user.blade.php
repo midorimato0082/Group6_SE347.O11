@@ -61,7 +61,7 @@
                                 </li>
                             @else
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle profile-nav py-0" data-bs-toggle="dropdown">
+                                    <a class="nav-link dropdown-toggle profile-nav py-0 d-flex align-items-center" data-bs-toggle="dropdown">
                                         <img class="rounded-circle me-1" src="{{ Auth::user()->avatar_url }}"
                                             alt="Avatar">
                                         <span class="d-lg-inline-flex fw-bold text-dark align-middle">Xin chào,
