@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="Khám phá thế giới của trải nghiệm du lịch trên nền tảng đánh giá của chúng tôi. Từ những điểm đến tuyệt vời đến những mẹo nội địa, những đánh giá được cộng đồng tạo ra cung cấp hướng dẫn tuyệt vời cho cuộc phiêu lưu tiếp theo của bạn. Khám phá những địa điểm tốt nhất, những viên ngọc ẩn mình và những thông điệp về du lịch làm cho mỗi chuyến đi đáng nhớ. Bắt đầu kế hoạch cho chuyến đi tiếp theo của bạn với chúng tôi!">
 
     <title>{{ $title ?? config('app.name') }}</title>
 
