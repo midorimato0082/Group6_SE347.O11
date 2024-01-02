@@ -2,7 +2,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Khám phá thế giới của trải nghiệm du lịch trên nền tảng đánh giá của chúng tôi. Từ những điểm đến tuyệt vời đến những mẹo nội địa, những đánh giá được cộng đồng tạo ra cung cấp hướng dẫn tuyệt vời cho cuộc phiêu lưu tiếp theo của bạn. Khám phá những địa điểm tốt nhất, những viên ngọc ẩn mình và những thông điệp về du lịch làm cho mỗi chuyến đi đáng nhớ. Bắt đầu kế hoạch cho chuyến đi tiếp theo của bạn với chúng tôi!">
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dulichvuive.online/" />
+    <meta property="og:title" content="Review Travel - Đánh Giá và Hướng Dẫn" />
+    <meta property="og:description" content="Khám phá thế giới du lịch với đánh giá và hướng dẫn tuyệt vời. Điểm đến, mẹo độc đáo và những bí mật du lịch sẽ làm cho mỗi chuyến đi của bạn đáng nhớ. Bắt đầu kế hoạch cho chuyến du lịch tiếp theo ngay hôm nay!" />
+    <meta property="og:image" content="https://dulichvuive.online/images/posts/thung-ca-homestay-phong-2-1-2nguoi647-1024x681.jpeg" />
 
     <title>{{ $title ?? config('app.name') }}</title>
 
