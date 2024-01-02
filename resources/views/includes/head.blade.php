@@ -10,6 +10,18 @@
     <meta property="og:description" content="Khám phá thế giới du lịch với đánh giá và hướng dẫn tuyệt vời. Điểm đến, mẹo độc đáo và những bí mật du lịch sẽ làm cho mỗi chuyến đi của bạn đáng nhớ. Bắt đầu kế hoạch cho chuyến du lịch tiếp theo ngay hôm nay!" />
     <meta property="og:image" content="https://dulichvuive.online/images/posts/thung-ca-homestay-phong-2-1-2nguoi647-1024x681.jpeg" />
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Review Travel",
+      "url": "https://dulichvuive.online/",
+      "logo": "https://dulichvuive.online/images/others/logo.png",
+      "description": "Khám phá và đánh giá những điểm đến tuyệt vời cùng cộng đồng của chúng tôi.",
+    }
+    </script>
+
+
     <title>{{ $title ?? config('app.name') }}</title>
 
     <link rel="icon" href="{{ asset('images/others/logo-orange.png') }}" />
