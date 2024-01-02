@@ -28,3 +28,6 @@
 
 {{-- Custom JS --}}
 <script src="{{ asset('js/main.js') }}"></script>
+
+{{-- Vite --}}
+@vite('resources/js/app.js')

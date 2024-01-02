@@ -110,9 +110,7 @@
                     <small>Website Design: Group 6 - SE347.O11</small>
                 </div>
             </footer>
-            <div id="app">
-                <chat-bot></chat-bot>
-            </div>
+        
             <button id="btn-to-top" class="btn btn-orange btn-lg rounded-5"><i class="fa fa-arrow-up"></i></button>
         </div>
 

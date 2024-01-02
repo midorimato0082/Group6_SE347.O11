@@ -50,7 +50,7 @@ const inputTyping = () => {
     }
 }
 
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
 const chatboxFormSubmit = async (e) => {
@@ -142,55 +142,35 @@ const isValid = (value) => {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-    margin: 0;
-}
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+.chatbox-wrapper ul[role='list'],
+.chatbox-wrapper ol[role='list'] {
     list-style: none;
 }
 
 /* Set core root defaults */
-html:focus-within {
+.chatbox-wrapper html:focus-within {
     scroll-behavior: smooth;
 }
 
 /* A elements that don't have a class get default styles */
-a:not([class]) {
+.chatbox-wrapper a:not([class]) {
     text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
-img,
-picture {
+.chatbox-wrapper img,
+.chatbox-wrapper picture {
     max-width: 100%;
     display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
+.chatbox-wrapper input,
+.chatbox-wrapper button,
+.chatbox-wrapper textarea,
+.chatbox-wrapper select {
     font: inherit;
 }
 
@@ -231,8 +211,8 @@ select {
 /* CHATBOX */
 .chatbox-wrapper {
     position: fixed;
-    bottom: 5rem;
-    right: 1rem;
+    bottom: 4.7rem;
+    right: 0.55rem;
     width: 4rem;
     height: 4rem;
 }

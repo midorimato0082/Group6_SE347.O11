@@ -67,5 +67,4 @@
         background-color: rgba(20,105,69,.2);
     }
 }
-
 </style>

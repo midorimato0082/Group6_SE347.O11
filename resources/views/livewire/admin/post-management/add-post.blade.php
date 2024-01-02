@@ -138,6 +138,10 @@
             </div>
         </div>
     </form>
+
+    <div id="app">
+        <chat-bot></chat-bot>
+    </div>
 </div>
 
 @push('scripts')
