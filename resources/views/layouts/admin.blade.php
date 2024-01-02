@@ -15,7 +15,7 @@
 
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative img-profile">
-                        <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}" alt="Avatar">
+                        <img class="rounded-circle" src="{{ Auth::user()->avatar_url }}" alt="Avatar Việt Nam Review Travel">
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
@@ -77,7 +77,7 @@
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle profile-nav" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->avatar_url }}" alt="Avatar"">
+                            <img class="rounded-circle me-lg-2" src="{{ Auth::user()->avatar_url }}" alt="Avatar Việt Nam Review Travel">
                             <span class="d-none d-lg-inline-flex">{{ Auth::user()->full_name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end border-0 rounded-0 rounded-bottom m-0">

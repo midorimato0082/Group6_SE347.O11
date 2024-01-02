@@ -1,7 +1,7 @@
 @extends('layouts.entry')
 
 @section('left-box')
-    <img src="{{ asset('images/others/login.jpg') }}" alt="Việt Nam Travel" class="img-fluid rounded-3 mt-3">
+    <img src="{{ asset('images/others/login.jpg') }}" alt="Việt Nam Review Travel Đăng nhập Login" class="img-fluid rounded-3 mt-3">
     <h1 class="fw-bold text-wrap text-center">{{ config('app.name') }}</h1>
     <p class="text-wrap text-center mb-3">Cùng nhau thảo luận về những nơi tuyệt vời cho các chuyến đi nào!</p>
 @endsection

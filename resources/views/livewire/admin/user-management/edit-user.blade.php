@@ -77,10 +77,10 @@
             <div class="row mb-2">
                 <div class="col offset-md-3 d-flex">
                     @if ($newAvatar)
-                        <img src="{{ $newAvatar->temporaryUrl() }}" class="rounded-circle mb-2 img-modal">
+                        <img src="{{ $newAvatar->temporaryUrl() }}" class="rounded-circle mb-2 img-modal" alt="Review Travel Upload Hình">
                         <a wire:click.prevent="removeNewAvatar"><i class="fa fa-times text-danger fw-bold"></i></a>
                     @else
-                        <img src="{{ $avatar }}" class="rounded-circle mb-2 img-modal">
+                        <img src="{{ $avatar }}" class="rounded-circle mb-2 img-modal" alt="Review Travel Upload Hình">
                     @endif
                 </div>
             </div>

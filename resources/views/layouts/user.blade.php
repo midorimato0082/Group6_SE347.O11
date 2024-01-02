@@ -63,7 +63,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle profile-nav py-0" data-bs-toggle="dropdown">
                                         <img class="rounded-circle me-1" src="{{ Auth::user()->avatar_url }}"
-                                            alt="Avatar">
+                                            alt="Avatar Review Travel">
                                         <span class="d-lg-inline-flex fw-bold text-dark align-middle">Xin chào,
                                             {{ Auth::user()->first_name }}</span>
                                     </a>
@@ -127,7 +127,7 @@
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ route('post', $post->slug) }}">
-                                    <img src="{{ $post->first_image }}" class="rounded-3">
+                                    <img src="{{ $post->first_image }}" class="rounded-3" alt="{{ 'Review Travel - ' . $post->title }}">
                                 </a>
                             </div>
                             <div class="col ms-3">
@@ -148,7 +148,7 @@
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ route('post', $post->slug) }}">
-                                    <img src="{{ $post->first_image }}" class="rounded-3">
+                                    <img src="{{ $post->first_image }}" class="rounded-3" alt="{{ 'Review Travel - ' . $post->title }}">
                                 </a>
                             </div>
                             <div class="col ms-3">

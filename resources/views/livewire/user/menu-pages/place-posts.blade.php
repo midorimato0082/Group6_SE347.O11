@@ -30,7 +30,7 @@
                     <div class="col-md-4 position-relative">
                         <a href="{{ route('post', $post->slug) }}">
                             <img src="{{ $post->first_image }}" class="img-fluid horizontal-card-image"
-                                alt="{{ $post->title }}">
+                                alt="{{ 'Review Travel - ' . $post->title }}">
                         </a>
                     </div>
                     <div class="col-md-8">

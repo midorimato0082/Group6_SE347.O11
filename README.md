@@ -17,4 +17,5 @@
     <li>php artisan migrate</li>
     <li>php artisan db:seed</li>
     <li>php artisan serve</li>
+    <li>Mở terminal hoặc cmd khác: npm run dev</li>
 </ol>

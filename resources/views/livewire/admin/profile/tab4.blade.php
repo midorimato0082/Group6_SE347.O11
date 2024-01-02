@@ -2,7 +2,7 @@
     @foreach ($this->posts as $post)
         <div class="d-flex mb-2">
             <a href="{{ route('post', $post->slug) }}">
-                <img src="{{ $post->first_image }}">
+                <img src="{{ $post->first_image }}" alt="{{ 'Review Travel - ' . $post->title }}">
             </a>
             <div class="flex-fill ms-2">
                 <a href="{{ route('post', $post->slug) }}" class="text-black">

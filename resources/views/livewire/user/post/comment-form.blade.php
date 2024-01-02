@@ -1,7 +1,7 @@
 <div class="d-flex">
     @auth
         <div class="flex-shrink-0">
-            <img class="rounded-circle shadow-1-strong" src="{{ Auth::user()->avatar_url }}" alt="avatar" width="60"
+            <img class="rounded-circle shadow-1-strong" src="{{ Auth::user()->avatar_url }}" alt="Avatar Review Travel" width="60"
                 height="60" />
         </div>
         <div class="flex-grow-1 ms-3">

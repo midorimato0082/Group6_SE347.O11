@@ -158,7 +158,7 @@
                         </td>
                         <td>{{ $key + $this->users->firstItem() }}</td>
                         <td class="text-start text-nowrap">
-                            <img src="{{ $user->avatar_url }}" class="rounded-circle img-table me-2">
+                            <img src="{{ $user->avatar_url }}" class="rounded-circle img-table me-2" alt="{{ 'Review Travel - ' . $user->full_name }}">
                             {{ $user->full_name }}
                         </td>
                         <td class="text-start">{{ $user->email }}</td>
