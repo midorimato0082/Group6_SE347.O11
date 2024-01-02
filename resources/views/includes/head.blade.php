@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
+    <meta name="description" content="Khám phá và đánh giá những điểm đến tuyệt vời nhất trên thế giới với chúng tôi. Cộng đồng chia sẻ thông tin hữu ích, đánh giá chân thực và mẹo du lịch độc đáo. Hãy lựa chọn đúng với hướng dẫn từ những người đã trải nghiệm. Bắt đầu hành trình của bạn với sự hiểu biết tốt nhất về du lịch.">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dulichvuive.online/" />
     <meta property="og:title" content="Review Travel - Đánh Giá và Hướng Dẫn" />
