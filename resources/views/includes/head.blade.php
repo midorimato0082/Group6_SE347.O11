@@ -22,7 +22,7 @@
     </script>
 
 
-    <title>{{ $title ?? config('app.name') }}</title>
+    <title>{{ 'Review Travel - ' . $title ?? config('app.name') }}</title>
 
     <link rel="icon" href="{{ asset('images/others/logo-orange.png') }}" />
 
