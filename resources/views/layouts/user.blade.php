@@ -7,7 +7,7 @@
     <header>
         <div class="container mt-4 d-flex align-items-center">
             <a href="{{ route('home') }}" class="logo">
-                <img src="{{ asset('images/others/logo.png') }}" alt="{{ 'Logo' . config('app.name') }}">
+                <img src="{{ asset('images/others/logo.png') }}" alt="Review Travel Group 6 SE347.O11 - Logo">
                 <h1>{{ config('app.name') }}</h1>
             </a>
         </div>
@@ -63,7 +63,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle profile-nav py-0" data-bs-toggle="dropdown">
                                         <img class="rounded-circle me-1" src="{{ Auth::user()->avatar_url }}"
-                                            alt="Avatar Review Travel">
+                                            alt="Review Travel Group 6 SE347.O11 - Avatar">
                                         <span class="d-lg-inline-flex fw-bold text-dark align-middle">Xin chào,
                                             {{ Auth::user()->first_name }}</span>
                                     </a>
@@ -127,7 +127,7 @@
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ route('post', $post->slug) }}">
-                                    <img src="{{ $post->first_image }}" class="rounded-3" alt="{{ 'Review Travel - ' . $post->title }}">
+                                    <img src="{{ $post->first_image }}" class="rounded-3" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}">
                                 </a>
                             </div>
                             <div class="col ms-3">
@@ -148,7 +148,7 @@
                         <div class="row mb-2">
                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                 <a href="{{ route('post', $post->slug) }}">
-                                    <img src="{{ $post->first_image }}" class="rounded-3" alt="{{ 'Review Travel - ' . $post->title }}">
+                                    <img src="{{ $post->first_image }}" class="rounded-3" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}">
                                 </a>
                             </div>
                             <div class="col ms-3">

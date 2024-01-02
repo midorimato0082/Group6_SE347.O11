@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-4 dashboard2">
         <div class="col-xl-6">
             <h2 class="fw-bold text-center">Bình luận mới</h2>
             @foreach ($comments as $comment)
@@ -63,7 +63,7 @@
                     <div class="card-body d-flex">
                         <div class="flex-shrink-0">
                             <img class="rounded-circle shadow-1-strong" src="{{ $comment->user->avatar_url }}"
-                                alt="Avatar Việt Nam Review Travel" width="60" height="60"/>
+                                alt="Review Travel Group 6 SE347.O11 - Avatar" width="60" height="60" />
                         </div>
                         <div class="flex-grow-1 ms-3">
                             <b>{{ $comment->user->full_name }}</b>
@@ -72,9 +72,11 @@
                                     <i class="fa-solid fa-gear fa-sm" style="font-size: 0.7rem"></i>
                                 </span>
                             @endif
-                            <p class="text-mute small">{{ $comment->created_time }}</p>
-                            <p>{{ $comment->content }}</p>
-                            <small class="fw-bold">{{ $comment->post->title }}</small>
+                            <p class="text-mute small mb-2">{{ $comment->created_time }}</p>
+                            <p class="mb-2">{{ $comment->content }}</p>
+                            <a href="{{ route('post', $comment->post->slug) }}" class="small fw-bold">
+                                {{ $comment->post->title }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -87,17 +89,22 @@
                 <div class="card mb-2">
                     <div class="card-body d-flex">
                         <div class="flex-shrink-0 dashboard-img">
-                            <img src="{{ $post->first_image }}" alt="{{ 'Việt Nam Review Travel - ' . $post->title }}"/>
+                            <a href="{{ route('post', $post->slug) }}">
+                                <img src="{{ $post->first_image }}"
+                                alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}" />
+                            </a>                           
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <b>{{ $post->title }}</b>
-                            <p class="text-mute small">
+                            <a href="{{ route('post', $post->slug) }}" class="fw-bold">
+                                {{ $post->title }}
+                            </a>
+                            <p class="text-mute small mb-2">
                                 Đăng bởi: {{ $post->admin->full_name }}
                                 <span class="ms-2">
                                     {{ $post->created_time }}
                                 </span>
                             </p>
-                            <p class="small">
+                            <p class="small mb-1">
                                 <span data-bs-toggle="tooltip" title="Lượt xem">
                                     <i class="fa fa-eye"></i>
                                     {{ $post->view_count }}

@@ -10,7 +10,7 @@
         <div class="carousel-inner rounded-2">
             @foreach ($carouselPosts as $key => $post)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="3000">
-                    <img src="{{ $post->first_image }}" class="d-block w-100" alt="{{ 'Review Travel - ' . $post->title }}">
+                    <img src="{{ $post->first_image }}" class="d-block w-100" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}">
                     <div class="carousel-caption">
                         <a href="{{ route('post', $post->slug) }}">
                             <h2>{{ $post->title }}</h2>

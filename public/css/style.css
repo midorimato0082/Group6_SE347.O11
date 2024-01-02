@@ -625,6 +625,14 @@ input[readonly] {
     border-radius: 0.8rem;
     object-fit: cover;
 }
+
+.dashboard2 a {
+    color: #212529;
+}
+
+.dashboard2 a:hover {
+    color: #2a3f54;
+}
 /* ---------------------------- */
 
 /* Header */

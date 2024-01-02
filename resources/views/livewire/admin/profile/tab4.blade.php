@@ -1,10 +1,10 @@
 <div>
     @foreach ($this->posts as $post)
-        <div class="d-flex mb-2">
+        <div class="d-flex mb-3">
             <a href="{{ route('post', $post->slug) }}">
-                <img src="{{ $post->first_image }}" alt="{{ 'Review Travel - ' . $post->title }}">
+                <img src="{{ $post->first_image }}" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}" class="mt-1">
             </a>
-            <div class="flex-fill ms-2">
+            <div class="flex-fill ms-3">
                 <a href="{{ route('post', $post->slug) }}" class="text-black">
                     <strong class="card-title fw-bold mt-01">
                         {{ $post->title }}

@@ -173,7 +173,7 @@
                         <td class="text-start">{{ $post->title }}</td>
                         <td class="px-1">
                             @foreach ($post->getImagesUrl() as $imageUrl)
-                                <img src="{{ $imageUrl }}" class="img-table pb-1" alt="{{ 'Review Travel - ' . $post->title }}">
+                                <img src="{{ $imageUrl }}" class="img-table pb-1" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}">
                             @endforeach
                         </td>
                         <td class="text-start">{{ str($post->desc)->words(10) }}</td>
@@ -233,7 +233,7 @@
         </div>
     </div>
 
-    <div id="app">
+    <div wire:ignore id="app">
         <chat-bot></chat-bot>
     </div>
 </div>

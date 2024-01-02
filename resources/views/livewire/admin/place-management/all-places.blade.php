@@ -239,7 +239,7 @@
         </div>
     </div>
 
-    <div id="app">
+    <div wire:ignore id="app">
         <chat-bot></chat-bot>
     </div>
 </div>

@@ -11,7 +11,7 @@
             @foreach ($bestPlacePosts->take(3) as $post)
                 <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="fade-right">
                     <a href="{{ route('post', $post->slug) }}">
-                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel - ' . $post->title }}"></a>
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}"></a>
                     <div class="my-2">
                         <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                     </div>
@@ -22,7 +22,7 @@
             @foreach ($bestPlacePosts->slice(3) as $key => $post)
                 <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="fade-right">
                     <a href="{{ route('post', $post->slug) }}">
-                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel - ' . $post->title }}"></a>
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}"></a>
                     <div class="my-2">
                         <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                     </div>
@@ -39,7 +39,7 @@
                 @foreach ($bestViewPosts->slice(1, 2) as $post)
                     <div class="row">
                         <a href="{{ route('post', $post->slug) }}">
-                            <img src="{{ $post->first_image }}" class="img-fluid home-img-small" alt="{{ 'Review Travel - ' . $post->title }}"></a>
+                            <img src="{{ $post->first_image }}" class="img-fluid home-img-small" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}"></a>
                         <div class="my-2">
                             <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                         </div>
@@ -51,7 +51,7 @@
                 <div class="row flex-fill" data-aos="flip-down">
                     <div class="col-md-12 col-lg-12 col-xl-12">
                         <a href="{{ route('post', $bestViewPosts[0]->slug) }}">
-                            <img src="{{ $bestViewPosts[0]->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel - ' . $bestViewPosts[0]->title }}"></a>
+                            <img src="{{ $bestViewPosts[0]->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $bestViewPosts[0]->title }}"></a>
                         <div class="my-2 text-center">
                             <a href="{{ route('post', $bestViewPosts[0]->slug) }}"
                                 class="home-title-img">{{ $bestViewPosts[0]->title }}</a>
@@ -64,7 +64,7 @@
                 @foreach ($bestViewPosts->slice(3) as $post)
                     <div class="row">
                         <a href="{{ route('post', $post->slug) }}">
-                            <img src="{{ $post->first_image }}" class="img-fluid home-img-small" alt="{{ 'Review Travel - ' . $post->title }}"></a>
+                            <img src="{{ $post->first_image }}" class="img-fluid home-img-small" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}"></a>
                         <div class="my-2">
                             <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                         </div>
@@ -80,7 +80,7 @@
             @foreach ($latestPosts->take(3) as $post)
                 <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="zoom-in">
                     <a href="{{ route('post', $post->slug) }}">
-                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel - ' . $post->title }}"></a>
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}"></a>
                     <div class="my-2">
                         <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                     </div>
@@ -91,7 +91,7 @@
             @foreach ($latestPosts->slice(3) as $key => $post)
                 <div class="col-md-4 col-lg-4 col-xl-4 px-3" data-aos="zoom-in">
                     <a href="{{ route('post', $post->slug) }}">
-                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel - ' . $post->title }}"></a>
+                        <img src="{{ $post->first_image }}" class="img-fluid home-img" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}"></a>
                     <div class="my-2">
                         <a href="{{ route('post', $post->slug) }}" class="home-title-img">{{ $post->title }}</a>
                     </div>

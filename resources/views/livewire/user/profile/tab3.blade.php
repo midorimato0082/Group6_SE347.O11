@@ -1,8 +1,8 @@
 <div>
     @foreach ($this->postLikes as $post)
-        <div class="d-flex mb-2">
+        <div class="d-flex mb-3">
             <a href="{{ route('post', $post->slug) }}">
-                <img src="{{ $post->first_image }}" alt="{{ 'Review Travel - ' . $post->title }}">
+                <img src="{{ $post->first_image }}" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}" class="mt-1">
             </a>
             <div class="flex-fill ms-2">
                 <a href="{{ route('post', $post->slug) }}" class="text-black">

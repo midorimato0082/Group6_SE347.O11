@@ -3,11 +3,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <meta name="description" content="Khám phá và đánh giá những điểm đến tuyệt vời nhất trên thế giới với chúng tôi. Cộng đồng chia sẻ thông tin hữu ích, đánh giá chân thực và mẹo du lịch độc đáo. Hãy lựa chọn đúng với hướng dẫn từ những người đã trải nghiệm. Bắt đầu hành trình của bạn với sự hiểu biết tốt nhất về du lịch.">
+    <meta name="description" content="Review Travel Group 6 SE347.O11 - Khám phá và đánh giá những điểm đến tuyệt vời nhất trên thế giới với chúng tôi. Cộng đồng chia sẻ thông tin hữu ích, đánh giá chân thực và mẹo du lịch độc đáo. Hãy lựa chọn đúng với hướng dẫn từ những người đã trải nghiệm. Bắt đầu hành trình của bạn với sự hiểu biết tốt nhất về du lịch.">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dulichvuive.online/" />
-    <meta property="og:title" content="Review Travel - Đánh Giá và Hướng Dẫn" />
-    <meta property="og:description" content="Khám phá thế giới du lịch với đánh giá và hướng dẫn tuyệt vời. Điểm đến, mẹo độc đáo và những bí mật du lịch sẽ làm cho mỗi chuyến đi của bạn đáng nhớ. Bắt đầu kế hoạch cho chuyến du lịch tiếp theo ngay hôm nay!" />
+    <meta property="og:title" content="Review Travel Group 6 SE347.O11 - Đánh Giá và Hướng Dẫn" />
+    <meta property="og:description" content="Review Travel Group 6 SE347.O11 - Khám phá thế giới du lịch với đánh giá và hướng dẫn tuyệt vời. Điểm đến, mẹo độc đáo và những bí mật du lịch sẽ làm cho mỗi chuyến đi của bạn đáng nhớ. Bắt đầu kế hoạch cho chuyến du lịch tiếp theo ngay hôm nay!" />
     <meta property="og:image" content="https://dulichvuive.online/images/posts/thung-ca-homestay-phong-2-1-2nguoi647-1024x681.jpeg" />
 
     <script type="application/ld+json">
@@ -17,12 +17,12 @@
       "name": "Review Travel",
       "url": "https://dulichvuive.online/",
       "logo": "https://dulichvuive.online/images/others/logo.png",
-      "description": "Khám phá và đánh giá những điểm đến tuyệt vời cùng cộng đồng của chúng tôi.",
+      "description": "Review Travel Group 6 SE347.O11 - Khám phá và đánh giá những điểm đến tuyệt vời cùng cộng đồng của chúng tôi.",
     }
     </script>
 
 
-    <title>{{ $title . ' - Review Travel' ?? config('app.name') }}</title>
+    <title>{{ $title . ' - Review Travel Group 6 SE347.O11' ?? config('app.name') }}</title>
 
     <link rel="icon" href="{{ asset('images/others/logo-orange.png') }}" />
 

@@ -1,10 +1,10 @@
 <div>
     @foreach ($this->comments as $comment)
-        <div class="d-flex mb-2">
+        <div class="d-flex mb-3">
             <a href="{{ route('post', $comment->post->slug) }}">
-                <img src="{{ $comment->post->first_image }}" alt="{{ 'Review Travel - ' . $comment->post->title }}">
+                <img src="{{ $comment->post->first_image }}" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $comment->post->title }}" class="mt-1">
             </a>
-            <div class="flex-fill ms-2">
+            <div class="flex-fill ms-3">
                 <a href="{{ route('post', $comment->post->slug) }}" class="text-black">
                     <strong class="card-title fw-bold mt-01">
                         {{ $comment->post->title }}

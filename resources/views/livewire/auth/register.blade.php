@@ -50,10 +50,10 @@
 
         <div class="form-outline mb-3 text-center">
             @if ($avatar)
-                <img src="{{ $avatar->temporaryUrl() }}" class="rounded-circle mb-3 img-upload" alt="Review Travel Upload Hình">
+                <img src="{{ $avatar->temporaryUrl() }}" class="rounded-circle mb-3 img-upload" alt="Review Travel Group 6 SE347.O11 - Hình Upload">
                 <a wire:click.prevent="removeAvatar"><i class="fa fa-times text-danger fw-bold"></i></a>               
             @else
-                <img src="{{ asset('images/others/no-avatar.jpg') }}" class="rounded-circle mb-3 img-upload" alt="Review Travel Upload Hình">
+                <img src="{{ asset('images/others/no-avatar.jpg') }}" class="rounded-circle mb-3 img-upload" alt="Review Travel Group 6 SE347.O11 - Hình Upload">
             @endif
 
             <div class="input-group custom-file-btn">

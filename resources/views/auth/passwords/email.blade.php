@@ -2,7 +2,7 @@
 
 @section('left-box')
     <div class="mt-3 mb-3">
-        <img src="{{ asset('images/others/reset-password.png') }}" class="img-box" alt="Việt Nam Review Travel Quên mật khẩu Reset Password">
+        <img src="{{ asset('images/others/reset-password.png') }}" class="img-box" alt="Review Travel Group 6 SE347.O11 - Quên mật khẩu">
     </div>
 @endsection
 

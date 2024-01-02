@@ -1,7 +1,7 @@
 <div class="card-transparent text-dark" x-data="{ edit: false }">
     <div class="card-body p-4">
         <div class="d-flex">
-            <img class="rounded-circle shadow-1-strong me-3" src="{{ $comment->user->avatar_url }}" alt="Avatar Review Travel"
+            <img class="rounded-circle shadow-1-strong me-3" src="{{ $comment->user->avatar_url }}" alt="Review Travel Group 6 SE347.O11 - Avatar"
                 width="60" height="60" />
             <div class="flex-fill">
                 <div class="d-flex show-comment">

@@ -42,7 +42,7 @@
                     <div class="col-md-4 position-relative">
                         <a href="{{ route('post', $post->slug) }}">
                             <img src="{{ $post->first_image }}" class="img-fluid horizontal-card-image"
-                                alt="{{ 'Review Travel - ' . $post->title }}">
+                                alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}">
                         </a>
 
                         @if ($post->best_star_place)

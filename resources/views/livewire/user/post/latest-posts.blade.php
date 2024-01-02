@@ -2,7 +2,7 @@
     <h4 class="mb-4 fw-bold">Bài viết gần đây</h4>
     @foreach ($this->posts as $post)
         <a href="{{ route('post', $post->slug) }}" class="text-black">
-            <img src="{{ $post->first_image }}" alt="{{ 'Review Travel - ' . $post->title }}">
+            <img src="{{ $post->first_image }}" alt="{{ 'Review Travel Group 6 SE347.O11 - ' . $post->title }}">
             <h5 class="mt-3 fw-bold">{{ $post->title }}</h5>
         </a>
         <p>{{ $post->desc }}</p>

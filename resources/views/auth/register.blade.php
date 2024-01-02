@@ -19,7 +19,7 @@
             </div>
 
             <div class="col rounded-4 d-flex align-items-center justify-content-center me-2">
-                <img src="{{ asset('images/others/register.jpg') }}" class="img-box rounded-5" alt="Việt Nam Review Travel Đăng ký Register">
+                <img src="{{ asset('images/others/register.jpg') }}" class="img-box rounded-5" alt="Review Travel Group 6 SE347.O11 - Đăng ký">
             </div>
         </div>
     </div>
