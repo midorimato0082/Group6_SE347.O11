@@ -63,7 +63,7 @@
                     <div class="card-body d-flex">
                         <div class="flex-shrink-0">
                             <img class="rounded-circle shadow-1-strong" src="{{ $comment->user->avatar_url }}"
-                                alt="avatar" width="60" height="60"/>
+                                alt="Avatar Việt Nam Review Travel" width="60" height="60"/>
                         </div>
                         <div class="flex-grow-1 ms-3">
                             <b>{{ $comment->user->full_name }}</b>
@@ -87,7 +87,7 @@
                 <div class="card mb-2">
                     <div class="card-body d-flex">
                         <div class="flex-shrink-0 dashboard-img">
-                            <img src="{{ $post->first_image }}" />
+                            <img src="{{ $post->first_image }}" alt="{{ 'Việt Nam Review Travel - ' . $post->title }}"/>
                         </div>
                         <div class="flex-grow-1 ms-3">
                             <b>{{ $post->title }}</b>

@@ -2,7 +2,7 @@
     @foreach ($this->commentLikes as $commentLike)
         <div class="d-flex mb-2">
             <a href="{{ route('post', $commentLike->post->slug) }}">
-                <img src="{{ $commentLike->post->first_image }}">
+                <img src="{{ $commentLike->post->first_image }}" alt="{{ 'Review Travel - ' . $commentLike->post->title }}">
             </a>
             <div class="flex-fill ms-2">
                 <a href="{{ route('post', $commentLike->post->slug) }}" class="text-black">

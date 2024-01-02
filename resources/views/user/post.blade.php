@@ -16,7 +16,7 @@
                     <div class="carousel-inner rounded-2">
                         @foreach ($post->getImagesUrl() as $key => $imageUrl)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="3000">
-                                <img src="{{ $imageUrl }}" class="d-block w-100">
+                                <img src="{{ $imageUrl }}" class="d-block w-100" alt="{{ 'Review Travel - ' . $post->title }}">
                             </div>
                         @endforeach
 

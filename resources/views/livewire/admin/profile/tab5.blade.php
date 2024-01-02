@@ -2,7 +2,7 @@
     @foreach ($this->comments as $comment)
         <div class="d-flex mb-2">
             <a href="{{ route('post', $comment->post->slug) }}">
-                <img src="{{ $comment->post->first_image }}">
+                <img src="{{ $comment->post->first_image }}" alt="{{ 'Review Travel - ' . $comment->post->title }}">
             </a>
             <div class="flex-fill ms-2">
                 <a href="{{ route('post', $comment->post->slug) }}" class="text-black">

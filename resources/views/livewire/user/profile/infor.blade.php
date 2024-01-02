@@ -2,7 +2,7 @@
     @include('user.edit-profile-modal')
 
     <div class="col-lg-5 text-center mt-3">
-        <img src="{{ $avatar }}" class="rounded-circle img-fluid profile-avatar">
+        <img src="{{ $avatar }}" class="rounded-circle img-fluid profile-avatar" alt="Avatar Review Travel">
         <h5 class="fw-bold mt-3">{{ $user->full_name }}</h5>
         <span class="btn btn-sm btn-orange btn-file mt-1">
             Cập nhật avatar

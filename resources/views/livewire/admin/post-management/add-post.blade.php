@@ -53,7 +53,7 @@
             <div class="row mt-2">
                 <div class="col offset-3 offset-sm-3 offset-md-2 offset-lg-2 offset-xl-2 d-flex">
                     @foreach ($images as $key => $image)
-                        <img src="{{ $image->temporaryUrl() }}" class="rounded-2 img-upload">
+                        <img src="{{ $image->temporaryUrl() }}" class="rounded-2 img-upload" alt="Hình upload Review Travel">
                         <a wire:click.prevent="removeImage({{ $key }})"><i
                                 class="fa fa-times text-danger fw-bold mx-2"></i></a>
                     @endforeach

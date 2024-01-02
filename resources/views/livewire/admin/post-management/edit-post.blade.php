@@ -58,18 +58,18 @@
             <div class="col offset-3 offset-sm-3 offset-md-2 offset-lg-2 offset-xl-2 d-flex">
                 @if ($newImages)
                     @foreach ($newImages as $key => $image)
-                        <img src="{{ $image->temporaryUrl() }}" class="rounded-2 img-upload">
+                        <img src="{{ $image->temporaryUrl() }}" class="rounded-2 img-upload" alt="{{ 'Review Travel - ' . $post->title }}">
                         <a wire:click.prevent="removeNewImage({{ $key }})" data-bs-toggle="tooltip"
                             title="Xóa ảnh"><i class="fa fa-times text-danger fw-bold mx-2"></i></a>
                     @endforeach
                 @else
                     @forelse ($this->oldImages as $key => $image)
-                        <img src="{{ $image->url }}" class="rounded-2 img-upload" alt="{{ $post->title }}">
+                        <img src="{{ $image->url }}" class="rounded-2 img-upload" alt="{{ 'Review Travel - ' . $post->title }}">
                         <a wire:click.prevent="removeOldImage({{ $key }})" data-bs-toggle="tooltip"
                             title="Xóa ảnh"><i class="fa fa-times text-danger fw-bold mx-2"></i></a>
                     @empty
                         <img src="{{ asset('images/others/no-image.jpg') }}" class="rounded-2 img-upload"
-                            alt="{{ $post->title }}">
+                        alt="{{ 'Review Travel - ' . $post->title }}">
                     @endforelse
                     @if ($deletedImages)
                         <a wire:click.prevent="restoreOldImages" data-bs-toggle="tooltip" title="Khôi phục lại">

@@ -173,7 +173,7 @@
                         <td class="text-start">{{ $post->title }}</td>
                         <td class="px-1">
                             @foreach ($post->getImagesUrl() as $imageUrl)
-                                <img src="{{ $imageUrl }}" class="img-table pb-1" alt="{{ $post->title }}">
+                                <img src="{{ $imageUrl }}" class="img-table pb-1" alt="{{ 'Review Travel - ' . $post->title }}">
                             @endforeach
                         </td>
                         <td class="text-start">{{ str($post->desc)->words(10) }}</td>
