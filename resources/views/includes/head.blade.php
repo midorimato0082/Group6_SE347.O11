@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('images/others/logo-orange.png') }}" />
 
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 
     {{-- Bootstrap 5.3.2 CSS --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
