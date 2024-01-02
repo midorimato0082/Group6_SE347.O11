@@ -170,7 +170,7 @@
     </footer>
 
     <button id="btn-to-top" class="btn btn-orange btn-lg rounded-5"><i class="fa fa-arrow-up"></i></button>
-
+    
     @include('includes.scripts')
 </body>
 

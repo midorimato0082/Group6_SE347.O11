@@ -232,4 +232,8 @@
             </ul>
         </div>
     </div>
+
+    <div id="app">
+        <chat-bot></chat-bot>
+    </div>
 </div>
